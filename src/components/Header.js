@@ -1,18 +1,16 @@
-import React from 'react'
-import style from './Header.css'
-import logo from './images/logo.png'
-import about from './images/about.png'
+import React from 'react';
+import styles from './Header.module.css';
+import logo from './images/logo.png';
+import about from './images/about.png';
 
-function Header() {
+export default function Header() {
     return (
-        <div className = { style.header }>
-            <div className = { style.headerContainer }>
-                <img className = "headerLogo" src = { logo } alt = "logo" />
-                <button><img className = "headerAbout" src = { about } alt = "about" /></button>
+        <div className = { styles.header }>
+            <div className = { styles.headerContainer }>
+                <img className = { styles.headerLogo } src = { logo } alt = "logo" />
+                <button><img className = { styles.headerAbout } src = { about } alt = "about" /></button>
 
             </div>
         </div>
     )
 }
-
-export default Header
