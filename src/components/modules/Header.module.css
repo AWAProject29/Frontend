@@ -5,9 +5,17 @@
     justify-content: space-around;
     align-items: center;
 }
+.headerControls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
 .headerLogo {
     height: 100px;
+    cursor: pointer;
 }
-.headerAbout {
-    height: 50px;
+.login {
+    cursor: pointer;
+
 }
