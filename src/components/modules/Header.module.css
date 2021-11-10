@@ -1,4 +1,8 @@
+.header {
+    width: 100%;
+}
 .headerContainer {
+    width: 100%;
     margin: auto;
     display: flex;
     flex-direction: row;
@@ -6,16 +10,27 @@
     align-items: center;
 }
 .headerControls {
+    width: 10%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
 }
 .headerLogo {
-    height: 100px;
+    height: 90px;
     cursor: pointer;
 }
 .login {
+    font-size: 20px;
     cursor: pointer;
-
+    border: none;
+    background: transparent;
+}
+.cart {
+    width: 36px;
+}
+.cart:hover {
+    content: url('../images/chestfull.png');
+    width: 36px;
+    cursor: pointer;
 }
