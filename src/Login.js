@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './components/modules/Login.module.css';
+import { Link } from 'react-router-dom'
 
 export default function Login() {
     return (
@@ -18,8 +19,8 @@ export default function Login() {
                 </form>
                 </div>
                 <div className = { styles.buttonContainer }>
-                    <button className = { styles.loginButton}>login</button>
-                    <button className = { styles.signUpButton }>register</button>
+                    <button className = { styles.loginButton}>Login</button>
+                    <Link to ="/signup"> <button className = { styles.signUpButton }>Sign Up</button> </Link>
                 </div>
             </div>
         </div>
