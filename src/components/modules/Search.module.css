@@ -1,5 +1,5 @@
-.pageContainer {
-    width: 100%;
+.pageBanner {
+    margin-bottom: 5%;
 }
 .searchHeader {
     font-size: 30px;
@@ -7,7 +7,6 @@
     margin-bottom: 2%;
 }
 .searchContainer {
-    width: 70%;
     text-align: center;
     margin-bottom: 2%;
 }
@@ -20,11 +19,30 @@
     border: 1px solid rgb(139, 139, 139);
     width: 30%;
 }
-.searchButton {
-    font-size: 18px;
-    box-shadow: 0px 2px 2px 0px rgb(139, 139, 139);
-    outline: none;
-    padding: 18px;
-    background-color: white;
-    border: 1px solid rgb(139, 139, 139);
+.restaurantContainer {
+    margin: auto;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.restaurant {
+    margin-bottom: 5px;
+    background-color: #f4f4f4;
+    border: 3px solid #37b935;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    width: 300px;
+}
+.restaurantName {
+    background-color: #86868625;
+    display: flex;
+    font-size: 12px;
+}
+.restaurantDetails {
+    padding: 1%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
