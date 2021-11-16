@@ -52,10 +52,10 @@ class SignUp extends React.Component {
                     </form>
                     </div>
                     <div className = { styles.buttonContainer }>
-                        <button onClick={ this.addNewCustomerAccount } className = { styles.signUpButton}> Create Account
+                        <button onClick={ this.addNewCustomerAccount } className = { styles.signUpButton }> Create Account
                         </button>
-                        <Link to ="/login"><button className = { styles.signUpButton}>Back To Login</button></Link>
-                        <Link to ="/managersignup"><button className = { styles.signUpButton}>Manager Account</button></Link>
+                        <Link to ="/login"><button className = { styles.signUpButton }>Back To Login</button></Link>
+                        <Link to ="/managersignup"><button className = { styles.signUpButton }>Manager Account</button></Link>
                     </div>
                 </div>
             </div>
