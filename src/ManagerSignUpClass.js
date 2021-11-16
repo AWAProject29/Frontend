@@ -1,9 +1,8 @@
 import React from 'react';
-import styles from './components/modules/SignUpClass.module.css';
+import styles from './components/modules/ManagerSignUpClass.module.css';
 import { Link } from 'react-router-dom'
 
-class SignUp extends React.Component {
-
+class ManagerSignUp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,8 +14,8 @@ class SignUp extends React.Component {
         }
       }
     
-      addNewCustomerAccount = () => {
-        this.props.addNewCustomerAccount(this.state.newEmail, this.state.newPassword, this.state.newFirstName, this.state.newLastName, this.state.newAddress);
+      addNewManagerAccount = () => {
+        this.props.addNewManagerAccount(this.state.newEmail, this.state.newPassword, this.state.newFirstName, this.state.newLastName, this.state.newAddress);
       }
 
     render() {
@@ -52,10 +51,9 @@ class SignUp extends React.Component {
                     </form>
                     </div>
                     <div className = { styles.buttonContainer }>
-                        <button onClick={ this.addNewCustomerAccount } className = { styles.signUpButton}> Create Account
+                        <button onClick={ this.addNewManagerAccount } className = { styles.signUpButton}> Create Manager Account
                         </button>
                         <Link to ="/login"><button className = { styles.signUpButton}>Back To Login</button></Link>
-                        <Link to ="/managersignup"><button className = { styles.signUpButton}>Manager Account</button></Link>
                     </div>
                 </div>
             </div>
@@ -64,4 +62,4 @@ class SignUp extends React.Component {
     }
 }
 
-export default SignUp;
+export default ManagerSignUp;
