@@ -28,11 +28,11 @@ class SignUp extends React.Component {
                         <label>
                         Email:
                         </label>
-                        <input type="text" id="email" onChange={ (event) => this.setState({ newEmail: event.target.value }) }/>
+                        <input type="text" id="email" onChange={ (event) => this.setState({ newEmail: event.target.value }) } value={this.state.newEmail}/>
                         <label>
                         Password:
                         </label>
-                        <input type="password" id="password" onChange={ (event) => this.setState({ newPassword: event.target.value }) }/>
+                        <input type="password" id="password" onChange={ (event) => this.setState({ newPassword: event.target.value }) } value={this.state.newPassword}/>
                         <label>
                         {/* Repeat Password:
                         </label>
@@ -40,25 +40,24 @@ class SignUp extends React.Component {
                         <label> */}
                         First Name:
                         </label>
-                        <input type="text" id="name" onChange={ (event) => this.setState({ newFirstName: event.target.value }) }/>
+                        <input type="text" id="name" onChange={ (event) => this.setState({ newFirstName: event.target.value }) } value={this.state.newFirstName}/>
                         <label>
                         Last Name:
                         </label>
-                        <input type="text" id="name" onChange={ (event) => this.setState({ newLastName: event.target.value }) }/>
+                        <input type="text" id="name" onChange={ (event) => this.setState({ newLastName: event.target.value }) } value={this.state.newLastName}/>
                         <label>
                         Address
                         </label>
-                        <input type="text" id="address" onChange={ (event) => this.setState({ newAddress: event.target.value }) }/>
+                        <input type="text" id="address" onChange={ (event) => this.setState({ newAddress: event.target.value }) } value={this.state.newAddress}/>
                     </form>
                     </div>
                     <div className = { styles.buttonContainer }>
-                        <button onClick={ this.addNewCustomerAccount } className = { styles.signUpButton}> Create Account
-                        </button>
-                        <Link to ="/login"><button className = { styles.signUpButton}>Back To Login</button></Link>
+                        <button id="signUpButton" onClick={ this.addNewCustomerAccount } disabled={!this.state.newEmail | !this.state.newPassword | !this.state.newFirstName | !this.state.newLastName | !this.state.newAddress}
+                        className = { styles.signUpButton}> Create Account</button>
+                        <Link to ="/login"><button className = { styles.signUpButton}>Back to Login</button></Link>
                     </div>
                 </div>
             </div>
-        
         )
     }
 }

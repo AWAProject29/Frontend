@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './modules/Search.module.css';
-import { restaurants }  from './data/restaurant.js';
+import { restaurants }  from './Data/restaurant.js';
 
 export default function Search() {
     return (
