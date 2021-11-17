@@ -41,7 +41,12 @@ class AddRestaurant extends React.Component {
                         <label>
                         Price Level
                         </label>
-                        <input type="range" id="restaurantPriceLevel" min="1" max="3" onChange={ (event) => this.setState({ newPriceLevel: event.target.value }) } value={this.state.newPriceLevel}/>
+                        <div className= { styles.priceLevel }>
+                        <input type="radio" name="priceLevel" checked value = '€' onChange={ (event) => this.setState({newPriceLevel: event.target.value}) } /> €   
+                        {/* <input type="radio" name="priceLevel" checked value = '€€' onChange={ (event) => this.setState({newPriceLevel: event.target.value}) } /> €€
+                        <input type="radio" name="priceLevel" checked value = '€€€' onChange={ (event) => this.setState({newPriceLevel: event.target.value}) } /> €€€
+                        <input type="radio" name="priceLevel" checked value = '€€€€' onChange={ (event) => this.setState({newPriceLevel: event.target.value}) } /> €€€€   */}
+                        </div>
                         <label>
                         Operating Hours:
                         </label>
@@ -56,7 +61,7 @@ class AddRestaurant extends React.Component {
                     </form>
                     </div>
                     <div className = { styles.buttonContainer }>
-                        <button id="addNewRestaurantButton" onClick={ this.addNewRestaurant } disabled={!this.state.newRestaurantName | !this.state.newAddress | !this.state.newRestaurantType | !this.state.newPriceLevel | !this.state.newOperatingHours | !this.state.newRestaurantDescription}
+                        <button id="addNewRestaurantButton" onClick={ this.addNewRestaurant } disabled={!this.state.newRestaurantName | !this.state.newAddress | !this.state.newRestaurantType |  !this.state.newOperatingHours | !this.state.newRestaurantDescription}
                         className = { styles.signUpButton }> Create Restaurant
                         </button>
                         <Link to ="/login"><button className = { styles.signUpButton }>Back To Login</button></Link>

@@ -46,3 +46,8 @@
     background-color: lightgreen;
     margin-top: 10px;
 }
+
+.priceLevel {
+    display: flex;
+    flex-direction: row;
+}

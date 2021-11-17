@@ -26,7 +26,7 @@ export const restaurants = [
             "type":               "Fast food",
             "price":              "€",
             "hours":              "Mon-Fri: 10:00-22:00",
-            "image":              "image path"
+            "image":              multipla
         },
         {
             "restaurantID":       4,
@@ -35,7 +35,7 @@ export const restaurants = [
             "type":               "Fast food",
             "price":              "€",
             "hours":              "Mon-Fri: 10:00-22:00",
-            "image":              "image path"
+            "image":              multipla
         },
         {
             "restaurantID":       5,
@@ -44,7 +44,7 @@ export const restaurants = [
             "type":               "Fast food",
             "price":              "€",
             "hours":              "Mon-Fri: 10:00-22:00",
-            "image":              "image path"
+            "image":              multipla
         },
         {
             "restaurantID":       6,
@@ -53,6 +53,6 @@ export const restaurants = [
             "type":               "Fast food",
             "price":              "€",
             "hours":              "Mon-Fri: 10:00-22:00",
-            "image":              "image path"
+            "image":              multipla
         }
     ]

@@ -66,6 +66,29 @@ class App extends React.Component {
       
   }
 
+  addNewRestaurant = (restaurantname, address, restauranttype, pricelevel, operatinghours, restaurantdescription) => {
+    console.log("in addNewRestaurant function");
+    axios.post('http://localhost:3000/restaurant/AddRestaurant', 
+      {
+        restaurantname,
+        address,
+        restauranttype,
+        pricelevel,
+        operatinghours,
+        restaurantdescription
+      }
+    )
+      .then(response => {
+        this.setState({ items: response.data.items })
+        console.log(JSON.stringify(response));
+        
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -76,7 +99,7 @@ class App extends React.Component {
           <Route path="/login" element={ <Login /> } />
           <Route path="/signup" element={ <SignUp addNewCustomerAccount={ this.addNewCustomerAccount }/> } />
           <Route path="/managersignup" element={ <ManagerSignUp addNewManagerAccount={ this.addNewManagerAccount }/> } />
-          <Route path="/addrestaurant" element={ <AddRestaurant addNewRestaurant={ this.addNewRestaurant}/> } />
+          <Route path="/addrestaurant" element={ <AddRestaurant addNewRestaurant={ this.addNewRestaurant }/> } />
         </Routes>
        
       </div>
