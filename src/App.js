@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './Login';
 import { render } from '@testing-library/react';
 import ManagerSignUp from './ManagerSignUpClass';
+import AddRestaurant from './AddRestaurantClass.js';
+
 
 import axios from 'axios';
 
@@ -73,6 +75,7 @@ class App extends React.Component {
           <Route path="/login" element={ <Login /> } />
           <Route path="/signup" element={ <SignUp addNewCustomerAccount={ this.addNewCustomerAccount }/> } />
           <Route path="/managersignup" element={ <ManagerSignUp addNewManagerAccount={ this.addNewManagerAccount }/> } />
+          <Route path="/addrestaurant" element={ <AddRestaurant addNewRestaurant={ this.addNewRestaurant}/> } />
         </Routes>
         <Search/>
       </div>

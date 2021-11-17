@@ -55,6 +55,7 @@ class ManagerSignUp extends React.Component {
                         <button onClick={ this.addNewManagerAccount } className = { styles.signUpButton }> Create Manager Account
                         </button>
                         <Link to ="/login"><button className = { styles.signUpButton }>Back To Login</button></Link>
+                        <Link to ="/addrestaurant"><button className = { styles.signUpButton }>Add restaurant</button></Link>
                     </div>
                 </div>
             </div>
