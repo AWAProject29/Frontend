@@ -46,3 +46,8 @@
     flex-direction: row;
     justify-content: space-between;
 }
+.restaurantImage {
+    display: flex;
+    width: 300px;
+    height: 200px;
+}

@@ -18,7 +18,7 @@ export default function Search() {
                 restaurants.map((data) => (
                     <div className = { styles.restaurant } key = { data.restaurantID }>
                         <div className = { styles.restaurantImage }>
-                            <img src = { data.image } alt = ""/>
+                        <img className = { styles.restaurantImage } src = { data.image } alt = "logo" />
                         </div>
                         <div className = { styles.restaurantName }>
                             <h1>{ data.name }</h1>
