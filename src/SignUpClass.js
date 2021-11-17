@@ -55,6 +55,9 @@ class SignUp extends React.Component {
                         <button id="signUpButton" onClick={ this.addNewCustomerAccount } disabled={!this.state.newEmail | !this.state.newPassword | !this.state.newFirstName | !this.state.newLastName | !this.state.newAddress}
                         className = { styles.signUpButton}> Create Account</button>
                         <Link to ="/login"><button className = { styles.signUpButton}>Back to Login</button></Link>
+                        <button onClick={ this.addNewCustomerAccount } className = { styles.signUpButton }> Create Account
+                        </button>
+                        <Link to ="/managersignup"><button className = { styles.signUpButton }>Manager Account</button></Link>
                     </div>
                 </div>
             </div>
