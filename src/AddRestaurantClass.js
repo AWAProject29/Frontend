@@ -41,11 +41,11 @@ class AddRestaurant extends React.Component {
                         <label>
                         Price Level
                         </label>
-                        <div className= { styles.priceLevel }>
-                        <input type="radio" name="priceLevel" checked value = '€' onChange={ (event) => this.setState({newPriceLevel: event.target.value}) } /> €   
-                        {/* <input type="radio" name="priceLevel" checked value = '€€' onChange={ (event) => this.setState({newPriceLevel: event.target.value}) } /> €€
-                        <input type="radio" name="priceLevel" checked value = '€€€' onChange={ (event) => this.setState({newPriceLevel: event.target.value}) } /> €€€
-                        <input type="radio" name="priceLevel" checked value = '€€€€' onChange={ (event) => this.setState({newPriceLevel: event.target.value}) } /> €€€€   */}
+                        <div className= { styles.priceLevel } onChange={ (event) => this.setState({newPriceLevel: event.target.value}) } value={this.state.newPriceLevel}>
+                            <input type="radio" name="priceLevel" value = "€" /> €   
+                            <input type="radio" name="priceLevel" value = "€€" /> €€
+                            <input type="radio" name="priceLevel" value = "€€€" /> €€€
+                            <input type="radio" name="priceLevel" value = "€€€€" /> €€€€
                         </div>
                         <label>
                         Operating Hours:
@@ -61,7 +61,7 @@ class AddRestaurant extends React.Component {
                     </form>
                     </div>
                     <div className = { styles.buttonContainer }>
-                        <button id="addNewRestaurantButton" onClick={ this.addNewRestaurant } disabled={!this.state.newRestaurantName | !this.state.newAddress | !this.state.newRestaurantType |  !this.state.newOperatingHours | !this.state.newRestaurantDescription}
+                        <button id="addNewRestaurantButton" onClick={ this.addNewRestaurant } disabled={!this.state.newRestaurantName | !this.state.newAddress | !this.state.newRestaurantType | !this.state.newAddress | !this.state.newOperatingHours | !this.state.newRestaurantDescription}
                         className = { styles.signUpButton }> Create Restaurant
                         </button>
                         <Link to ="/login"><button className = { styles.signUpButton }>Back To Login</button></Link>
