@@ -17,7 +17,7 @@ export default function SignUpView(props) {
             <div>
           <h1>Add new item</h1>
           <div>
-            Email <input type="text" onChange={ (event) => addNewEmail(event.target.value) } />
+            Email <input type="email" onChange={ (event) => addNewEmail(event.target.value) } />
           </div>
           <div>
             Password <input type="password" onChange={ (event) => addNewPassword(event.target.value) } />

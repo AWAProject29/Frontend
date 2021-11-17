@@ -11,7 +11,7 @@ export default function Login() {
                     <label>
                       Email:
                       </label>
-                      <input type="text" name="email" />
+                      <input type="text" name="email" placeholder="your@email.com" />
                     <label>
                       Password:
                       </label>

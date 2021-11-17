@@ -12,7 +12,7 @@ class AddRestaurant extends React.Component {
           newRestaurantType: "",
           newPriceLevel: "",
           newOperatingHours: "",
-          restaurantDescription: ""
+          newRestaurantDescription: ""
         }
       }
     
@@ -29,31 +29,35 @@ class AddRestaurant extends React.Component {
                         <label>
                         Restaurant Name:
                         </label>
-                        <input type="text" id="name" onChange={ (event) => this.setState({ newRestaurantName: event.target.value }) }/>
+                        <input type="text" id="restaurantName" onChange={ (event) => this.setState({ newRestaurantName: event.target.value }) } value={this.state.newRestaurantName}/>
                         <label>
                         Address:
                         </label>
-                        <input type="text" id="address" onChange={ (event) => this.setState({ newAddress: event.target.value }) }/>
+                        <input type="text" id="restaurantAddress" onChange={ (event) => this.setState({ newAddress: event.target.value }) } value={this.state.newAddress}/>
                         <label>
                          Restaurant Type:
                         </label>
-                        <input type="text" id="type" onChange={ (event) => this.setState({ newRestaurantType: event.target.value }) }/>
+                        <input type="text" id="restaurantType" onChange={ (event) => this.setState({ newRestaurantType: event.target.value }) } value={this.state.newRestaurantType}/>
                         <label>
                         Price Level
                         </label>
-                        <input type="text" id="name" onChange={ (event) => this.setState({ newPriceLevel: event.target.value }) }/>
+                        <input type="range" id="restaurantPriceLevel" min="1" max="3" onChange={ (event) => this.setState({ newPriceLevel: event.target.value }) } value={this.state.newPriceLevel}/>
                         <label>
                         Operating Hours:
                         </label>
-                        <input type="text" id="time" onChange={ (event) => this.setState({ newOperatingHours: event.target.value }) }/>
+                        <input type="text" id="restaurantOperatingHours" onChange={ (event) => this.setState({ newOperatingHours: event.target.value }) } value={this.state.newOperatingHours}/>
                         <label>
                         Restaurant Description:
                         </label>
-                        <input type="text" id="text" onChange={ (event) => this.setState({ newRestaurantDescription: event.target.value }) }/>
+                        <input type="text" id="restaurantDescription" onChange={ (event) => this.setState({ newRestaurantDescription: event.target.value }) } value={this.state.newRestaurantDescription}/>
+                        <div>
+                            Add restaurant photo <input type= "file" name="photo" />
+                        </div>
                     </form>
                     </div>
                     <div className = { styles.buttonContainer }>
-                        <button onClick={ this.addNewRestaurant } className = { styles.signUpButton }> Create Restaurant
+                        <button id="addNewRestaurantButton" onClick={ this.addNewRestaurant } disabled={!this.state.newRestaurantName | !this.state.newAddress | !this.state.newRestaurantType | !this.state.newPriceLevel | !this.state.newOperatingHours | !this.state.newRestaurantDescription}
+                        className = { styles.signUpButton }> Create Restaurant
                         </button>
                         <Link to ="/login"><button className = { styles.signUpButton }>Back To Login</button></Link>
                     </div>

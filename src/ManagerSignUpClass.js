@@ -28,7 +28,7 @@ class ManagerSignUp extends React.Component {
                         <label>
                         Email:
                         </label>
-                        <input type="text" id="email" onChange={ (event) => this.setState({ newEmail: event.target.value }) }/>
+                        <input type="text" id="email" placeholder="your@email.com" onChange={ (event) => this.setState({ newEmail: event.target.value }) }/>
                         <label>
                         Password:
                         </label>
