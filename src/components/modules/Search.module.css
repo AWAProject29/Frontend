@@ -1,5 +1,14 @@
 .pageBanner {
-    margin-bottom: 5%;
+    margin: auto;
+    width: 50%;
+    margin-bottom: 1%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.food {
+    max-height: 400px;
 }
 .searchHeader {
     font-size: 30px;
@@ -11,13 +20,35 @@
     margin-bottom: 2%;
 }
 .searchBar {
-    font-size: 18px;
+    font-family: 'PixelAzureBonds';
+    font-size: 16px;
     box-shadow: 0px 2px 2px 0px rgb(139, 139, 139);
     outline: none;
     padding: 18px;
     background-color: white;
     border: 1px solid rgb(139, 139, 139);
     width: 30%;
+}
+.categoryContainer {
+    margin: auto;
+    width: 50%;
+    margin-bottom: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.categories {
+    font-family: 'PixelAzureBonds';
+    display: flex;
+    background-color: #ffffff;
+    border: 1px solid #37b935;
+    border-radius: 10px;
+    font-size: 18px;
+    align-items: center;
+}
+.categories:hover {
+    cursor: pointer;
+    background-color: #92f57e;
 }
 .restaurantContainer {
     margin: auto;
@@ -28,26 +59,41 @@
     justify-content: space-between;
 }
 .restaurant {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     background-color: #f4f4f4;
-    border: 3px solid #37b935;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border: 1px solid #37b935;
+    border-radius: 15px;
     width: 300px;
-}
-.restaurantName {
-    background-color: #86868625;
-    display: flex;
-    font-size: 12px;
-}
-.restaurantDetails {
-    padding: 1%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    box-shadow: 0px 2px 2px 0px rgb(139, 139, 139);
 }
 .restaurantImage {
     display: flex;
     width: 300px;
     height: 200px;
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+}
+.restaurantName {
+    background-color: #ffffff8a;
+    display: flex;
+    font-size: 10px;
+    padding: 1%;
+    line-height: 2px;
+}
+.restaurantDetails {
+    background-color: #ffffff8a;
+    border-top: 1px solid #37b935;
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    white-space: nowrap;
+    padding: 1%;
+    line-height: 0.5px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.price {
+    font-weight: bold;
 }

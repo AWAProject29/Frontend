@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'PixelAzureBonds';
+    src: local('PixelAzureBonds'), url(PixelAzureBonds.ttf) format('truetype');
+}
+html {
+    overflow-y: scroll;
+}
+body {
+    font-family: 'PixelAzureBonds';
+}

@@ -8,6 +8,7 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    border-bottom: 1px solid #37b935;
 }
 .headerControls {
     width: 10%;
@@ -17,14 +18,19 @@
     align-items: center;
 }
 .headerLogo {
-    height: 90px;
+    height: 70px;
     cursor: pointer;
 }
 .login {
+    font-family: 'PixelAzureBonds';
     font-size: 20px;
     cursor: pointer;
     border: none;
     background: transparent;
+}
+.login:hover {
+    color: #f2c835;
+    text-decoration: underline;
 }
 .cart {
     width: 36px;
