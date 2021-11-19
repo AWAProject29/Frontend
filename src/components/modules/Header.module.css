@@ -1,5 +1,7 @@
 .header {
     width: 100%;
+    position: sticky;
+    top: 0;
 }
 .headerContainer {
     width: 100%;
@@ -9,6 +11,7 @@
     justify-content: space-around;
     align-items: center;
     border-bottom: 1px solid #37b935;
+    background-color: #b5f7e1;
 }
 .headerControls {
     width: 10%;
