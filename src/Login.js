@@ -21,6 +21,7 @@ export default function Login() {
                 <div className = { styles.buttonContainer }>
                     <button className = { styles.loginButton}>Login</button>
                     <Link to ="/signup"> <button className = { styles.signUpButton }>Sign Up</button> </Link>
+                    <Link to ="/payment"> <button className = { styles.signUpButton }>Payment</button> </Link>
                 </div>
             </div>
         </div>

@@ -9,6 +9,8 @@ import { render } from '@testing-library/react';
 import ManagerSignUp from './ManagerSignUpClass';
 import AddRestaurant from './AddRestaurantClass.js';
 import FrontPage from './FrontPage.js';
+import Payment from './Payment.js';
+
 
 import axios from 'axios';
 
@@ -100,6 +102,7 @@ class App extends React.Component {
           <Route path="/signup" element={ <SignUp addNewCustomerAccount={ this.addNewCustomerAccount }/> } />
           <Route path="/managersignup" element={ <ManagerSignUp addNewManagerAccount={ this.addNewManagerAccount }/> } />
           <Route path="/addrestaurant" element={ <AddRestaurant addNewRestaurant={ this.addNewRestaurant }/> } />
+          <Route path="/payment" element={ <Payment /> }/>
         </Routes>
        
       </div>
