@@ -22,7 +22,7 @@
 }
 .headerLogo {
     height: 70px;
-    cursor: pointer;
+    cursor: url('../images/quill.gif'), auto;
 }
 .login {
     font-family: 'PixelAzureBonds';
@@ -41,5 +41,5 @@
 .cart:hover {
     content: url('../images/chestfull.png');
     width: 36px;
-    cursor: pointer;
+    cursor: url('../images/quill.gif'), auto;
 }

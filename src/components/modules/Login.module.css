@@ -23,9 +23,17 @@
     padding: 5%;
     flex-direction: column;
 }
+.loginFields label {
+    margin-bottom: 1%;
+}
 .loginFields input {
     font-family: 'PixelAzureBonds';
     outline: none;
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px solid #7a3e12;
+    font-size: 14px;
+    margin-bottom: 10px;
 }
 .buttonContainer {
     display: flex;
@@ -36,5 +44,20 @@
 }
 .buttonContainer button {
     font-family: 'PixelAzureBonds';
+    font-size: 16px;
     cursor: url('../images/quill.gif'), auto;
+    background-color: transparent;
+    border: none;
+    height: 80px;
+}
+.buttonContainer button:hover {
+    color: white;
+    text-shadow: 2px 2px black;
+    background-image: url('../images/stamp.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+button:disabled,
+button[disabled]{
+    cursor: not-allowed;
 }
