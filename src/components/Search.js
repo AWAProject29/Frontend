@@ -2,6 +2,11 @@ import React from 'react';
 import styles from './modules/Search.module.css';
 import { restaurants }  from './data/restaurant.js';
 import food from './images/food.gif';
+import buffet from './images/buffet.png';
+import fastfood from './images/fastfood.png';
+import fastcasual from './images/fastcasual.png';
+import casualdining from './images/casualdining.png';
+import finedining from './images/finedining.png';
 
 export default function Search() {
     return (
@@ -16,11 +21,11 @@ export default function Search() {
                 </form>
             </div>
             <div className = { styles.categoryContainer }>
-                <button className = { styles.categories }>Buffet</button>
-                <button className = { styles.categories }>Fast Food</button>
-                <button className = { styles.categories }>Fast Casual</button>
-                <button className = { styles.categories }>Casual Dining</button>
-                <button className = { styles.categories }>Fine Dining</button>
+                <button className = { styles.categories }><img src = { buffet } alt=''/>Buffet</button>
+                <button className = { styles.categories }><img src = { fastfood } alt=''/>Fast Food</button>
+                <button className = { styles.categories }><img src = { fastcasual } alt=''/>Fast Casual</button>
+                <button className = { styles.categories }><img src = { casualdining } alt=''/>Casual Dining</button>
+                <button className = { styles.categories }><img src = { finedining } alt=''/>Fine Dining</button>
             </div>
             <div className = { styles.restaurantContainer }>
             {

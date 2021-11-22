@@ -27,7 +27,7 @@
 .login {
     font-family: 'PixelAzureBonds';
     font-size: 20px;
-    cursor: pointer;
+    cursor: url('../images/quill.gif'), auto;
     border: none;
     background: transparent;
 }
