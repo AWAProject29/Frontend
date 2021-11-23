@@ -12,12 +12,31 @@ class AddRestaurant extends React.Component {
           newRestaurantType: "",
           newPriceLevel: "",
           newOperatingHours: "",
-          newRestaurantDescription: ""
+          newRestaurantDescription: "",
+          image: "",
+          fileName: "",
+          fileContent: ""
         }
       }
     
       addNewRestaurant = () => {
         this.props.addNewRestaurant(this.state.newRestaurantName, this.state.newAddress, this.state.newRestaurantType, this.state.newPriceLevel, this.state.newOperatingHours, this.state.newRestaurantDescription);
+      }
+
+      onImageChange = (event) => {
+        if (event.target.files && event.target.files[0]) {
+            let file = event.target.files[0];
+          let reader = new FileReader();
+          reader.onload = (e) => {
+            this.setState({image: e.target.result});
+            this.setState({fileName: file.name, fileContent: reader.result});
+            console.log(this.state.fileName);
+          };
+          reader.onerror = () => {
+              console.log("File Error", reader.error)
+          }
+          reader.readAsDataURL(file);
+        }
       }
 
     render() {
@@ -56,8 +75,10 @@ class AddRestaurant extends React.Component {
                         </label>
                         <input type="text" id="restaurantDescription" onChange={ (event) => this.setState({ newRestaurantDescription: event.target.value }) } value={this.state.newRestaurantDescription}/>
                         <div>
-                            Add restaurant photo <input type= "file" name="photo" />
+                            Add restaurant photo <input type= "file" onChange={this.onImageChange} className="filetype" id="group_image" />
+                            <img id="target" src={this.state.image} width="200" height="100"/>
                         </div>
+                        <p color="red">{this.state.fileName}</p>
                     </form>
                     </div>
                     <div className = { styles.buttonContainer }>
