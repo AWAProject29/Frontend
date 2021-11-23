@@ -5,13 +5,13 @@
     height: 700px;
     margin-top: 2%;
     flex-direction: column;
-    justify-content: space-evenly;
     align-items: center;
     background-image: url('../images/scroll.png');
     background-repeat: no-repeat;
     background-position: center;
 }
 .formContainer {
+    height: 600px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -23,7 +23,20 @@
     padding: 5%;
     flex-direction: column;
 }
+.loginFields label {
+    margin-bottom: 1%;
+}
+.loginFields input {
+    font-family: 'PixelAzureBonds';
+    outline: none;
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px solid #7a3e12;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
 .buttonContainer {
+    margin-top: -120px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;

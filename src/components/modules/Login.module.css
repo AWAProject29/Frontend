@@ -57,7 +57,3 @@
     background-repeat: no-repeat;
     background-position: center;
 }
-button:disabled,
-button[disabled]{
-    cursor: not-allowed;
-}
