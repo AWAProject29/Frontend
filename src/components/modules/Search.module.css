@@ -55,7 +55,7 @@
     margin-right: 10px;
 }
 .categories:hover {
-    cursor: pointer;
+    cursor: url('../images/quill.gif'), auto;
     background-color: #92f57e;
 }
 .restaurantContainer {
@@ -95,7 +95,6 @@
     font-weight: 400;
     display: flex;
     justify-content: space-between;
-    position: relative;
     white-space: nowrap;
     padding: 1%;
     line-height: 0.5px;

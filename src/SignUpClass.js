@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './components/modules/SignUpClass.module.css';
+import styles from './components/modules/SignUp.module.css';
 import { Link } from 'react-router-dom'
 
 class SignUp extends React.Component {
@@ -24,7 +24,7 @@ class SignUp extends React.Component {
             <div>
                 <div className = { styles.container }>
                     <div className = { styles.formContainer }> 
-                        <form className = { styles.email }>
+                        <form className = { styles.loginFields }>
                             <label>Email:</label>
                             <input type="text" id="email" placeholder="your@email.com" onChange={ (event) => this.setState({ newEmail: event.target.value }) } value={this.state.newEmail}/>
                             <label>Password:</label>
@@ -42,10 +42,8 @@ class SignUp extends React.Component {
                         </form>
                     </div>
                     <div className = { styles.buttonContainer }>
-                        <button id="signUpButton" onClick={ this.addNewCustomerAccount } disabled={!this.state.newEmail | !this.state.newPassword | !this.state.newFirstName | !this.state.newLastName | !this.state.newAddress}
-                        className = { styles.signUpButton}> Create Account</button>
-                        <Link to ="/login"><button className = { styles.signUpButton }>Back to Login</button></Link>
-                        <Link to ="/managersignup"><button className = { styles.signUpButton }>Manager Account</button></Link>
+                        <button id="signUpButton" onClick={ this.addNewCustomerAccount } disabled={!this.state.newEmail | !this.state.newPassword | !this.state.newFirstName | !this.state.newLastName | !this.state.newAddress}>Create Account</button>
+                        <Link to ="/managersignup"><button>Manager Account</button></Link>
                     </div>
                 </div>
             </div>

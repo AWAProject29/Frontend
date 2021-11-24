@@ -5,13 +5,13 @@
     height: 700px;
     margin-top: 2%;
     flex-direction: column;
-    justify-content: space-evenly;
     align-items: center;
     background-image: url('../images/scroll.png');
     background-repeat: no-repeat;
     background-position: center;
 }
 .formContainer {
+    height: 600px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -36,6 +36,7 @@
     margin-bottom: 10px;
 }
 .buttonContainer {
+    margin-top: -120px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -56,4 +57,8 @@
     background-image: url('../images/stamp.png');
     background-repeat: no-repeat;
     background-position: center;
+}
+button:disabled,
+button[disabled]{
+    cursor: not-allowed;
 }
