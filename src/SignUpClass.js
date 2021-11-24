@@ -19,32 +19,44 @@ class SignUp extends React.Component {
         this.props.addNewCustomerAccount(this.state.newEmail, this.state.newPassword, this.state.newFirstName, this.state.newLastName, this.state.newAddress);
       }
 
+      handleSignupSubmit = (event) => {
+        event.preventDefault();
+        console.log(event);
+        console.log(event.target.email.value);
+        console.log(event.target.password.value);
+        console.log(event.target.firstName.value);
+        console.log(event.target.lastName.value);
+        console.log(event.target.address.value);
+      }
+
     render() {
         return (
             <div>
                 <div className = { styles.container }>
                     <div className = { styles.formContainer }> 
-                        <form className = { styles.loginFields }>
+                        <form onSubmit= { this.handleSignupSubmit } className = { styles.loginFields }>
                             <label>Email:</label>
                             <input type="text" id="email" placeholder="your@email.com" onChange={ (event) => this.setState({ newEmail: event.target.value }) } value={this.state.newEmail}/>
                             <label>Password:</label>
-                            <input type="password" id="pwd" onChange={ (event) => this.setState({ newPassword: event.target.value }) } value={this.state.newPassword}/>
+                            <input type="password" id="password" onChange={ (event) => this.setState({ newPassword: event.target.value }) } value={this.state.newPassword}/>
                             <progress id="progress" value="0" max="100">70</progress>
                             <span id="progresslabel"></span>
                             {/* <label>Repeat Password:</label>
                             <input type="password" id="password" onChange={ (event) => this.setState({ newGameName: event.target.value }) }/> */}
                             <label>First Name:</label>
-                            <input type="text" id="name" onChange={ (event) => this.setState({ newFirstName: event.target.value }) } value={this.state.newFirstName}/>
+                            <input type="text" id="firstName" onChange={ (event) => this.setState({ newFirstName: event.target.value }) } value={this.state.newFirstName}/>
                             <label>Last Name:</label>
-                            <input type="text" id="name" onChange={ (event) => this.setState({ newLastName: event.target.value }) } value={this.state.newLastName}/>
+                            <input type="text" id="lastName" onChange={ (event) => this.setState({ newLastName: event.target.value }) } value={this.state.newLastName}/>
                             <label>Address</label>
                             <input type="text" id="address" onChange={ (event) => this.setState({ newAddress: event.target.value }) } value={this.state.newAddress}/>
+                        
+                            <div className = { styles.buttonContainer }>
+                                <button type="submit" id="signUpButton" disabled={!this.state.newEmail | !this.state.newPassword | !this.state.newFirstName | !this.state.newLastName | !this.state.newAddress}>Create Account</button>
+                                <Link to ="/managersignup"><button>Manager Account</button></Link>
+                            </div>
                         </form>
                     </div>
-                    <div className = { styles.buttonContainer }>
-                        <button id="signUpButton" onClick={ this.addNewCustomerAccount } disabled={!this.state.newEmail | !this.state.newPassword | !this.state.newFirstName | !this.state.newLastName | !this.state.newAddress}>Create Account</button>
-                        <Link to ="/managersignup"><button>Manager Account</button></Link>
-                    </div>
+                    
                 </div>
             </div>
         )
