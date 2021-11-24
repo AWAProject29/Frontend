@@ -1,44 +1,12 @@
+import React from 'react';
 import styles from './components/modules/Login.module.css';
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios';
-import Constants from './Constants.json'
+import { Link } from 'react-router-dom'
 
 export default function Login() {
-
-    const navigate = useNavigate();
-
-    const handleLoginSubmit = async (event) => {
-        event.preventDefault();
-
-        try {
-            const result = await axios.post(
-                Constants.API_ADDRESS + '/loginForJWT',
-                null,
-                {
-                    auth: {
-                        username: event.target.username.value,
-                        email: event.target.email.value,
-                        password: event.target.password.value
-                    }
-                }
-            );
-
-            console.log(result);
-            const receiwedJWT = result.data.token
-
-            navigate('/', { replace: true });
-
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-
     return (
         <div>
             <div className = { styles.container }>
-                <div className = { styles.formContainer } onSubmit={ handleLoginSubmit }> 
+                <div className = { styles.formContainer }> 
                     <form className = { styles.loginFields }>
                         <label>Email:</label>
                         <input type="text" name="email" placeholder="your@email.com" />

@@ -11,9 +11,8 @@ import AddRestaurant from './AddRestaurantClass.js';
 import FrontPage from './FrontPage.js';
 import Payment from './Payment.js';
 import Menu from './Menu.js';
-import axios from 'axios';
 
-const jwtFromStorage = window.localStorage.getItem('appAuthData');
+import axios from 'axios';
 
 class App extends React.Component {
   constructor(props)
@@ -89,11 +88,12 @@ class App extends React.Component {
       .catch(err => {
         console.log(err);
       })
+      
   }
-
 
   render() {
     return (
+      
       <BrowserRouter>
       <div className="App">
         <Header/>
@@ -106,7 +106,6 @@ class App extends React.Component {
           <Route path="/payment" element={ <Payment /> }/>
           <Route path="/menu" element={ <Menu /> }/>
         </Routes>
-       
       </div>
       </BrowserRouter>
     );
