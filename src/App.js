@@ -1,5 +1,5 @@
 import React from 'react';
-import SignUp from './SignUpClass';
+import SignUp from './SignUpView.js';
 import './components/modules/App.css';
 import Header from './components/Header';
 import Search from './components/Search';
@@ -14,6 +14,8 @@ import Menu from './Menu.js';
 import axios from 'axios';
 
 const jwtFromStorage = window.localStorage.getItem('appAuthData');
+
+
 
 class App extends React.Component {
   constructor(props)
