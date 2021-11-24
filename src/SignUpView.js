@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 export default function SignUpView(props) {
-
+  
     const [newEmail, addNewEmail] = useState("");
     const [newPassword, addNewPassword] = useState("");
     const [newFirstName, addNewFirstName] = useState("");

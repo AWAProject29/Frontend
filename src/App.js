@@ -10,6 +10,7 @@ import ManagerSignUp from './ManagerSignUpClass';
 import AddRestaurant from './AddRestaurantClass.js';
 import FrontPage from './FrontPage.js';
 import Payment from './Payment.js';
+import Menu from './Menu.js';
 
 
 import axios from 'axios';
@@ -103,6 +104,7 @@ class App extends React.Component {
           <Route path="/managersignup" element={ <ManagerSignUp addNewManagerAccount={ this.addNewManagerAccount }/> } />
           <Route path="/addrestaurant" element={ <AddRestaurant addNewRestaurant={ this.addNewRestaurant }/> } />
           <Route path="/payment" element={ <Payment /> }/>
+          <Route path="/menu" element={ <Menu /> }/>
         </Routes>
        
       </div>

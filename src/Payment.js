@@ -22,7 +22,7 @@ export default function Payment() {
             <label>
                 Additional notes for delivery driver:
             </label>
-            <input type="text" name="text" />
+            <textarea className= { styles.addInfo } type="text" name="text" />
         </div>
         <div className={ styles.order }>
             Order from shopping cart here

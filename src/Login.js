@@ -16,7 +16,9 @@ export default function Login() {
                 </div>
                 <div className = { styles.buttonContainer }>
                     <button>Login</button>
-                    <Link to ="/signup"><button>Sign Up</button></Link>
+                    <Link to ="/signup"> <button className = { styles.signUpButton }>Sign Up</button> </Link>
+                    <Link to ="/payment"> <button className = { styles.signUpButton }>Payment</button> </Link>
+                    <Link to ="/menu"> <button className = { styles.signUpButton }>Menu</button> </Link>
                 </div>
             </div>
         </div>
