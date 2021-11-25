@@ -26,7 +26,7 @@ class App extends React.Component {
 
   addNewCustomerAccount = (email, password, firstname, lastname, address) => {
     console.log("in addNewCustomerAccount function");
-    axios.post('http://localhost:3000/customer/addCustomer', 
+    axios.post('http://localhost:4000/customer/addCustomer', 
       {
         email,
         password,
@@ -98,7 +98,7 @@ class App extends React.Component {
       <div className="App">
         <Header/>
         <Routes>
-          <Route path="/" element={ <FrontPage />, <Search />} />
+          <Route path="/" element={ <FrontPage /> } />
           <Route path="/login" element={ <Login /> } />
           <Route path="/signup" element={ <SignUp addNewCustomerAccount={ this.addNewCustomerAccount }/> } />
           <Route path="/managersignup" element={ <ManagerSignUp addNewManagerAccount={ this.addNewManagerAccount }/> } />
