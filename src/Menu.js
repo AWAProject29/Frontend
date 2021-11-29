@@ -1,16 +1,9 @@
 import React, { useState } from 'react'
 import styles from './components/modules/Menu.module.css'
 import { products } from './components/data/products.js'
-import Popup from './components/Popup.js'; 
+
 
 export default function Menu() {
-
-    const [isOpen, setIsOpen] = useState(false);
- 
-    const togglePopup = () => {
-      setIsOpen(!isOpen);
-
-    }
 
     return (
         <div>
@@ -25,11 +18,7 @@ export default function Menu() {
              <div className = { styles.productContainer }>
             {
                 products.map((data) => (
-                    <div className = { styles.product } key = { data.productID } onClick={ togglePopup } >
-                        { isOpen && <Popup content = { <>
-                        <p>Cart system</p>
-                        <button onClick={ togglePopup }>Ok</button> </>}
-                        handleClose={ togglePopup } />}
+                    <div className = { styles.product } key = { data.productID } >
                         <div className = { styles.productImage } >
                             <img className = { styles.productImage } src = { data.image } alt = "logo" />
                         </div>

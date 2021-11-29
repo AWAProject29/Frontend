@@ -13,8 +13,8 @@ import Payment from './Payment.js';
 import Menu from './Menu.js';
 import axios from 'axios';
 
-const jwtFromStorage = window.localStorage.getItem('appAuthData');
 
+//const jwtFromStorage = window.localStorage.getItem('appAuthData');
 
 
 class App extends React.Component {
@@ -94,13 +94,16 @@ class App extends React.Component {
   }
 
 
+ 
+
+
   render() {
     return (
       <BrowserRouter>
       <div className="App">
         <Header/>
         <Routes>
-          <Route path="/" element={ <FrontPage />, <Search />} />
+          <Route path="/" element={ <FrontPage /> } />
           <Route path="/login" element={ <Login /> } />
           <Route path="/signup" element={ <SignUp addNewCustomerAccount={ this.addNewCustomerAccount }/> } />
           <Route path="/managersignup" element={ <ManagerSignUp addNewManagerAccount={ this.addNewManagerAccount }/> } />
