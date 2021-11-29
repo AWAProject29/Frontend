@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './components/modules/AddRestaurantClass.module.css';
-import { Link } from 'react-router-dom';
+import styles from '../components/modules/AddRestaurantClass.module.css';
+// import { Link } from 'react-router-dom';
 
 class AddRestaurant extends React.Component {
     

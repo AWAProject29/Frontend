@@ -9,7 +9,7 @@ import casualdining from './images/casualdining.png';
 import finedining from './images/finedining.png';
 import axios from 'axios';
 import Constants from '../Constants.json'
-
+import SearchBar from './SearchBar'
 
 
 
@@ -24,7 +24,8 @@ class Search extends React.Component {
         super(props)
               
         this.state = {
-          restaurants: []
+          restaurants: [],
+          findString: ""
         };
     }
 
@@ -40,10 +41,14 @@ class Search extends React.Component {
                 })
         }
 
+        whenSearching = (event) => {
+            this.setState({ findString: event.target.value });
+        }
 
         render() {
         const { restaurants, errorMsg } = this.state
         return (
+            <>
             <div className={styles.pageContainer}>
                 <div className={styles.pageBanner}>
                     <h1 className={styles.searchHeader}>Let us help you on your quest for food!</h1>
@@ -88,6 +93,8 @@ class Search extends React.Component {
                 </div>
 
             </div>
+            {/* <SearchBar items={ this.state.restaurants.filter((item) => item.restaurantname.toLowerCase().includes(this.state.findString.toLowerCase())) }/> */}
+            </>
         );
     }
 

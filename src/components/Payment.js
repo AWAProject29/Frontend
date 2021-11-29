@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import styles from './components/modules/Payment.module.css';
-import Popup from './components/Popup.js';
-import visa from './components/images/visa.png';
-import paypal from './components/images/paypal.png';
+import styles from '../components/modules/Payment.module.css';
+import Popup from '../components/Popup.js';
+import visa from '../components/images/visa.png';
+import paypal from '../components/images/paypal.png';
 
 export default function Payment() {
     const [isOpen, setIsOpen] = useState(false);
