@@ -12,6 +12,7 @@ import FrontPage from './FrontPage.js';
 import Payment from './Payment.js';
 import Menu from './Menu.js';
 import axios from 'axios';
+import Order from './Order.js';
 
 const jwtFromStorage = window.localStorage.getItem('appAuthData');
 
@@ -107,6 +108,7 @@ class App extends React.Component {
           <Route path="/addrestaurant" element={ <AddRestaurant addNewRestaurant={ this.addNewRestaurant }/> } />
           <Route path="/payment" element={ <Payment /> }/>
           <Route path="/menu" element={ <Menu /> }/>
+          <Route path="/order" element={ <Order/>} />
         </Routes>
        
       </div>
