@@ -51,7 +51,13 @@ class AddRestaurant extends React.Component {
                                 <label>Address:</label>
                                 <input type="text" id="restaurantAddress" onChange={ (event) => this.setState({ newAddress: event.target.value }) } value={this.state.newAddress}/>
                                 <label>Restaurant Type:</label>
-                                <input type="text" id="restaurantType" onChange={ (event) => this.setState({ newRestaurantType: event.target.value }) } value={this.state.newRestaurantType}/>
+                                <select className= { styles.option } id="restaurantType" onChange={ (event) => this.setState({ newRestaurantType: event.target.value }) } value={this.state.newRestaurantType}>
+                                    <option value = "Buffet">Buffet</option>
+                                    <option value = "Fast Food">Fast Food</option>
+                                    <option value = "Fast Casual">Fast Casual</option>
+                                    <option value = "Casual Dining">Casual Dining</option>
+                                    <option value = "Fine Dining">Fine Dining</option>
+                                </select>
                             </div>
                             <div className = { styles.form }>
                                 <label>Operating Hours:</label>
@@ -59,12 +65,12 @@ class AddRestaurant extends React.Component {
                                 <label>Restaurant Description:</label>
                                 <input type="text" id="restaurantDescription" onChange={ (event) => this.setState({ newRestaurantDescription: event.target.value }) } value={this.state.newRestaurantDescription}/>
                                 <label>Price Level:</label>
-                                <div className= { styles.priceLevel } onChange={ (event) => this.setState({newPriceLevel: event.target.value}) } value={this.state.newPriceLevel}>
-                                    <input type="radio" name="priceLevel" value = "€" /> €   
-                                    <input type="radio" name="priceLevel" value = "€€" /> €€
-                                    <input type="radio" name="priceLevel" value = "€€€" /> €€€
-                                    <input type="radio" name="priceLevel" value = "€€€€" /> €€€€
-                                </div>
+                                <select className= { styles.option } id="restaurantPrice" onChange={ (event) => this.setState({newPriceLevel: event.target.value}) } value={this.state.newPriceLevel}>
+                                    <option value = "€">€</option>   
+                                    <option value = "€€">€€</option>  
+                                    <option value = "€€€">€€€</option>
+                                    <option value = "€€€€">€€€€</option>    
+                                </select>
                             </div>
                         </div>
                     </div>
