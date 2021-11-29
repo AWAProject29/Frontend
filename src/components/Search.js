@@ -55,20 +55,34 @@ class Search extends React.Component {
                     </form>
                 </div>
                 <div className={styles.categoryContainer}>
-                    <button  className={styles.categories}><img src={buffet} alt='' />Buffet</button>
-                    <button  className={styles.categories}><img src={fastfood} alt='' />Fast Food</button>
-                    <button  className={styles.categories}><img src={fastcasual} alt='' />Fast Casual</button>
-                    <button  className={styles.categories}><img src={casualdining} alt='' />Casual Dining</button>
-                    <button  className={styles.categories}><img src={finedining} alt='' />Fine Dining</button>
+                    <button className={styles.categories}><img src={buffet} alt='' />Buffet</button>
+                    <button className={styles.categories}><img src={fastfood} alt='' />Fast Food</button>
+                    <button className={styles.categories}><img src={fastcasual} alt='' />Fast Casual</button>
+                    <button className={styles.categories}><img src={casualdining} alt='' />Casual Dining</button>
+                    <button className={styles.categories}><img src={finedining} alt='' />Fine Dining</button>
                 </div>
                 <div className={styles.restaurantContainer}>
-                   List of restaurants
                    {
-                       restaurants.length ?
-                       restaurants.map(restaurant => <div key={restaurant.id}>{restaurant.restaurantname}
-                       {restaurant.address}{restaurant.restauranttype}{restaurant.pricelevel}{restaurant.operatinghours}
-                       {restaurant.restaurantimage}{restaurant.restaurantdescription}</div>) :
-                       null
+                        restaurants.length ?
+                        restaurants.map(restaurant => 
+                        <div className = { styles.restaurant } key = {restaurant.id}>
+                            <div className = { styles.hiddenInfo }>
+                                <p>{restaurant.operatinghours}</p>
+                                <p>{restaurant.address}</p>
+                            </div>
+                            <div className = { styles.restaurantImage }>
+                                <img className = { styles.restaurantImage } src = {restaurant.restaurantimage} alt = "" />
+                            </div>
+                            <div className = { styles.restaurantName }>
+                                <h1>{restaurant.restaurantname}</h1>
+                            </div>
+                            <div className = { styles.restaurantDetails }>
+                                <p>{restaurant.restauranttype}</p>
+                                <p className = { styles.price }>{restaurant.pricelevel}</p>
+                            </div>
+                            {/*{restaurant.restaurantdescription}*/}
+                        </div>) :
+                        null
                    }
                    { errorMsg ? <div>{errorMsg}</div> : null }
                 </div>
