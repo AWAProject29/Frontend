@@ -93,7 +93,6 @@ class Home extends React.Component {
                 </div>
 
             </div>
-            <SearchBar items={ this.state.restaurants.filter((item) => item.restaurantname.toLowerCase().includes(this.state.findString.toLowerCase("Golden Rax"))) }/>
              {/* <SearchBar items={ this.state.restaurants.filter((item) => item.restaurantname.toLowerCase().includes(this.state.findString.toLowerCase())) }/> */}
             </>
         );

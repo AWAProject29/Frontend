@@ -12,6 +12,7 @@ import AddRestaurant from './components/AddRestaurantClass.js';
 import Payment from './components/Payment.js';
 import Menu from './components/Menu.js';
 import Order from './components/Order.js';
+import MenuEdit from './components/MenuEditClass.js';
 
 
 //const jwtFromStorage = window.localStorage.getItem('appAuthData');
@@ -95,8 +96,25 @@ class App extends React.Component {
       })
   }
 
+  addNewProduct = (productname, productprice, productdescription) => {
+    console.log("in addNewProduct function");
+    axios.post('http://localhost:3000/product/addProduct', 
+      {
+        productname,
+        productprice,
+        productdescription
+      }
+    )
+      .then(response => {
+        this.setState({ items: response.data.items })
+        console.log(JSON.stringify(response));
+        
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
 
- 
 
 
   render() {
@@ -113,6 +131,7 @@ class App extends React.Component {
           <Route path="/payment" element={ <Payment /> }/>
           <Route path="/menu" element={ <Menu /> }/>
           <Route path="/order" element={ <Order/>} />
+          <Route path="/menuedit" element={ <MenuEdit addNewProduct={ this.addNewProduct }/> }/>
         </Routes>
        
       </div>
