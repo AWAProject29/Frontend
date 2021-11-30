@@ -19,7 +19,7 @@ import SearchBar from './SearchBar'
 // }
 
 
-class Search extends React.Component {
+class Home extends React.Component {
     constructor(props) {
         super(props)
               
@@ -93,11 +93,12 @@ class Search extends React.Component {
                 </div>
 
             </div>
-            {/* <SearchBar items={ this.state.restaurants.filter((item) => item.restaurantname.toLowerCase().includes(this.state.findString.toLowerCase())) }/> */}
+            <SearchBar items={ this.state.restaurants.filter((item) => item.restaurantname.toLowerCase().includes(this.state.findString.toLowerCase("Golden Rax"))) }/>
+             {/* <SearchBar items={ this.state.restaurants.filter((item) => item.restaurantname.toLowerCase().includes(this.state.findString.toLowerCase())) }/> */}
             </>
         );
     }
 
 }
 
-export default Search
+export default Home;

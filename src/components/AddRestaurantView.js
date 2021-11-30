@@ -6,11 +6,11 @@ export default function AddRestaurantView(props) {
     const [newAddress, addAddress] = useState("");
     const [newRestaurantType, addRestaurantType] = useState("");
     const [newPriceLevel, addNewPriceLevel] = useState("");
-    //const [newRestaurantImage, addRestaurantImage] = useState("");
+    const [newRestaurantImage, addRestaurantImage] = useState("");
     const [newRestaurantDescription, addRestaurantDescription] = useState("");
   
     const addNewRestaurant = () => {
-      props.addNewRestaurant(newRestaurantName, newAddress, newRestaurantType, newPriceLevel, newRestaurantDescription);
+      props.addNewRestaurant(newRestaurantName, newAddress, newRestaurantType, newPriceLevel, newRestaurantImage ,newRestaurantDescription);
     }
 
     return (
@@ -31,6 +31,9 @@ export default function AddRestaurantView(props) {
                     <input type="radio" name="priceLevel" value="€€" onChange={ (event) => addNewPriceLevel(event.target.value) } /> €€
                     <input type="radio" name="priceLevel" value="€€€" onChange={ (event) => addNewPriceLevel(event.target.value) } /> €€€
                     <input type="radio" name="priceLevel" value="€€€€" onChange={ (event) => addNewPriceLevel(event.target.value) } /> €€€€ 
+                </div>
+                <div>
+                    Image <input type= "file" onChange={ (event) => addRestaurantImage(event.target.value) } />
                 </div>
                 <div>
                     Restaurant Description <input type="text" onChange={ (event) => addRestaurantDescription(event.target.value) } />

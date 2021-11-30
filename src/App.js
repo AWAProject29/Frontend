@@ -17,6 +17,7 @@ import Order from './components/Order.js';
 //const jwtFromStorage = window.localStorage.getItem('appAuthData');
 
 
+
 class App extends React.Component {
   constructor(props)
   {
@@ -71,7 +72,7 @@ class App extends React.Component {
       
   }
 
-  addNewRestaurant = (restaurantname, address, restauranttype, pricelevel, operatinghours, restaurantdescription) => {
+  addNewRestaurant = (restaurantname, address, restauranttype, pricelevel, operatinghours, restaurantimage, restaurantdescription) => {
     console.log("in addNewRestaurant function");
     axios.post('http://localhost:3000/restaurant/addRestaurant', 
       {
@@ -80,6 +81,7 @@ class App extends React.Component {
         restauranttype,
         pricelevel,
         operatinghours,
+        restaurantimage,
         restaurantdescription
       }
     )

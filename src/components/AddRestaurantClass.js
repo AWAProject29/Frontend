@@ -20,7 +20,8 @@ class AddRestaurant extends React.Component {
       }
     
       addNewRestaurant = () => {
-        this.props.addNewRestaurant(this.state.newRestaurantName, this.state.newAddress, this.state.newRestaurantType, this.state.newPriceLevel, this.state.newOperatingHours, this.state.newRestaurantDescription);
+        this.props.addNewRestaurant(this.state.newRestaurantName, this.state.newAddress, this.state.newRestaurantType, this.state.newPriceLevel, this.state.newOperatingHours, this.state.image, this.state.newRestaurantDescription);
+        console.log(this.state.image)
       }
 
       onImageChange = (event) => {
