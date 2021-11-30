@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import styles from './components/modules/Menu.module.css'
-import { products } from './components/data/products.js'
-import Popup from './components/Popup.js'; 
+import styles from '../components/modules/Menu.module.css'
+import { products } from '../components/data/products.js'
+
 
 export default function Menu() {
-
 
     return (
         <div>

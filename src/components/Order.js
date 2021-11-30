@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './components/modules/Order.module.css';
+import styles from '../components/modules/Order.module.css';
 
 export default function Order() {
     return (

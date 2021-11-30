@@ -6,8 +6,9 @@ export const restaurants = [
             "name":               "Hesburger",
             "address":            "Test Address",
             "type":               "Fast food",
-            "price":              "€",
             "hours":              "Mon-Fri: 10:00-22:00",
+            "price":              "€",
+            "description":        "A burger restaurant.",
             "image":              multipla
         },
         {
@@ -15,8 +16,9 @@ export const restaurants = [
             "name":               "Hesburger",
             "address":            "Test Address",
             "type":               "Fast food",
-            "price":              "€€",
             "hours":              "Mon-Fri: 10:00-22:00",
+            "price":              "€",
+            "description":        "A burger restaurant.",
             "image":              multipla
         },
         {
@@ -24,8 +26,9 @@ export const restaurants = [
             "name":               "Hesburger",
             "address":            "Test Address",
             "type":               "Fast food",
-            "price":              "€",
             "hours":              "Mon-Fri: 10:00-22:00",
+            "price":              "€",
+            "description":        "A burger restaurant.",
             "image":              multipla
         },
         {
@@ -33,8 +36,9 @@ export const restaurants = [
             "name":               "Hesburger",
             "address":            "Test Address",
             "type":               "Fast food",
-            "price":              "€",
             "hours":              "Mon-Fri: 10:00-22:00",
+            "price":              "€",
+            "description":        "A burger restaurant.",
             "image":              multipla
         },
         {
@@ -42,8 +46,9 @@ export const restaurants = [
             "name":               "Hesburger",
             "address":            "Test Address",
             "type":               "Fast food",
-            "price":              "€",
             "hours":              "Mon-Fri: 10:00-22:00",
+            "price":              "€",
+            "description":        "A burger restaurant.",
             "image":              multipla
         },
         {
@@ -51,8 +56,9 @@ export const restaurants = [
             "name":               "Hesburger",
             "address":            "Test Address",
             "type":               "Fast food",
-            "price":              "€",
             "hours":              "Mon-Fri: 10:00-22:00",
+            "price":              "€",
+            "description":        "A burger restaurant.",
             "image":              multipla
         }
     ]

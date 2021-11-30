@@ -1,20 +1,20 @@
 import React from 'react';
-import SignUp from './SignUpView.js';
+import axios from 'axios';
+import SignUp from './components/SignUpView.js';
 import './components/modules/App.css';
 import Header from './components/Header';
-import Search from './components/Search';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from './Login';
-import { render } from '@testing-library/react';
-import ManagerSignUp from './ManagerSignUpClass';
-import AddRestaurant from './AddRestaurantClass.js';
-import FrontPage from './FrontPage.js';
-import Payment from './Payment.js';
-import Menu from './Menu.js';
-import axios from 'axios';
-import Order from './Order.js';
+import Login from './components/Login';
+// import { render } from '@testing-library/react';
+import Home from './components/Home.js';
+import ManagerSignUp from './components/ManagerSignUpClass';
+import AddRestaurant from './components/AddRestaurantClass.js';
+import Payment from './components/Payment.js';
+import Menu from './components/Menu.js';
+import Order from './components/Order.js';
 
-const jwtFromStorage = window.localStorage.getItem('appAuthData');
+
+//const jwtFromStorage = window.localStorage.getItem('appAuthData');
 
 
 
@@ -72,7 +72,7 @@ class App extends React.Component {
       
   }
 
-  addNewRestaurant = (restaurantname, address, restauranttype, pricelevel, operatinghours, restaurantdescription) => {
+  addNewRestaurant = (restaurantname, address, restauranttype, pricelevel, operatinghours, restaurantimage, restaurantdescription) => {
     console.log("in addNewRestaurant function");
     axios.post('http://localhost:3000/restaurant/addRestaurant', 
       {
@@ -81,6 +81,7 @@ class App extends React.Component {
         restauranttype,
         pricelevel,
         operatinghours,
+        restaurantimage,
         restaurantdescription
       }
     )
@@ -95,13 +96,16 @@ class App extends React.Component {
   }
 
 
+ 
+
+
   render() {
     return (
       <BrowserRouter>
       <div className="App">
         <Header/>
         <Routes>
-          <Route path="/" element={ <FrontPage />, <Search />} />
+          <Route path="/" element={ <Home /> } />
           <Route path="/login" element={ <Login /> } />
           <Route path="/signup" element={ <SignUp addNewCustomerAccount={ this.addNewCustomerAccount }/> } />
           <Route path="/managersignup" element={ <ManagerSignUp addNewManagerAccount={ this.addNewManagerAccount }/> } />
