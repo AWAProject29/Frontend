@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './modules/MenuEdit.module.css';
 import axios from 'axios';
-import Constants from '../Constants.json'
+import Constants from '../Constants.json';
+import trashcan from './images/trashcan.png';
 
 class AddProduct extends React.Component {
     
@@ -99,8 +100,8 @@ class AddProduct extends React.Component {
                                 <p>{product.productprice} €</p>
                             </div>
                             <div className={styles.productButtons}>
-                                <button id="addItem">+</button>
-                                <button id=""></button>
+                                <button id="addItem" className={styles.addItem}>+</button>
+                                <img id="removeItem" className={styles.removeItem} src={trashcan} alt=""/>
                             </div>
                         </div>) :
                         null}

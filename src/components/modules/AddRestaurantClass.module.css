@@ -31,7 +31,7 @@
     font-size: 20px;
 }
 .restaurantFields input {
-    font-family: 'PixelAzureBonds';
+    font-family: 'EightBitDragon';
     color: white;
     text-shadow: 2px 2px black;
     outline: none;
@@ -42,7 +42,7 @@
     line-height: 20px;
 }
 .option {
-    font-family: 'PixelAzureBonds';
+    font-family: 'EightBitDragon';
     outline: none;
     border: 1px solid black;
     font-size: 16px;
@@ -59,7 +59,7 @@
     height: 80px;
 }
 .filetype {
-    font-family: 'PixelAzureBonds';
+    font-family: 'EightBitDragon';
     color: white;
     text-shadow: 2px 2px black;
 }
@@ -73,7 +73,7 @@
     text-align: center;
 }
 .buttonContainer button {
-    font-family: 'PixelAzureBonds';
+    font-family: 'EightBitDragon';
     font-size: 16px;
     cursor: url('../images/hammer.png'), auto;
     background-color: transparent;
