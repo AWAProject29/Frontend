@@ -54,62 +54,62 @@ class AddProduct extends React.Component {
 
     render() {
 
-
         const { products, errorMsg } = this.state
 
         return (
             <div>
-                <div className = { styles.categoryContainer }> Kebab
-                </div>
-                <div className = { styles.container }>
-                    <div className = { styles.formContainer }> 
-                        <div className = { styles.ProductFields }>
-                            <div className = { styles.form }>
+                <div className={styles.addProduct}>
+                    <div className={styles.formContainer}>
+                        <div className={styles.ProductFields}>
+                            <div className={styles.form}>
                                 <label>Product Name:</label>
-                                <input type="text" id="ProductName" onChange={ (event) => this.setState({ newProductName: event.target.value }) } value={this.state.newProductName}/>
+                                <input type="text" id="ProductName" onChange={(event) => this.setState({ newProductName: event.target.value })} value={this.state.newProductName} />
                             </div>
-                            <div className = { styles.form }>
+                            <div className={styles.form}>
                                 <label>Product Description:</label>
-                                <input type="text" id="ProductDescription" onChange={ (event) => this.setState({ newProductDescription: event.target.value }) } value={this.state.newProductDescription}/>
+                                <input type="text" id="ProductDescription" onChange={(event) => this.setState({ newProductDescription: event.target.value })} value={this.state.newProductDescription} />
+                            </div>
+                            <div className={styles.form}>
                                 <label>Price:</label>
-                                <input type="text" id="ProductPrice" onChange={ (event) => this.setState({newProductPrice: event.target.value}) } value={this.state.newProductPrice}>
-                                </input>
+                                <input type="text" id="ProductPrice" onChange={(event) => this.setState({ newProductPrice: event.target.value })} value={this.state.newProductPrice} />
                             </div>
                         </div>
                     </div>
-                    <div className = { styles.ProductImage }>
-                        <p>Add Product photo</p> 
-                        <input type= "file" onChange={this.onImageChange} className= { styles.filetype } id="group_image" />
-                        <img className = { styles.imageTarget } id="target" src={this.state.image} alt=""/>
+                    <div className={styles.addImage}>
+                        <p>Add Product photo</p>
+                        <input type="file" onChange={this.onImageChange} className={styles.filetype} id="group_image" />
+                        <img className={styles.imageTarget} id="target" src={this.state.image} alt="" />
                     </div>
-                    <div className = { styles.buttonContainer }>
-                        <button id="addNewProductButton" onClick={ this.addNewProduct } disabled={!this.state.newProductName | !this.state.newProductPrice | !this.state.newProductDescription}>Add Product</button>
+                    <div className={styles.buttonContainer}>
+                        <button id="addNewProductButton" onClick={this.addNewProduct} disabled={!this.state.newProductName | !this.state.newProductPrice | !this.state.newProductDescription}>Add Product</button>
                     </div>
-
-             <div>
-                   List of products
-                   {
-                        products.length ?
-                        products.map(product => 
-                        <div className = { styles.product } key = {product.id}>
-                            <div className = { styles.productImage }>
-                                <img className = { styles.productImage } src = {product.productimage} alt = "" />
-                            </div>
-                            <div className = { styles.productName }>
-                                <h1>{product.productname}</h1>
-                            </div>
-                            <div className = { styles.productDetails }>
-                                <p className = { styles.price }>{product.productprice}</p>
-                            </div>
-                            {/*{product.productdescription}*/}
-                        </div>) :
-                        null
-                   }
-                   { errorMsg ? <div>{errorMsg}</div> : null }
-                </div> 
-            
                 </div>
-            </div>
+                <div className={styles.productContainer}>
+                    {products.length ?
+                        products.map(product => 
+                        <div className={styles.product} key={product.id}>
+                            <div className={styles.productImage}>
+                                <img className={styles.productImage} src={product.productimage} alt="" />
+                            </div>
+                            <div className={styles.productName}>
+                                <h1>{product.productname}</h1>
+                                <h2>{product.productdescription}</h2>
+                            </div>
+                            <div className={styles.productPrice}>
+                                <p>{product.productprice} €</p>
+                            </div>
+                            <div className={styles.productButtons}>
+                                <button id="addItem">+</button>
+                                <button id=""></button>
+                            </div>
+                        </div>) :
+                        null}
+                    {errorMsg ? <div>{errorMsg}</div> : null}
+                </div>
+            </div> 
+            
+                
+            
         
         )
     }

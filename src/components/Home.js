@@ -37,7 +37,7 @@ class Home extends React.Component {
                 })
                 .catch(error => {
                     console.log(error);
-                    this.setState({errorMsg: 'Error retreiving data'})
+                    this.setState({errorMsg: 'Error retrieving data'})
                 })
         }
 
@@ -72,8 +72,8 @@ class Home extends React.Component {
                         restaurants.map(restaurant => 
                         <div className = { styles.restaurant } key = {restaurant.id}>
                             <div className = { styles.hiddenInfo }>
-                                <p>{restaurant.operatinghours}</p>
-                                <p>{restaurant.address}</p>
+                                <p>Address: {restaurant.address}</p>
+                                <p>Opening hours: {restaurant.operatinghours}</p>
                             </div>
                             <div className = { styles.restaurantImage }>
                                 <img className = { styles.restaurantImage } src = {restaurant.restaurantimage} alt = "" />
@@ -85,7 +85,6 @@ class Home extends React.Component {
                                 <p>{restaurant.restauranttype}</p>
                                 <p className = { styles.price }>{restaurant.pricelevel}</p>
                             </div>
-                            {/*{restaurant.restaurantdescription}*/}
                         </div>) :
                         null
                    }
