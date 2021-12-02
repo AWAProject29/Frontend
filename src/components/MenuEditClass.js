@@ -16,7 +16,8 @@ class AddProduct extends React.Component {
           fileName: "",
           fileContent: "",
           products: [],
-          findString: ""
+          findString: "",
+          cartItems: []
         }
       }
 
@@ -51,6 +52,26 @@ class AddProduct extends React.Component {
           reader.readAsDataURL(file);
         }
       }
+
+      onAdd = (product) => {
+        // const exist = this.state.cartItems.find((x) => x.id === product.id);
+        const exist = false;
+        console.log("values between these");
+        console.log(this.state.cartItems);
+        console.log(exist);
+        console.log(product);
+        console.log("values between these");
+
+        if (exist) {
+          this.cartItems.setState(
+            this.state.cartItems.map((x) =>
+              x.id === product.id ? { ...this.state.cartItems, qty: product.qty + 1 } : x
+            )
+          );
+        } else {
+        //   this.cartItems.setState([...this.state.cartItems, { ...product, qty: 1 }]);this.state.cartItems
+        }
+      };
 
 
     render() {
@@ -100,7 +121,7 @@ class AddProduct extends React.Component {
                                 <p>{product.productprice} €</p>
                             </div>
                             <div className={styles.productButtons}>
-                                <button id="addItem" className={styles.addItem}>+</button>
+                                <button id="addItem" onClick= { this.onAdd(product)} className={styles.addItem}>+</button>
                                 <img id="removeItem" className={styles.removeItem} src={trashcan} alt=""/>
                             </div>
                         </div>) :

@@ -3,7 +3,7 @@ import SearchResult from './SearchResult';
 import styles from './modules/Search.module.css';
 
 export default function SearchView(props) {
-  console.log("Searchview" + JSON.stringify(props))
+  console.log("This is Searchview" + JSON.stringify(props.restaurants))
 
   return (
     <div>

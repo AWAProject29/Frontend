@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import SearchResult from './SearchResult';
 
 export default function AddRestaurantView(props) {
 
@@ -8,9 +9,10 @@ export default function AddRestaurantView(props) {
     const [newPriceLevel, addNewPriceLevel] = useState("");
     const [newRestaurantImage, addRestaurantImage] = useState("");
     const [newRestaurantDescription, addRestaurantDescription] = useState("");
-  
+    
     const addNewRestaurant = () => {
-      props.addNewRestaurant(newRestaurantName, newAddress, newRestaurantType, newPriceLevel, newRestaurantImage ,newRestaurantDescription);
+        console.log("WERE IN ADDRESTAURANT VIEW: " + newRestaurantImage);
+      props.addNewRestaurant(newRestaurantName, newAddress, newRestaurantType, newPriceLevel, newRestaurantImage, newRestaurantDescription);
     }
 
     return (

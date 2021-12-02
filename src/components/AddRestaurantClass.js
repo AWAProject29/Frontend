@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '../components/modules/AddRestaurantClass.module.css';
 // import { Link } from 'react-router-dom';
+import SearchResult from './SearchResult';
 
 class AddRestaurant extends React.Component {
     
@@ -13,15 +14,15 @@ class AddRestaurant extends React.Component {
           newPriceLevel: "",
           newOperatingHours: "",
           newRestaurantDescription: "",
-          image: "",
+          newRestaurantImage: "",
           fileName: "",
           fileContent: ""
         }
       }
     
       addNewRestaurant = () => {
-        this.props.addNewRestaurant(this.state.newRestaurantName, this.state.newAddress, this.state.newRestaurantType, this.state.newPriceLevel, this.state.newOperatingHours, this.state.image, this.state.newRestaurantDescription);
-        console.log(this.state.image)
+        this.props.addNewRestaurant(this.state.newRestaurantName, this.state.newAddress, this.state.newRestaurantType, this.state.newPriceLevel, this.state.newOperatingHours, this.state.newRestaurantImage, this.state.newRestaurantDescription);
+        console.log("WERE IN ADDRESTAURANTCLASS: " + this.state.newRestaurantImage)
       }
 
       onImageChange = (event) => {
@@ -29,7 +30,7 @@ class AddRestaurant extends React.Component {
             let file = event.target.files[0];
           let reader = new FileReader();
           reader.onload = (e) => {
-            this.setState({image: e.target.result});
+            this.setState({newRestaurantImage: e.target.result});
             this.setState({fileName: file.name, fileContent: reader.result});
             console.log(this.state.fileName);
           };
@@ -80,7 +81,7 @@ class AddRestaurant extends React.Component {
                     <div className = { styles.restaurantImage }>
                         <p>Add restaurant photo</p> 
                         <input type= "file" onChange={this.onImageChange} className= { styles.filetype } id="group_image" />
-                        <img className = { styles.imageTarget } id="target" src={this.state.image} alt=""/>
+                        <img className = { styles.imageTarget } id="target" src={this.state.newRestaurantImage} alt=""/>
                     </div>
                     <div className = { styles.buttonContainer }>
                         <button id="addNewRestaurantButton" onClick={ this.addNewRestaurant } disabled={!this.state.newRestaurantName | !this.state.newAddress | !this.state.newRestaurantType | !this.state.newOperatingHours | !this.state.newPriceLevel | !this.state.newRestaurantDescription}>Create Restaurant</button>

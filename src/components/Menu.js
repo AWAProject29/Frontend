@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styles from '../components/modules/Menu.module.css'
 import { products } from '../components/data/products.js'
 

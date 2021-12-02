@@ -13,21 +13,18 @@ import SearchView from './SearchView';
 
 
 
-
-// const filterFunction() => {
-    
-// }
-
-
 class Home extends React.Component {
     constructor(props) {
         super(props)
               
         this.state = {
           restaurants: [],
-          restaurantSearchString: ""
+          restaurantSearchString: "",
+          chosenRestaurantType: ""
         };
     }
+
+    
 
         componentDidMount() {
             axios.get(Constants.API_ADDRESS + '/restaurant')
@@ -49,12 +46,18 @@ class Home extends React.Component {
           }
 
         filteredItems = () => {
-            const itemsArray = this.state.restaurants.filter((restaurant) => restaurant.restaurantname.toLowerCase().includes(this.state.restaurantSearchString.toLowerCase()))
+            if(this.state.chosenRestaurantType !== "") {
+                const itemsArray = this.state.restaurants.filter((restaurant) => restaurant.restaurantname.toLowerCase().includes(this.state.restaurantSearchString.toLowerCase()) && restaurant.restauranttype.toLowerCase().includes(this.state.chosenRestaurantType));
+                return itemsArray
+            } else {
+            const itemsArray = this.state.restaurants.filter((restaurant) => restaurant.restaurantname.toLowerCase().includes(this.state.restaurantSearchString.toLowerCase()));
             return itemsArray
+            }
           }
 
+
         render() {
-        const { restaurants, errorMsg } = this.state
+        // const { restaurants, errorMsg } = this.state
         return (
             <>
             <div className={styles.pageContainer}>
@@ -66,11 +69,12 @@ class Home extends React.Component {
                     Search <input genre="text" className={styles.searchBar} placeholder="Search for restaurants"  onChange={ this.onSearchFieldChange } value={ this.state.restaurantSearchString } size="27"/> 
                 </div>
                 <div className={styles.categoryContainer}>
-                    <button className={styles.categories}><img src={buffet} alt='' />Buffet</button>
-                    <button className={styles.categories}><img src={fastfood} alt='' />Fast Food</button>
-                    <button className={styles.categories}><img src={fastcasual} alt='' />Fast Casual</button>
-                    <button className={styles.categories}><img src={casualdining} alt='' />Casual Dining</button>
-                    <button className={styles.categories}><img src={finedining} alt='' />Fine Dining</button>
+                    <button className={styles.categories} onClick={ () => this.setState({ chosenRestaurantType: "" })}><img src={buffet} alt='' />All types</button>
+                    <button className={styles.categories} onClick={ () => this.setState({ chosenRestaurantType: "buffet" })}><img src={buffet} alt='' />Buffet</button>
+                    <button className={styles.categories} onClick={ () => this.setState({ chosenRestaurantType: "fast food" })}><img src={fastfood} alt='' />Fast Food</button>
+                    <button className={styles.categories} onClick={ () => this.setState({ chosenRestaurantType: "fast casual" })}><img src={fastcasual} alt='' />Fast Casual</button>
+                    <button className={styles.categories} onClick={ () => this.setState({ chosenRestaurantType: "casual dining" })}><img src={casualdining} alt='' />Casual Dining</button>
+                    <button className={styles.categories} onClick={ () => this.setState({ chosenRestaurantType: "fine dining" })}><img src={finedining} alt='' />Fine Dining</button>
                 </div>
                 <SearchView
                     restaurants={ this.filteredItems() }
