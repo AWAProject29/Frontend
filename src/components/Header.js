@@ -12,7 +12,7 @@ export default function Header() {
                 <Link to="/"><img className = { styles.headerLogo } src = { logo } alt = "logo" /></Link>
                 <div className = { styles.headerControls }>
                     <Link to="login"><button className = { styles.login }>Login</button></Link>
-                    <img className = { styles.cart } src = { cart } alt = "cart" />
+                    <Link to="shoppingcart"> <img className = { styles.cart } src = { cart } alt = "cart" /> </Link>
                 </div>
             </div>
         </div>
