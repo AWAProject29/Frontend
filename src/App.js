@@ -5,6 +5,7 @@ import './components/modules/App.css';
 import Header from './components/Header';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './components/Login';
+import LoginManager from './components/LoginManager';
 // import { render } from '@testing-library/react';
 import Home from './components/Home.js';
 import ManagerSignUp from './components/ManagerSignUpClass';
@@ -96,24 +97,8 @@ class App extends React.Component {
       })
   }
 
-  addNewProduct = (productname, productprice, productdescription) => {
-    console.log("in addNewProduct function");
-    axios.post('http://localhost:3000/product/addProduct', 
-      {
-        productname,
-        productprice,
-        productdescription
-      }
-    )
-      .then(response => {
-        this.setState({ items: response.data.items })
-        console.log(JSON.stringify(response));
-        
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }
+  
+
 
 
 
@@ -125,6 +110,7 @@ class App extends React.Component {
         <Routes>
           <Route path="/" element={ <Home /> } />
           <Route path="/login" element={ <Login /> } />
+          <Route path="/loginmanager" element={ <LoginManager />} />
           <Route path="/signup" element={ <SignUp addNewCustomerAccount={ this.addNewCustomerAccount }/> } />
           <Route path="/managersignup" element={ <ManagerSignUp addNewManagerAccount={ this.addNewManagerAccount }/> } />
           <Route path="/addrestaurant" element={ <AddRestaurant addNewRestaurant={ this.addNewRestaurant }/> } />

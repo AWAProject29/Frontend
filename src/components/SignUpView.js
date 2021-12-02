@@ -1,15 +1,20 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function SignUpView(props) {
-  
+
     const [newEmail, addNewEmail] = useState("");
     const [newPassword, addNewPassword] = useState("");
     const [newFirstName, addNewFirstName] = useState("");
     const [newLastName, addNewLastName] = useState("");
     const [newAddress, addNewAddress] = useState("");
   
+    const navigate = useNavigate();
+
     const addNewCustomerAccount = () => {
       props.addNewCustomerAccount(newEmail, newPassword, newFirstName, newLastName, newAddress);
+      navigate('/login', { replace: true });
     }
 
     return (
@@ -32,6 +37,7 @@ export default function SignUpView(props) {
                 Address <input type="text" onChange={ (event) => addNewAddress(event.target.value) } />
               </div>
               <button onClick={ addNewCustomerAccount }>Create account</button>
+              <Link to ="/managersignup"> <button>Sign up manager</button> </Link>
             </div>
         </div>
     )

@@ -23,7 +23,7 @@ class AddRestaurant extends React.Component {
         this.props.addNewRestaurant(this.state.newRestaurantName, this.state.newAddress, this.state.newRestaurantType, this.state.newPriceLevel, this.state.newOperatingHours, this.state.image, this.state.newRestaurantDescription);
         console.log(this.state.image)
       }
-
+    
       onImageChange = (event) => {
         if (event.target.files && event.target.files[0]) {
             let file = event.target.files[0];
@@ -77,8 +77,11 @@ class AddRestaurant extends React.Component {
                     </div>
                     <div className = { styles.restaurantImage }>
                         <p>Add restaurant photo</p> 
-                        <input type= "file" onChange={this.onImageChange} className= { styles.filetype } id="group_image" />
-                        <img className = { styles.imageTarget } id="target" src={this.state.image} alt=""/>
+                        <form action="localhost:4000/restaurant/image" method="POST" encType="multipart/form-data">
+                            <input type= "file" name="sampleFile" accept="image/*"/>
+                            <img className = { styles.imageTarget } id="target" src={this.state.image} alt=""/>
+                            <input type="submit" class="btn btn-primary"></input>
+                        </form>
                     </div>
                     <div className = { styles.buttonContainer }>
                         <button id="addNewRestaurantButton" onClick={ this.addNewRestaurant } disabled={!this.state.newRestaurantName | !this.state.newAddress | !this.state.newRestaurantType | !this.state.newAddress | !this.state.newOperatingHours | !this.state.newRestaurantDescription}>Create Restaurant</button>
