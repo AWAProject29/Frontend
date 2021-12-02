@@ -33,7 +33,7 @@ export default function AddRestaurantView(props) {
                     <input type="radio" name="priceLevel" value="€€€€" onChange={ (event) => addNewPriceLevel(event.target.value) } /> €€€€ 
                 </div>
                 <div>
-                    Image <input type= "file" onChange={ (event) => addRestaurantImage(event.target.value) } />
+                    Image <input type= "file" name="sampleFile" onChange={ (event) => addRestaurantImage(event.target.value) } />
                 </div>
                 <div>
                     Restaurant Description <input type="text" onChange={ (event) => addRestaurantDescription(event.target.value) } />
