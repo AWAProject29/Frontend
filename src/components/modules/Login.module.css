@@ -27,7 +27,7 @@
     margin-bottom: 1%;
 }
 .loginFields input {
-    font-family: 'PixelAzureBonds';
+    font-family: 'EightBitDragon';
     outline: none;
     border: none;
     background-color: transparent;
@@ -43,7 +43,7 @@
     text-align: center;
 }
 .buttonContainer button {
-    font-family: 'PixelAzureBonds';
+    font-family: 'EightBitDragon';
     font-size: 16px;
     cursor: url('../images/quill.gif'), auto;
     background-color: transparent;

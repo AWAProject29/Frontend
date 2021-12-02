@@ -1,12 +1,12 @@
 @font-face {
-    font-family: 'PixelAzureBonds';
-    src: local('PixelAzureBonds'), url(PixelAzureBonds.ttf) format('truetype');
+    font-family: 'EightBitDragon';
+    src: local('EightBitDragon'), url(EightBitDragon.ttf) format('truetype');
 }
 html {
     overflow-y: scroll;
 }
 body {
-    font-family: 'PixelAzureBonds';
+    font-family: 'EightBitDragon';
     background-image: url('background.png');
     background-repeat: repeat;
     background-attachment: fixed;

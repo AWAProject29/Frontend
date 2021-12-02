@@ -53,6 +53,7 @@ class AddRestaurant extends React.Component {
                                 <input type="text" id="restaurantAddress" onChange={ (event) => this.setState({ newAddress: event.target.value }) } value={this.state.newAddress}/>
                                 <label>Restaurant Type:</label>
                                 <select className= { styles.option } id="restaurantType" onChange={ (event) => this.setState({ newRestaurantType: event.target.value }) } value={this.state.newRestaurantType}>
+                                <option value="" selected disabled hidden>--Please Select--</option>
                                     <option value = "Buffet">Buffet</option>
                                     <option value = "Fast Food">Fast Food</option>
                                     <option value = "Fast Casual">Fast Casual</option>
@@ -67,6 +68,7 @@ class AddRestaurant extends React.Component {
                                 <input type="text" id="restaurantDescription" onChange={ (event) => this.setState({ newRestaurantDescription: event.target.value }) } value={this.state.newRestaurantDescription}/>
                                 <label>Price Level:</label>
                                 <select className= { styles.option } id="restaurantPrice" onChange={ (event) => this.setState({newPriceLevel: event.target.value}) } value={this.state.newPriceLevel}>
+                                    <option value="" selected disabled hidden>--Please Select--</option>
                                     <option value = "€">€</option>   
                                     <option value = "€€">€€</option>  
                                     <option value = "€€€">€€€</option>
@@ -84,7 +86,7 @@ class AddRestaurant extends React.Component {
                         </form>
                     </div>
                     <div className = { styles.buttonContainer }>
-                        <button id="addNewRestaurantButton" onClick={ this.addNewRestaurant } disabled={!this.state.newRestaurantName | !this.state.newAddress | !this.state.newRestaurantType | !this.state.newAddress | !this.state.newOperatingHours | !this.state.newRestaurantDescription}>Create Restaurant</button>
+                        <button id="addNewRestaurantButton" onClick={ this.addNewRestaurant } disabled={!this.state.newRestaurantName | !this.state.newAddress | !this.state.newRestaurantType | !this.state.newOperatingHours | !this.state.newPriceLevel | !this.state.newRestaurantDescription}>Create Restaurant</button>
                     </div>
                 </div>
             </div>

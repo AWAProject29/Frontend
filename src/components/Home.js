@@ -9,7 +9,7 @@ import casualdining from './images/casualdining.png';
 import finedining from './images/finedining.png';
 import axios from 'axios';
 import Constants from '../Constants.json'
-import SearchBar from './SearchBar'
+import SearchView from './SearchView';
 
 
 
@@ -25,7 +25,7 @@ class Home extends React.Component {
               
         this.state = {
           restaurants: [],
-          findString: ""
+          restaurantSearchString: ""
         };
     }
 
@@ -41,9 +41,17 @@ class Home extends React.Component {
                 })
         }
 
-        whenSearching = (event) => {
-            this.setState({ findString: event.target.value });
-        }
+        onSearchFieldChange = (event) => {
+
+            console.log('Keyboard event');
+            console.log(event.target.value);
+            this.setState({ restaurantSearchString: event.target.value });
+          }
+
+        filteredItems = () => {
+            const itemsArray = this.state.restaurants.filter((restaurant) => restaurant.restaurantname.toLowerCase().includes(this.state.restaurantSearchString.toLowerCase()))
+            return itemsArray
+          }
 
         render() {
         const { restaurants, errorMsg } = this.state
@@ -55,9 +63,7 @@ class Home extends React.Component {
                     <img className={styles.food} src={food} alt='' />
                 </div>
                 <div className={styles.searchContainer}>
-                    <form action="/" method="get">
-                        <input type="text" className={styles.searchBar} placeholder="Search for restaurants" />
-                    </form>
+                    Search <input genre="text" className={styles.searchBar} placeholder="Search for restaurants"  onChange={ this.onSearchFieldChange } value={ this.state.restaurantSearchString } size="27"/> 
                 </div>
                 <div className={styles.categoryContainer}>
                     <button className={styles.categories}><img src={buffet} alt='' />Buffet</button>
@@ -66,30 +72,10 @@ class Home extends React.Component {
                     <button className={styles.categories}><img src={casualdining} alt='' />Casual Dining</button>
                     <button className={styles.categories}><img src={finedining} alt='' />Fine Dining</button>
                 </div>
-                <div className={styles.restaurantContainer}>
-                   {
-                        restaurants.length ?
-                        restaurants.map(restaurant => 
-                        <div className = { styles.restaurant } key = {restaurant.id}>
-                            <div className = { styles.hiddenInfo }>
-                                <p>Address: {restaurant.address}</p>
-                                <p>Opening hours: {restaurant.operatinghours}</p>
-                            </div>
-                            <div className = { styles.restaurantImage }>
-                                <img className = { styles.restaurantImage } src = {restaurant.restaurantimage} alt = "" />
-                            </div>
-                            <div className = { styles.restaurantName }>
-                                <h1>{restaurant.restaurantname}</h1>
-                            </div>
-                            <div className = { styles.restaurantDetails }>
-                                <p>{restaurant.restauranttype}</p>
-                                <p className = { styles.price }>{restaurant.pricelevel}</p>
-                            </div>
-                        </div>) :
-                        null
-                   }
-                   { errorMsg ? <div>{errorMsg}</div> : null }
-                </div>
+                <SearchView
+                    restaurants={ this.filteredItems() }
+
+                />
 
             </div>
              {/* <SearchBar items={ this.state.restaurants.filter((item) => item.restaurantname.toLowerCase().includes(this.state.findString.toLowerCase())) }/> */}

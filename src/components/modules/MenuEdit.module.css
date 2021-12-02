@@ -18,13 +18,13 @@
     align-items: center;
 }
 .filetype {
-    font-family: 'PixelAzureBonds';
+    font-family: 'EightBitDragon';
 }
 .imageTarget {
     max-height: 80px;
 }
 .buttonContainer button {
-    font-family: 'PixelAzureBonds';
+    font-family: 'EightBitDragon';
 }
 .productContainer {
     margin: auto;
@@ -64,11 +64,17 @@
     align-items: center;
 }
 .productButtons {
-    visibility: hidden;
     display: flex;
     align-items: center;
-}
-.product:hover .productButtons button {
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 1%;
     cursor: url('../images/quill.gif'), auto;
-    visibility: visible;
+}
+.addItem {
+    font-family: 'EightBitDragon';
+    cursor: url('../images/quill.gif'), auto;
+}
+.removeItem {
+    height: 20px;
 }

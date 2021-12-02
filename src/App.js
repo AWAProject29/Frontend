@@ -118,6 +118,7 @@ class App extends React.Component {
           <Route path="/menu" element={ <Menu /> }/>
           <Route path="/order" element={ <Order/>} />
           <Route path="/menuedit" element={ <MenuEdit addNewProduct={ this.addNewProduct }/> }/>
+          {/* <Route path="/showrestaurants" element={ <ShowRestaurants /> }/> */}
         </Routes>
        
       </div>
