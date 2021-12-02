@@ -32,8 +32,6 @@
 }
 .restaurantFields input {
     font-family: 'EightBitDragon';
-    color: white;
-    text-shadow: 2px 2px black;
     outline: none;
     border: 1px solid black;
     background-color: #925931;
@@ -45,8 +43,8 @@
     font-family: 'EightBitDragon';
     outline: none;
     border: 1px solid black;
-    font-size: 16px;
-    height: 24px;
+    font-size: 14px;
+    height: 26px;
 }
 .restaurantImage {
     display: flex;

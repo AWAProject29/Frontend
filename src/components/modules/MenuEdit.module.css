@@ -64,16 +64,12 @@
     align-items: center;
 }
 .productButtons {
-    visibility: hidden;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: space-evenly;
     margin: 1%;
     cursor: url('../images/quill.gif'), auto;
-}
-.product:hover .productButtons {
-    visibility: visible;
 }
 .addItem {
     font-family: 'EightBitDragon';
