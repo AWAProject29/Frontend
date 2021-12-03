@@ -55,9 +55,18 @@
     margin-right: 10px;
 }
 .categories:hover {
-    cursor: url('../images/quill.gif'), auto;
+    /* cursor: url('../images/quill.gif'), auto; */
     background-color: #92f57e;
+    animation: quillAnimation 400ms infinite;
 }
+@keyframes quillAnimation {
+    0% { 
+        cursor: url('../images/quill.gif'), auto;
+    }
+    100% { 
+        cursor: url('../images/quill2.png'), auto;
+    }
+  }
 .restaurantContainer {
     margin: auto;
     width: 50%;

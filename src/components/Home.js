@@ -2,7 +2,9 @@ import React from 'react';
 import styles from './modules/Search.module.css';
 // import { restaurants }  from './data/restaurant.js';
 import food from './images/food.gif';
-import buffet from './images/buffet.png';
+import taco from './images/taco.png';
+import pizza from './images/pizza.png';
+// import buffet from './images/buffet.png';
 import fastfood from './images/fastfood.png';
 import fastcasual from './images/fastcasual.png';
 import casualdining from './images/casualdining.png';
@@ -73,8 +75,8 @@ class Home extends React.Component {
                     <input genre="text" className={styles.searchBar} placeholder="Search for restaurants"  onChange={ this.onSearchFieldChange } value={ this.state.restaurantSearchString } size="27"/> 
                 </div>
                 <div className={styles.categoryContainer}>
-                    <button className={styles.categories} onClick={ () => this.setState({ chosenRestaurantType: "" })}><img src={buffet} alt='' />All types</button>
-                    <button className={styles.categories} onClick={ () => this.setState({ chosenRestaurantType: "buffet" })}><img src={buffet} alt='' />Buffet</button>
+                    <button className={styles.categories} onClick={ () => this.setState({ chosenRestaurantType: "" })}><img src={taco} alt='' />All types</button>
+                    <button className={styles.categories} onClick={ () => this.setState({ chosenRestaurantType: "buffet" })}><img src={pizza} alt='' />Buffet</button>
                     <button className={styles.categories} onClick={ () => this.setState({ chosenRestaurantType: "fast food" })}><img src={fastfood} alt='' />Fast Food</button>
                     <button className={styles.categories} onClick={ () => this.setState({ chosenRestaurantType: "fast casual" })}><img src={fastcasual} alt='' />Fast Casual</button>
                     <button className={styles.categories} onClick={ () => this.setState({ chosenRestaurantType: "casual dining" })}><img src={casualdining} alt='' />Casual Dining</button>
