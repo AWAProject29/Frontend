@@ -57,14 +57,15 @@
 .categories:hover {
     /* cursor: url('../images/quill.gif'), auto; */
     background-color: #92f57e;
-    animation: quillAnimation 400ms infinite;
+    animation: quillAnimation 600ms infinite;
+    transform: scale(1.3) rotate(2deg);
 }
 @keyframes quillAnimation {
-    0% { 
+    from { 
         cursor: url('../images/quill.gif'), auto;
     }
-    100% { 
-        cursor: url('../images/quill2.png'), auto;
+    to { 
+        cursor: url('../images/quill2.png'), auto; 
     }
   }
 .restaurantContainer {
@@ -83,6 +84,17 @@
     width: 300px;
     box-shadow: 0px 2px 2px 0px rgb(139, 139, 139);
 }
+.restaurant:hover {
+    transform: scale(1.2) rotate(2deg);
+    animation: restaurantBoxAnimation 3s ease-in-out infinite;
+
+
+}
+@keyframes restaurantBoxAnimation {
+    0% { transform: scale(1,1);}
+    50% { transform: scale(1.2,1.2); }
+    100% { transform: scale(1,1); }
+  }
 .hiddenInfo {
     visibility: hidden;
     position: absolute;
@@ -95,6 +107,7 @@
 .restaurant:hover .hiddenInfo{
     visibility: visible;
     background-color: #66666660;
+    animation: quillAnimation 600ms infinite;
 }
 .restaurantImage {
     display: flex;

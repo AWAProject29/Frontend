@@ -22,14 +22,16 @@
 }
 .headerLogo {
     height: 70px;
-    cursor: url('../images/quill.gif'), auto;
+    /* cursor: url('../images/quill.gif'), auto; */
+    animation: quillAnimation 600ms infinite;
 }
 .login {
     font-family: 'EightBitDragon';
     font-size: 20px;
-    cursor: url('../images/quill.gif'), auto;
+    /* cursor: url('../images/quill.gif'), auto; */
     border: none;
     background: transparent;
+    animation: quillAnimation 600ms infinite;
 }
 .login:hover {
     color: #f2c835;
@@ -41,5 +43,14 @@
 .cart:hover {
     content: url('../images/chestfull.png');
     width: 36px;
-    cursor: url('../images/quill.gif'), auto;
+    /* cursor: url('../images/quill.gif'), auto; */
+    animation: quillAnimation 600ms infinite;
 }
+@keyframes quillAnimation {
+    0% { 
+        cursor: url('../images/quill.gif'), auto;
+    }
+    100% { 
+        cursor: url('../images/quill2.png'), auto; 
+    }
+  }
