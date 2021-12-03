@@ -20,7 +20,7 @@ export default function SignUpView(props) {
     return (
         <div>
             <div>
-                <h1>Add New Manager</h1>
+                <h1>Add new manager</h1>
                 <div>
                     Email<input type="email" placeholder="your@email.com" onChange={ (event) => addNewEmail(event.target.value) } />
                 </div>

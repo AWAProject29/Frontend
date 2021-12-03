@@ -70,7 +70,7 @@ class Home extends React.Component {
                     <img className={styles.food} src={food} alt='' />
                 </div>
                 <div className={styles.searchContainer}>
-                    Search <input genre="text" className={styles.searchBar} placeholder="Search for restaurants"  onChange={ this.onSearchFieldChange } value={ this.state.restaurantSearchString } size="27"/> 
+                    <input genre="text" className={styles.searchBar} placeholder="Search for restaurants"  onChange={ this.onSearchFieldChange } value={ this.state.restaurantSearchString } size="27"/> 
                 </div>
                 <div className={styles.categoryContainer}>
                     <button className={styles.categories} onClick={ () => this.setState({ chosenRestaurantType: "" })}><img src={buffet} alt='' />All types</button>
