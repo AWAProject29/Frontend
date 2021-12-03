@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function SignUpView(props) {
 
@@ -8,8 +10,11 @@ export default function SignUpView(props) {
     const [newLastName, addNewLastName] = useState("");
     const [newManagerAuthentication, addNewManagerAuthentication] = useState("");
   
+    const navigate = useNavigate();
+
     const addNewManagerAccount = () => {
       props.addNewManagerAccount(newEmail, newPassword, newFirstName, newLastName, newManagerAuthentication);
+      navigate('/login', { replace: true });
     }
 
     return (

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 
 class ManagerSignUp extends React.Component {
     
+    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -14,9 +16,11 @@ class ManagerSignUp extends React.Component {
           newManagerAuthentication: ""
         }
       }
-    
+      
+
       addNewManagerAccount = () => {
         this.props.addNewManagerAccount(this.state.newEmail, this.state.newPassword, this.state.newFirstName, this.state.newLastName, this.state.newManagerAuthentication);
+       
       }
 
     render() {
