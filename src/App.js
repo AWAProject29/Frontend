@@ -15,8 +15,8 @@ import Menu from './components/Menu.js';
 import Order from './components/Order.js';
 import MenuEdit from './components/MenuEditClass.js';
 import ShoppingCart from './components/ShoppingCart.js';
-
-
+import ProtectedCustomer from './components/ProtectedCustomer.js';
+import ProtectedManager from './components/ProtectedManager.js';
 
 //const jwtFromStorage = window.localStorage.getItem('appAuthData');
 
@@ -35,7 +35,7 @@ class App extends React.Component {
     console.log("Constructor");
   }
 
-  
+ 
 
   addNewCustomerAccount = (email, password, firstname, lastname, address) => {
     console.log("in addNewCustomerAccount function");
@@ -143,9 +143,12 @@ class App extends React.Component {
       <div className="App">
         <Header/>
         <Routes>
+          <Route path="*" element= { <Home /> } />
           <Route path="/" element={ <Home /> } />
           <Route path="/login" element={ <Login /> } />
+          <Route path="/ProtectedCustomer" element={ <ProtectedCustomer /> } />
           <Route path="/loginmanager" element={ <LoginManager />} />
+          <Route path="/ProtectedManager" element={ <ProtectedManager /> } />
           <Route path="/signup" element={ <SignUp addNewCustomerAccount={ this.addNewCustomerAccount }/> } />
           <Route path="/managersignup" element={ <ManagerSignUp addNewManagerAccount={ this.addNewManagerAccount }/> } />
           <Route path="/addrestaurant" element={ <AddRestaurant addNewRestaurant={ this.addNewRestaurant }/> } />

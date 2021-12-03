@@ -20,9 +20,12 @@ class Home extends React.Component {
         this.state = {
           restaurants: [],
           restaurantSearchString: "",
-          chosenRestaurantType: ""
+          chosenRestaurantType: "",
+          userLoggedIn: false
         };
     }
+
+        
 
         componentDidMount() {
             axios.get(Constants.API_ADDRESS + '/restaurant')
@@ -58,6 +61,9 @@ class Home extends React.Component {
         // const { restaurants, errorMsg } = this.state
         return (
             <>
+            <div>
+                User login status: { this.state.userLoggedIn ? "Logged in" : "Not logged in" }
+            </div>
             <div className={styles.pageContainer}>
                 <div className={styles.pageBanner}>
                     <h1 className={styles.searchHeader}>Let us help you on your quest for food!</h1>

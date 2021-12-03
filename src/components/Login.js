@@ -6,32 +6,41 @@ import Constants from '../Constants.json'
 
 export default function Login() {
 
-    
+    const navigate = useNavigate();
 
     const handleLoginSubmit = async (event) => {
+
         event.preventDefault();
-    
+
         try {
-            const result = await axios.post(
-                Constants.API_ADDRESS + '/LoginforJWT',
-                null,
-                {
-                    auth: {
-                        email: event.target.email.value,
-                        password: event.target.password.value
-                        // email: "Teppo@email2",
-                        // password: "teppo"
-                    }
-                    
+
+            const result = await axios.post(Constants.API_ADDRESS + '/loginForJWT', null, { //make the route to be same that you have on server
+
+                auth: {
+
+                    username: event.target.email.value,
+
+                    password: event.target.password.value
+
                 }
-            )
-            
+
+            }) 
+
             console.log(result);
-            
+
+            setTimeout(() => {
+
+                navigate("/ProtectedCustomer", { replace: true });
+
+            }, 1500);
+
             } catch (error) {
+
                 console.log(error);
+
             }
-    }   
+
+    }
 
 
     return (

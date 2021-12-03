@@ -13,7 +13,7 @@ import SearchView from './SearchView';
 
 
 
-class ProtectedCustomer extends React.Component {
+class ProtectedManager extends React.Component {
     constructor(props) {
         super(props)
               
@@ -64,7 +64,7 @@ class ProtectedCustomer extends React.Component {
         return (
             <>
             <div>
-                User login status: { this.state.userLoggedIn ? "Logged in" : "Not logged in" }
+                User login status: { this.state.userLoggedIn ? "Logged in as manager" : "Not logged in" }
             </div>
             <div className={styles.pageContainer}>
                 <div className={styles.pageBanner}>
@@ -95,4 +95,4 @@ class ProtectedCustomer extends React.Component {
 
 }
 
-export default ProtectedCustomer;
+export default ProtectedManager;
