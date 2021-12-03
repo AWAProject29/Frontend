@@ -2,10 +2,11 @@ import React from 'react';
 import styles from './modules/MenuEdit.module.css';
 import axios from 'axios';
 import Constants from '../Constants.json';
-import trashcan from './images/trashcan.png';
+
 
 class AddProduct extends React.Component {
     
+
     constructor(props) {
         super(props);
         this.state = {
@@ -16,10 +17,13 @@ class AddProduct extends React.Component {
           fileName: "",
           fileContent: "",
           products: [],
-          findString: ""
+          cartItems: []
         }
       }
 
+
+
+      
     componentDidMount() {
         axios.get(Constants.API_ADDRESS + '/product')
             .then(response => {
@@ -52,6 +56,26 @@ class AddProduct extends React.Component {
         }
       }
 
+
+      onAdd = (product) => {
+        // const exist = this.state.cartItems.find((x) => x.id === product.id);
+        const exist = false;
+        console.log("values between these");
+        console.log(this.state.cartItems);
+        console.log(exist);
+        console.log(product);
+        console.log("values between these");
+
+        if (exist) {
+          this.cartItems.setState(
+            this.state.cartItems.map((x) =>
+              x.id === product.id ? { ...this.state.cartItems, qty: product.qty + 1 } : x
+            )
+          );
+        } else {
+        //   this.cartItems.setState([...this.state.cartItems, { ...product, qty: 1 }]);this.state.cartItems
+        }
+      };
 
     render() {
 
@@ -100,16 +124,14 @@ class AddProduct extends React.Component {
                                 <p>{product.productprice} €</p>
                             </div>
                             <div className={styles.productButtons}>
-                                <button id="addItem" className={styles.addItem}>+</button>
-                                <img id="removeItem" className={styles.removeItem} src={trashcan} alt=""/>
+                                <button id="addItem" onClick={this.onAdd(product)} > +</button>
+                                <button id=""></button>
                             </div>
                         </div>) :
                         null}
                     {errorMsg ? <div>{errorMsg}</div> : null}
                 </div>
             </div> 
-            
-                
             
         
         )

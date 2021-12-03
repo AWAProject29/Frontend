@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import SignUp from './components/SignUpView.js';
 import './components/modules/App.css';
@@ -14,6 +14,8 @@ import Payment from './components/Payment.js';
 import Menu from './components/Menu.js';
 import Order from './components/Order.js';
 import MenuEdit from './components/MenuEditClass.js';
+import ShoppingCart from './components/ShoppingCart.js';
+
 
 
 //const jwtFromStorage = window.localStorage.getItem('appAuthData');
@@ -25,10 +27,15 @@ class App extends React.Component {
   {
     super(props);
     this.state = {
-      items: []
+      items: [],
+      cartItems: [],
+      setCartItems: []
     }
+
     console.log("Constructor");
   }
+
+  
 
   addNewCustomerAccount = (email, password, firstname, lastname, address) => {
     console.log("in addNewCustomerAccount function");
@@ -102,8 +109,36 @@ class App extends React.Component {
 
 
 
+  onAdd = (product) => {
+    const exist = this.props.cartItems.find((x) => x.id === product.id);
+    if (exist) {
+      this.props.setCartItems(
+        this.props.cartItems.map((x) =>
+          x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
+        )
+      );
+    } else {
+      this.props.setCartItems([...this.props.cartItems, { ...product, qty: 1 }]);
+    }
+  };
+
+ onRemove = (product) => {
+    this.props.exist = this.props.cartItems.find((x) => x.id === product.id);
+    if (this.props.exist.qty === 1) {
+      this.props.setCartItems(this.props.cartItems.filter((x) => x.id !== product.id));
+    } else {
+      this.props.setCartItems(
+        this.props.cartItems.map((x) =>
+          x.id === product.id ? { ...this.props.exist, qty: this.props.exist.qty - 1 } : x
+        )
+      );
+    }
+  };
+
   render() {
+
     return (
+      
       <BrowserRouter>
       <div className="App">
         <Header/>
@@ -117,10 +152,10 @@ class App extends React.Component {
           <Route path="/payment" element={ <Payment /> }/>
           <Route path="/menu" element={ <Menu /> }/>
           <Route path="/order" element={ <Order/>} />
-          <Route path="/menuedit" element={ <MenuEdit addNewProduct={ this.addNewProduct }/> }/>
+          <Route path="/menuedit" element={ <MenuEdit cartItems={ this.props.cartItems } setCartItems={ this.props.setCartItems } onAdd={ this.onAdd } addNewProduct={ this.addNewProduct } /> }/>
+          <Route path="/shoppingcart" element={ <ShoppingCart cartItems={ this.props.cartItems } onAdd={ this.onAdd } onRemove={ this.onRemove }/>} />
           {/* <Route path="/showrestaurants" element={ <ShowRestaurants /> }/> */}
         </Routes>
-       
       </div>
       </BrowserRouter>
     );
