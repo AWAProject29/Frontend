@@ -24,8 +24,6 @@ class Home extends React.Component {
         };
     }
 
-    
-
         componentDidMount() {
             axios.get(Constants.API_ADDRESS + '/restaurant')
                 .then(response => {

@@ -19,7 +19,7 @@ export default function SearchResult(props) {
               <p>TEST PROPS DATA: {finalRestaurantImage}</p>
           </div>
           <div className = { styles.restaurantImage }>
-              <img className = { styles.restaurantImage } src = {`${finalRestaurantImage}`} alt = "RESTAURANT HERE" />
+              <img className = { styles.restaurantImage } src = {finalRestaurantImage} alt = "RESTAURANT HERE" />
           </div>
           <div className = { styles.restaurantName }>
               <h1>{props.restaurantname}</h1>
