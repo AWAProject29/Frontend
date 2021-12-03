@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './modules/ShoppingCart.module.css';
+import { Link } from 'react-router-dom'
 
 export default function ShoppingCart(props) {
-
 
     const { cartItems = [], onAdd, onRemove } = props;
     const itemsPrice = 20 /*cartItems.reduce((a, c) => a + c.qty * c.productprice, 0);*/;
@@ -10,8 +10,8 @@ export default function ShoppingCart(props) {
     const deliveryPrice = itemsPrice > 30 ? 0 : 10;
     const totalPrice = itemsPrice + taxPrice + deliveryPrice;
 
+    return ( 
 
-    return (
       <div className="block col-1">
         <h2>Cart Items</h2>
         <div>
@@ -63,13 +63,12 @@ export default function ShoppingCart(props) {
               </div>
               <hr />
               <div className="row">
-                <button onClick={() => alert('Implement Checkout!')}>
-                  Checkout
-                </button>
+              <Link to ="/payment"> <button> Checkout  </button> </Link>
               </div>
             </>
           )}
+          
         </div>
-      </div>
+      </div> 
     );
   }
