@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './modules/Payment.module.css';
 import visa from './images/visa.png';
 import paypal from './images/paypal.png';

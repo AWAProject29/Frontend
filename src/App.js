@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 import SignUp from './components/SignUpView.js';
 import './components/modules/App.css';
@@ -6,7 +6,6 @@ import Header from './components/Header';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './components/Login';
 import LoginManager from './components/LoginManager';
-// import { render } from '@testing-library/react';
 import Home from './components/Home.js';
 import ManagerSignUp from './components/ManagerSignUpClass';
 import AddRestaurant from './components/AddRestaurantClass.js';
@@ -104,7 +103,6 @@ class App extends React.Component {
 
   addNewProduct = (productname, productprice, productcategory, productdescription, productimage) => {
     console.log("in addNewProduct function");
-    console.log("HERE IS APP.JS image: " + productimage);
     axios.post('http://localhost:3000/product/addProduct', 
       {
         productname,
@@ -124,10 +122,20 @@ class App extends React.Component {
       })
   }
 
-  
+  removeProduct = (productId) => {
+    console.log("in removeProduct function. productId is: " + productId);
+    axios.delete(`http://localhost:3000/product/removeProduct/${productId}`)
+      .then(response => {
+        console.log(JSON.stringify(response));
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
 
-
-
+  manageMenu = (redirectAddress) => {
+    return redirectAddress;
+  }
 
   onAdd = (product) => {
     const exist = this.props.cartItems.find((x) => x.id === product.id);
@@ -140,7 +148,7 @@ class App extends React.Component {
     } else {
       this.props.setCartItems([...this.props.cartItems, { ...product, qty: 1 }]);
     }
-  };
+  }
 
  onRemove = (product) => {
     this.props.exist = this.props.cartItems.find((x) => x.id === product.id);
@@ -153,7 +161,7 @@ class App extends React.Component {
         )
       );
     }
-  };
+  }
 
   render() {
 
@@ -173,9 +181,9 @@ class App extends React.Component {
           <Route path="/managersignup" element={ <ManagerSignUp addNewManagerAccount={ this.addNewManagerAccount }/> } />
           <Route path="/addrestaurant" element={ <AddRestaurant addNewRestaurant={ this.addNewRestaurant }/> } />
           <Route path="/payment" element={ <Payment /> }/>
-          <Route path="/menu" element={ <Menu /> }/>
+          <Route path="/menu/*" element={ <Menu manageMenu={ this.manageMenu }/> }/>
           <Route path="/order" element={ <Order/>} />
-          <Route path="/menuedit" element={ <MenuEdit cartItems={ this.props.cartItems } setCartItems={ this.props.setCartItems } onAdd={ this.onAdd } addNewProduct={ this.addNewProduct } /> }/>
+          <Route path="/menuedit/*" element={ <MenuEdit cartItems={ this.props.cartItems } setCartItems={ this.props.setCartItems } onAdd={ this.onAdd } addNewProduct={ this.addNewProduct } removeProduct={ this.removeProduct }/> }/>
           <Route path="/shoppingcart" element={ <ShoppingCart cartItems={ this.props.cartItems } onAdd={ this.onAdd } onRemove={ this.onRemove }/>} />
           {/* <Route path="/showrestaurants" element={ <ShowRestaurants /> }/> */}
         </Routes>

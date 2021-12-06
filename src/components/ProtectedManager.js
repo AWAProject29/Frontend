@@ -27,7 +27,7 @@ class ProtectedManager extends React.Component {
     }
 
         changeUserStatus(){
-            this.state.userLoggedIn = false;
+            this.setState({userLoggedIn: false});
         }
 
         componentDidMount() {

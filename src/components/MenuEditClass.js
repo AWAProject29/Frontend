@@ -2,8 +2,8 @@ import React from 'react';
 import styles from './modules/MenuEdit.module.css';
 import axios from 'axios';
 import Constants from '../Constants.json';
-import { Link } from 'react-router-dom';
 import trashcan from './images/trashcan.png';
+
 
 class AddProduct extends React.Component {
     
@@ -23,7 +23,9 @@ class AddProduct extends React.Component {
           findString: "",
           cartItems: [],
           product: "",
-          rememberMe: false
+          rememberMe: false,
+
+          restaurantPageId: ""
         }
       }
       
@@ -32,7 +34,7 @@ class AddProduct extends React.Component {
         axios.get(Constants.API_ADDRESS + '/product')
             .then(response => {
                 console.log(response);
-                this.setState({ products: response.data })
+                this.setState({ products: response.data });
             })
             .catch(error => {
                 console.log(error);
@@ -41,15 +43,19 @@ class AddProduct extends React.Component {
             const rememberMe = localStorage.getItem('rememberMe') === 'true';
             const product = rememberMe ? localStorage.getItem('product') : '';
             this.setState({ product, rememberMe });
+
+            
     }
     
       addNewProduct = () => {
         this.props.addNewProduct(this.state.newProductName, this.state.newProductPrice, this.state.newProductCategory, this.state.newProductDescription, this.state.newProductImage);
-        
-        console.log("THIS IS newProductImage: " + this.state.newProductImage);
-        
         window.location.reload();
     }
+
+      removeProduct = (id) => {
+        this.props.removeProduct(id);
+        window.location.reload();
+      }
 
       onImageChange = (event) => {
         if (event.target.files && event.target.files[0]) {
@@ -65,6 +71,11 @@ class AddProduct extends React.Component {
           }
           reader.readAsDataURL(file);
         }
+      }
+
+      restaurantPageId = (id) => {
+        this.setState({restaurantPageId: id});
+        console.log("This is the restaurantPageId: " + this.state.restaurantPageId);
       }
 
       onAdd = (product) => {
@@ -102,7 +113,7 @@ class AddProduct extends React.Component {
         const { products, errorMsg } = this.state
 
         return (
-            <div>
+            <div onLoad={() => this.restaurantPageId(window.location.href.slice(-2)) }>
                 <div className={styles.addProduct}>
                     <div className={styles.formContainer}>
                         <div className={styles.ProductFields}>
@@ -136,7 +147,7 @@ class AddProduct extends React.Component {
                 <div className={styles.productContainer}>
                     {products.length ?
                         products.map(product => 
-                        <div className={styles.product} key={product.id}>
+                        <div className={styles.product} key={product.productid}>
                             <div className={styles.productImage}>
                                 <img className={styles.productImage} src={product.productimage} alt="" />
                             </div>
@@ -148,7 +159,7 @@ class AddProduct extends React.Component {
                                 <p>{product.productprice} €</p>
                             </div>
                             <div className={styles.productButtons}>
-                                <button id="removeItem" title="Remove Product"><img className={styles.removeItem} src= {trashcan} alt=''/></button>
+                                <button id="removeItem" title="Remove Product"><img className={styles.removeItem} src= {trashcan} key={ product.productid } onClick={() => this.removeProduct(product.productid) } alt=''/></button>
                             </div>
                         </div>) :
                         null}

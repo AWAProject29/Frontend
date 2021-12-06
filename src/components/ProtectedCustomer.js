@@ -27,7 +27,7 @@ class ProtectedCustomer extends React.Component {
     }
 
         changeUserStatus(){
-            this.state.userLoggedIn = false;
+            this.setState({userLoggedIn: false});
         }
 
         componentDidMount() {
@@ -61,7 +61,6 @@ class ProtectedCustomer extends React.Component {
 
 
         render() {
-        // const { restaurants, errorMsg } = this.state
         return (
             <>
             <div>

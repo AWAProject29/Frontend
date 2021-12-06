@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './modules/MenuEdit.module.css';
 import axios from 'axios';
 import Constants from '../Constants.json';
-import { Link } from 'react-router-dom'
+import MenuRedirect from './MenuRedirect';
 
 class AddProduct extends React.Component {
     
@@ -22,7 +22,9 @@ class AddProduct extends React.Component {
           findString: "",
           cartItems: [],
           product: "",
-          rememberMe: false
+          rememberMe: false,
+
+          redirectAddress: ""
         }
       }
       
@@ -41,29 +43,14 @@ class AddProduct extends React.Component {
             const product = rememberMe ? localStorage.getItem('product') : '';
             this.setState({ product, rememberMe });
     }
-    
-      addNewProduct = () => {
-        this.props.addNewProduct(this.state.newProductName, this.state.newProductPrice, this.state.newProductCategory, this.state.newProductDescription, this.state.newProductImage);
-        
-        console.log("THIS IS newProductImage: " + this.state.newProductImage);
-        
-        window.location.reload();
-    }
 
-      onImageChange = (event) => {
-        if (event.target.files && event.target.files[0]) {
-            let file = event.target.files[0];
-          let reader = new FileReader();
-          reader.onload = (e) => {
-            this.setState({newProductImage: e.target.result});
-            this.setState({fileName: file.name, fileContent: reader.result});
-            console.log(this.state.fileName);
-          };
-          reader.onerror = () => {
-              console.log("File Error", reader.error)
-          }
-          reader.readAsDataURL(file);
-        }
+      manageMenu = (id) => {
+        this.props.manageMenu(id);
+        console.log(id);
+        const menuEditAddress = ("/menuedit/" + id);
+        console.log(menuEditAddress);
+        this.setState({redirectAddress: menuEditAddress});
+        console.log(this.state.redirectAddress);
       }
 
       onAdd = (product) => {
@@ -86,8 +73,6 @@ class AddProduct extends React.Component {
         }
       };
 
-
-
       onSubmit = () => {
         const { product, rememberMe } = this.state;
         localStorage.setItem('rememberMe', rememberMe);
@@ -101,7 +86,7 @@ class AddProduct extends React.Component {
         const { products, errorMsg } = this.state
 
         return (
-            <div>
+            <div onLoad={() => this.manageMenu(window.location.href.slice(-2)) }>
                 <div className={styles.productContainer}>
                     {products.length ?
                         products.map(product => 
@@ -123,6 +108,9 @@ class AddProduct extends React.Component {
                         </div>) :
                         null}
                     {errorMsg ? <div>{errorMsg}</div> : null}
+                </div>
+                <div className={styles.productButtons}>
+                    <MenuRedirect redirectAddress = { this.state.redirectAddress }/>
                 </div>
             </div> 
             

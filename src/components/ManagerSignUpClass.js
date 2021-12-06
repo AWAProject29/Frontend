@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from '../components/modules/SignUp.module.css';
-import { Link } from 'react-router-dom'
 
 class ManagerSignUp extends React.Component {
     
