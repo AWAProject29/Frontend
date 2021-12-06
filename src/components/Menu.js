@@ -102,36 +102,6 @@ class AddProduct extends React.Component {
 
         return (
             <div>
-                <div className={styles.addProduct}>
-                    <div className={styles.formContainer}>
-                        <div className={styles.ProductFields}>
-                            <div className={styles.form}>
-                                <label>Product Name:</label>
-                                <input type="text" id="ProductName" onChange={(event) => this.setState({ newProductName: event.target.value })} value={this.state.newProductName} />
-                            </div>
-                            <div className={styles.form}>
-                                <label>Product Category:</label>
-                                <input type="text" id="ProductCategory" onChange={(event) => this.setState({ newProductCategory: event.target.value })} value={this.state.newProductCategory} />
-                            </div>
-                            <div className={styles.form}>
-                                <label>Product Description:</label>
-                                <input type="text" id="ProductDescription" onChange={(event) => this.setState({ newProductDescription: event.target.value })} value={this.state.newProductDescription} />
-                            </div>
-                            <div className={styles.form}>
-                                <label>Price:</label>
-                                <input type="text" id="ProductPrice" onChange={(event) => this.setState({ newProductPrice: event.target.value })} value={this.state.newProductPrice} />
-                            </div>
-                        </div>
-                    </div>
-                    <div className={styles.addImage}>
-                        <p>Add Product photo</p>
-                        <input type="file" className={styles.filetype} onChange={ this.onImageChange } id="group_image" />
-                        <img className={styles.imageTarget} id="target" src={this.state.newProductImage} alt="" />
-                    </div>
-                    <div className={styles.buttonContainer}>
-                        <button id="addNewProductButton" onClick={this.addNewProduct} disabled={!this.state.newProductName | !this.state.newProductPrice | !this.state.newProductCategory | !this.state.newProductDescription}>Add Product</button>
-                    </div>
-                </div>
                 <div className={styles.productContainer}>
                     {products.length ?
                         products.map(product => 

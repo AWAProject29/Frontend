@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './modules/Search.module.css';
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function SearchResult(props) {
 
@@ -8,6 +9,20 @@ export default function SearchResult(props) {
 
   const longtexttest = imageBuffer.slice(1, -1);
   console.log("This is longtexttest: " + longtexttest);
+
+  const navigate = useNavigate();
+
+  const chosenRestaurant = () => {
+    setTimeout(() => {
+
+      //if logged in as a manager, it takes you to menu edit page
+
+      //if logged in as a customer, it takes you to restaurant menu
+
+      navigate("/menu", { replace: true });
+
+  }, 300);
+}   
 
   // const base64string = Buffer.from(imageBuffer).toString();
   // console.log("This is base64string" + base64string);
@@ -19,7 +34,7 @@ export default function SearchResult(props) {
   // console.log("This is finalRestaurantImage" + finalRestaurantImage);
 
   return (
-      <div className = { styles.restaurant } key = {props.id}>
+      <div className = { styles.restaurant } key = {props.id} onClick={ chosenRestaurant }>
           <div className = { styles.hiddenInfo }>
               <p>Address: {props.address}</p>
               <p>Opening hours: {props.operatinghours}</p>
