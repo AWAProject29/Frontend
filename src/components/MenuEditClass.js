@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './modules/MenuEdit.module.css';
 import axios from 'axios';
 import Constants from '../Constants.json';
-
+import { Link } from 'react-router-dom'
 
 class AddProduct extends React.Component {
     
@@ -12,7 +12,9 @@ class AddProduct extends React.Component {
         this.state = {
           newProductName: "",
           newProductPrice: "",
+          newProductCategory: "",
           newProductDescription: "",
+          newProductImage: "",
           image: "",
           fileName: "",
           fileContent: "",
@@ -41,15 +43,19 @@ class AddProduct extends React.Component {
     }
     
       addNewProduct = () => {
-        this.props.addNewProduct(this.state.newProductName, this.state.newProductPrice, this.state.newProductDescription);
-      }
+        this.props.addNewProduct(this.state.newProductName, this.state.newProductPrice, this.state.newProductCategory, this.state.newProductDescription, this.state.newProductImage);
+        
+        console.log("THIS IS newProductImage: " + this.state.newProductImage);
+        
+        window.location.reload();
+    }
 
       onImageChange = (event) => {
         if (event.target.files && event.target.files[0]) {
             let file = event.target.files[0];
           let reader = new FileReader();
           reader.onload = (e) => {
-            this.setState({image: e.target.result});
+            this.setState({newProductImage: e.target.result});
             this.setState({fileName: file.name, fileContent: reader.result});
             console.log(this.state.fileName);
           };
@@ -104,6 +110,10 @@ class AddProduct extends React.Component {
                                 <input type="text" id="ProductName" onChange={(event) => this.setState({ newProductName: event.target.value })} value={this.state.newProductName} />
                             </div>
                             <div className={styles.form}>
+                                <label>Product Category:</label>
+                                <input type="text" id="ProductCategory" onChange={(event) => this.setState({ newProductCategory: event.target.value })} value={this.state.newProductCategory} />
+                            </div>
+                            <div className={styles.form}>
                                 <label>Product Description:</label>
                                 <input type="text" id="ProductDescription" onChange={(event) => this.setState({ newProductDescription: event.target.value })} value={this.state.newProductDescription} />
                             </div>
@@ -115,11 +125,11 @@ class AddProduct extends React.Component {
                     </div>
                     <div className={styles.addImage}>
                         <p>Add Product photo</p>
-                        <input type="file" onChange={this.onImageChange} className={styles.filetype} id="group_image" />
-                        <img className={styles.imageTarget} id="target" src={this.state.image} alt="" />
+                        <input type="file" className={styles.filetype} onChange={ this.onImageChange } id="group_image" />
+                        <img className={styles.imageTarget} id="target" src={this.state.newProductImage} alt="" />
                     </div>
                     <div className={styles.buttonContainer}>
-                        <button id="addNewProductButton" onClick={this.addNewProduct} disabled={!this.state.newProductName | !this.state.newProductPrice | !this.state.newProductDescription}>Add Product</button>
+                        <button id="addNewProductButton" onClick={this.addNewProduct} disabled={!this.state.newProductName | !this.state.newProductPrice | !this.state.newProductCategory | !this.state.newProductDescription}>Add Product</button>
                     </div>
                 </div>
                 <div className={styles.productContainer}>

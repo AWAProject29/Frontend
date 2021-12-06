@@ -28,7 +28,7 @@ class AddRestaurant extends React.Component {
       onImageChange = (event) => {
         if (event.target.files && event.target.files[0]) {
             let file = event.target.files[0];
-          let reader = new FileReader();
+            let reader = new FileReader();
           reader.onload = (e) => {
             this.setState({newRestaurantImage: e.target.result});
             this.setState({fileName: file.name, fileContent: reader.result});

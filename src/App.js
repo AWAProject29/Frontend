@@ -35,7 +35,6 @@ class App extends React.Component {
     console.log("Constructor");
   }
 
- 
 
   addNewCustomerAccount = (email, password, firstname, lastname, address) => {
     console.log("in addNewCustomerAccount function");
@@ -56,7 +55,6 @@ class App extends React.Component {
       .catch(err => {
         console.log(err);
       })
-      
   }
 
   addNewManagerAccount = (email, password, firstname, lastname, managerauthentication) => {
@@ -92,6 +90,28 @@ class App extends React.Component {
         operatinghours,
         restaurantimage,
         restaurantdescription
+      }
+    )
+      .then(response => {
+        this.setState({ items: response.data.items })
+        console.log(JSON.stringify(response));
+        
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  addNewProduct = (productname, productprice, productcategory, productdescription, productimage) => {
+    console.log("in addNewProduct function");
+    console.log("HERE IS APP.JS image: " + productimage);
+    axios.post('http://localhost:3000/product/addProduct', 
+      {
+        productname,
+        productprice,
+        productcategory,
+        productdescription,
+        productimage
       }
     )
       .then(response => {
