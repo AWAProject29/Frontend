@@ -51,7 +51,7 @@
 .rightSide {
     display: flex;
     flex-direction: row; 
-    margin-top: 2%;
+    margin-top: 1%;
     width: 50%;
     align-items: center;
     font-size: 12px;
@@ -84,4 +84,7 @@
 }
 .paymentOption:focus {
     outline: 1px solid black;
+}
+.image {
+    max-height: 200px;
 }

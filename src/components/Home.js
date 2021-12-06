@@ -4,7 +4,6 @@ import styles from './modules/Search.module.css';
 import food from './images/food.gif';
 import taco from './images/taco.png';
 import pizza from './images/pizza.png';
-// import buffet from './images/buffet.png';
 import fastfood from './images/fastfood.png';
 import fastcasual from './images/fastcasual.png';
 import casualdining from './images/casualdining.png';

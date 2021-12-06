@@ -14,7 +14,6 @@
 .formContainer {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
 }
 .loginFields {
     margin-top: 5%;
@@ -39,7 +38,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    width: 20%;
+    width: 300px;
     text-align: center;
 }
 .buttonContainer button {
