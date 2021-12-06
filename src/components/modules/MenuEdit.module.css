@@ -69,12 +69,14 @@
     flex-direction: column;
     justify-content: space-evenly;
     margin: 1%;
-    cursor: url('../images/quill.gif'), auto;
 }
-.addItem {
+.productButtons button {
     font-family: 'EightBitDragon';
-    cursor: url('../images/quill.gif'), auto;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 20px;
 }
 .removeItem {
-    height: 20px;
+    max-height: 20px;
 }

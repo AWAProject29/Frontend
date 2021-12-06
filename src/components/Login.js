@@ -52,19 +52,12 @@ export default function Login() {
                             <input type="text" name="email" placeholder="your@email.com" />
                         <label>Password:</label>
                             <input type="text" name="password" />
-                        <div>
+                        <div className = { styles.buttonContainer }>
                             <button className = { styles.signUpButton } type="submit" >Login</button>
+                            <Link to="/LoginManager"> <button>Login as Manager</button> </Link>
+                            <Link to ="/signup"> <button className = { styles.signUpButton }>Sign Up</button> </Link>
                         </div>
                     </form>
-                <div>
-                    <Link to="/LoginManager"> <button>Login Manager</button> </Link>
-                </div>
-                </div>
-                <div className = { styles.buttonContainer }>
-                    <button>Login</button>
-                    <Link to ="/signup"> <button className = { styles.signUpButton }>Sign Up</button> </Link>
-                    <Link to ="/payment"> <button className = { styles.signUpButton }>Payment</button> </Link>
-                    <Link to ="/menu"> <button className = { styles.signUpButton }>Menu</button> </Link>
                 </div>
             </div>
         </div>

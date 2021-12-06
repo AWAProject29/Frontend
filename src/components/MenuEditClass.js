@@ -2,7 +2,8 @@ import React from 'react';
 import styles from './modules/MenuEdit.module.css';
 import axios from 'axios';
 import Constants from '../Constants.json';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import trashcan from './images/trashcan.png';
 
 class AddProduct extends React.Component {
     
@@ -147,8 +148,7 @@ class AddProduct extends React.Component {
                                 <p>{product.productprice} €</p>
                             </div>
                             <div className={styles.productButtons}>
-                                <button id="addItem" onClick={/*this.onAdd(product),*/ this.onSubmit} > +</button>
-                                <button id=""> - </button>
+                                <button id="removeItem" title="Remove Product"><img className={styles.removeItem} src= {trashcan} alt=''/></button>
                             </div>
                         </div>) :
                         null}

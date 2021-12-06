@@ -41,8 +41,7 @@ class ManagerSignUp extends React.Component {
                         </form>
                     </div>
                     <div className = { styles.buttonContainer }>
-                        <button onClick={ this.addNewManagerAccount }> Create Manager Account</button>
-                        <Link to ="/addrestaurant"><button>Add restaurant</button></Link>
+                        <button onClick={ this.addNewManagerAccount }>Create Manager Account</button>
                     </div>
                 </div>
             </div>

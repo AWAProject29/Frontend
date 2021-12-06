@@ -41,7 +41,7 @@ export default function SignUpView(props) {
                     </div>
                     <div className = { styles.buttonContainer }>
                         <button id="signUpButton" onClick={ addNewCustomerAccount }>Create Account</button>
-                        <Link to ="/managersignup"><button>Sign up Manager</button></Link>
+                        <Link to ="/managersignup"><button>Sign up as Manager</button></Link>
                     </div>
                 </div>
             </div>

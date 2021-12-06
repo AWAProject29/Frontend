@@ -38,24 +38,18 @@ export default function LoginManager() {
             <div className = { styles.container }>
                 <div className = { styles.formContainer } onSubmit={ handleLoginSubmit }> 
                     <form className = { styles.loginFields }>
-                        <label>Login Manager</label>
+                        <label>Manager Login</label>
                         <label>Email:</label>
                             <input type="text" name="email" placeholder="your@email.com" />
                         <label>Password:</label>
                             <input type="password" name="password" />
                         <label>managerauthentication:</label>
                             <input type="password" name="managerauthentication" />
-                        <div>
+                        <div className = { styles.buttonContainer }>
                             <button className = { styles.signUpButton } type="submit" >Login</button>
+                            <Link to ="/managersignup"><button>Sign up as Manager</button></Link>
                         </div>
                     </form>
-                    
-                </div>
-                <div className = { styles.buttonContainer }>
-                    <button>Login</button>
-                    <Link to ="/signup"> <button className = { styles.signUpButton }>Sign Up</button> </Link>
-                    <Link to ="/payment"> <button className = { styles.signUpButton }>Payment</button> </Link>
-                    <Link to ="/menu"> <button className = { styles.signUpButton }>Menu</button> </Link>
                 </div>
             </div>
         </div>
