@@ -1,4 +1,7 @@
 body {
   margin: 0;
-  background-color: #e9eaed;
+  font-family: 'EightBitDragon';
+  background-image: url('./images/background.png');
+  background-repeat: repeat;
+  background-attachment: fixed;
 }

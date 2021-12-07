@@ -86,7 +86,7 @@ class AddProduct extends React.Component {
         const { products, errorMsg } = this.state
 
         return (
-            <div onLoad={() => this.manageMenu(window.location.href.slice(-2)) }>
+            <div>
                 <div className={styles.productContainer}>
                     {products.length ?
                         products.map(product => 
@@ -109,7 +109,7 @@ class AddProduct extends React.Component {
                         null}
                     {errorMsg ? <div>{errorMsg}</div> : null}
                 </div>
-                <div className={styles.productButtons}>
+                <div className={styles.productButtons} onLoad={() => this.manageMenu(window.location.href.slice(-2)) }>
                     <MenuRedirect redirectAddress = { this.state.redirectAddress }/>
                 </div>
             </div> 
