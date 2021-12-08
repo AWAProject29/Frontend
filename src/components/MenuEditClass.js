@@ -24,7 +24,6 @@ class AddProduct extends React.Component {
           cartItems: [],
           product: "",
           rememberMe: false,
-
           restaurantPageId: ""
         }
       }
@@ -43,12 +42,10 @@ class AddProduct extends React.Component {
             const rememberMe = localStorage.getItem('rememberMe') === 'true';
             const product = rememberMe ? localStorage.getItem('product') : '';
             this.setState({ product, rememberMe });
-
-            
     }
     
       addNewProduct = () => {
-        this.props.addNewProduct(this.state.newProductName, this.state.newProductPrice, this.state.newProductCategory, this.state.newProductDescription, this.state.newProductImage);
+        this.props.addNewProduct(this.state.newProductName, this.state.newProductPrice, this.state.newProductCategory, this.state.newProductDescription, this.state.newProductImage, this.state.restaurantPageId);
         window.location.reload();
     }
 
@@ -75,8 +72,8 @@ class AddProduct extends React.Component {
 
       restaurantPageId = (id) => {
         this.setState({restaurantPageId: id});
-        console.log("This is the restaurantPageId: " + this.state.restaurantPageId);
       }
+
 
       onAdd = (product) => {
         // const exist = this.state.cartItems.find((x) => x.id === product.id);
@@ -113,7 +110,7 @@ class AddProduct extends React.Component {
         const { products, errorMsg } = this.state
 
         return (
-            <div onLoad={() => this.restaurantPageId(window.location.href.slice(-2)) }>
+            <div onLoad={() => this.restaurantPageId(window.location.href.slice(-2))}>
                 <div className={styles.addProduct}>
                     <div className={styles.formContainer}>
                         <div className={styles.ProductFields}>

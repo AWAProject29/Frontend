@@ -1,7 +1,17 @@
+@font-face {
+  font-family: 'EightBitDragon';
+  src: local('EightBitDragon'), url(../fonts/EightBitDragon.ttf) format('truetype');
+}
+html {
+  overflow-y: scroll;
+  font-family: 'EightBitDragon';
+}
 body {
   margin: 0;
-  font-family: 'EightBitDragon';
-  background-image: url('./images/background.png');
+  background-image: url('../images/background.png');
   background-repeat: repeat;
   background-attachment: fixed;
+}
+.App {
+  font-family: 'EightBitDragon';
 }

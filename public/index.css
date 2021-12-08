@@ -4,9 +4,9 @@
 }
 html {
     overflow-y: scroll;
+    font-family: 'EightBitDragon';
 }
 body {
-    font-family: 'EightBitDragon';
     background-image: url('background.png');
     background-repeat: repeat;
     background-attachment: fixed;

@@ -101,15 +101,17 @@ class App extends React.Component {
       })
   }
 
-  addNewProduct = (productname, productprice, productcategory, productdescription, productimage) => {
+  addNewProduct = (productname, productprice, productcategory, productdescription, productimage, restaurantpageid) => {
     console.log("in addNewProduct function");
+    console.log("This is restaurantpageid in addNewProduct: " + restaurantpageid);
     axios.post('http://localhost:3000/product/addProduct', 
       {
         productname,
         productprice,
         productcategory,
         productdescription,
-        productimage
+        productimage,
+        restaurantpageid
       }
     )
       .then(response => {

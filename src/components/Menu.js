@@ -46,7 +46,7 @@ class AddProduct extends React.Component {
 
       manageMenu = (id) => {
         this.props.manageMenu(id);
-        console.log(id);
+        console.log("HERE'S MANAGEMENU ID: " + id);
         const menuEditAddress = ("/menuedit/" + id);
         console.log(menuEditAddress);
         this.setState({redirectAddress: menuEditAddress});
@@ -86,7 +86,7 @@ class AddProduct extends React.Component {
         const { products, errorMsg } = this.state
 
         return (
-            <div>
+            <div onLoad={() => this.manageMenu(window.location.href.slice(-2)) }>
                 <div className={styles.productContainer}>
                     {products.length ?
                         products.map(product => 
@@ -109,7 +109,7 @@ class AddProduct extends React.Component {
                         null}
                     {errorMsg ? <div>{errorMsg}</div> : null}
                 </div>
-                <div className={styles.productButtons} onLoad={() => this.manageMenu(window.location.href.slice(-2)) }>
+                <div className={styles.productButtons}>
                     <MenuRedirect redirectAddress = { this.state.redirectAddress }/>
                 </div>
             </div> 

@@ -20,7 +20,7 @@ class AddRestaurant extends React.Component {
     
       addNewRestaurant = () => {
         this.props.addNewRestaurant(this.state.newRestaurantName, this.state.newAddress, this.state.newRestaurantType, this.state.newPriceLevel, this.state.newOperatingHours, this.state.newRestaurantImage, this.state.newRestaurantDescription);
-        console.log("WERE IN ADDRESTAURANTCLASS: " + this.state.newRestaurantImage)
+        // console.log("WERE IN ADDRESTAURANTCLASS: " + this.state.newRestaurantImage)
       }
     
       onImageChange = (event) => {
