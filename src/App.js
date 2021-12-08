@@ -19,6 +19,8 @@ import ProtectedManager from './components/ProtectedManager.js';
 
 //const jwtFromStorage = window.localStorage.getItem('appAuthData');
 
+// APP
+
 
 
 class App extends React.Component {
