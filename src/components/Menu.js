@@ -91,6 +91,7 @@ class AddProduct extends React.Component {
             const productsArray = products.filter((product) => product.restaurantpageid.toString().toLowerCase().includes(restaurantid.toLowerCase()));
             return productsArray
           }
+          console.log(products);
         const filteredProductsArray = filteredProducts();
 
         return (
