@@ -27,12 +27,12 @@ class AddProduct extends React.Component {
           restaurantPageId: ""
         }
       }
-      
+    
 
     componentDidMount() {
         axios.get(Constants.API_ADDRESS + '/product')
             .then(response => {
-                console.log(response);
+                // console.log(response);
                 this.setState({ products: response.data });
             })
             .catch(error => {
@@ -101,13 +101,19 @@ class AddProduct extends React.Component {
         const { product, rememberMe } = this.state;
         localStorage.setItem('rememberMe', rememberMe);
         localStorage.setItem('product', rememberMe ? product : product.productname);
-        console.log('this is product' +product);
+        console.log('this is product' + product);
       }
     
 
     render() {
 
         const { products, errorMsg } = this.state
+        const restaurantid = window.location.href.slice(-2)
+        const filteredProducts = () => {
+            const productsArray = products.filter((product) => product.restaurantpageid.toString().toLowerCase().includes(restaurantid.toLowerCase()));
+            return productsArray
+          }
+        const filteredProductsArray = filteredProducts();
 
         return (
             <div onLoad={() => this.restaurantPageId(window.location.href.slice(-2))}>
@@ -142,8 +148,8 @@ class AddProduct extends React.Component {
                     </div>
                 </div>
                 <div className={styles.productContainer}>
-                    {products.length ?
-                        products.map(product => 
+                    {filteredProductsArray.length ?
+                        filteredProductsArray.map(product => 
                         <div className={styles.product} key={product.productid}>
                             <div className={styles.productImage}>
                                 <img className={styles.productImage} src={product.productimage} alt="" />

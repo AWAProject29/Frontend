@@ -46,21 +46,16 @@ class AddProduct extends React.Component {
 
       manageMenu = (id) => {
         this.props.manageMenu(id);
-        console.log("HERE'S MANAGEMENU ID: " + id);
         const menuEditAddress = ("/menuedit/" + id);
-        console.log(menuEditAddress);
         this.setState({redirectAddress: menuEditAddress});
-        console.log(this.state.redirectAddress);
       }
 
       onAdd = (product) => {
         // const exist = this.state.cartItems.find((x) => x.id === product.id);
         const exist = false;
-        console.log("values between these");
         console.log(this.state.cartItems);
         console.log(exist);
         console.log(product);
-        console.log("values between these");
 
         if (exist) {
           this.cartItems.setState(
@@ -79,27 +74,40 @@ class AddProduct extends React.Component {
         localStorage.setItem('product', rememberMe ? product : product.productname);
         console.log('this is product' +product);
       }
+
+      
+
+      // <SearchView
+      //           restaurants={ this.filteredItems() }
+
+      //       />
     
 
     render() {
 
         const { products, errorMsg } = this.state
+        const restaurantid = window.location.href.slice(-2)
+        const filteredProducts = () => {
+            const productsArray = products.filter((product) => product.restaurantpageid.toString().toLowerCase().includes(restaurantid.toLowerCase()));
+            return productsArray
+          }
+        const filteredProductsArray = filteredProducts();
 
         return (
-            <div onLoad={() => this.manageMenu(window.location.href.slice(-2)) }>
+            <div onLoad={() => this.manageMenu(restaurantid) }>
                 <div className={styles.productContainer}>
-                    {products.length ?
-                        products.map(product => 
-                        <div className={styles.product} key={product.id}>
+                    {filteredProductsArray.length ?
+                        filteredProductsArray.map(filteredproduct => 
+                        <div className={styles.product} key={filteredproduct.id}>
                             <div className={styles.productImage}>
-                                <img className={styles.productImage} src={product.productimage} alt="" />
+                                <img className={styles.productImage} src={filteredproduct.productimage} alt="" />
                             </div>
                             <div className={styles.productName}>
-                                <h1 >{product.productname}</h1>
-                                <h2>{product.productdescription}</h2>
+                                <h1 >{filteredproduct.productname}</h1>
+                                <h2>{filteredproduct.productdescription}</h2>
                             </div>
                             <div className={styles.productPrice}>
-                                <p>{product.productprice} €</p>
+                                <p>{filteredproduct.productprice} €</p>
                             </div>
                             <div className={styles.productButtons}>
                                 <button id="addItem" onClick={/*this.onAdd(product),*/ this.onSubmit} > +</button>

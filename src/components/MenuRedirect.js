@@ -8,7 +8,7 @@ const navigate = useNavigate();
 const chosenRestaurant = () => {
     setTimeout(() => {
 
-        console.log(props.redirectAddress)
+      // console.log(props.redirectAddress)
       // console.log(props);
 
       //if logged in as a manager, it takes you to menu edit page
