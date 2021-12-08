@@ -1,30 +1,66 @@
 .addProduct {
     margin: auto;
-    margin-top: 1%;
-    width: 50%;
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 300px;
+    background-image: url('../images/board.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.formContainer {
+    margin-top: 30px;
 }
 .form {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 1%;
+}
+.form input {
+    font-family: 'EightBitDragon';
+    outline: none;
+    border: 1px solid black;
+    background-color: #925931;
+    font-size: 14px;
+    line-height: 18px;
 }
 .addImage {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-evenly;
+    font-size: 14px;
+    margin-bottom: 5px;
+    width: 400px;
+    height: 70px;
 }
 .filetype {
     font-family: 'EightBitDragon';
 }
 .imageTarget {
-    max-height: 80px;
+    max-height: 70px;
 }
-.buttonContainer button {
+.addNewProduct {
     font-family: 'EightBitDragon';
+    background-color: transparent;
+    background-image: url('../images/fish.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    width: 140px;
+    height: 66px;
+    font-size: 16px;
+}
+.addNewProduct:hover {
+    cursor: url('../images/knife.png'), auto; 
+    color: white;
+    text-shadow: 2px 2px black;
+    background-image: url('../images/ripfish.png');
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .productContainer {
     margin: auto;
@@ -79,4 +115,8 @@
 }
 .removeItem {
     max-height: 20px;
+}
+button:disabled,
+button[disabled]{
+    cursor: not-allowed;
 }
