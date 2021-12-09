@@ -17,9 +17,8 @@ import ShoppingCart from './components/ShoppingCart.js';
 import ProtectedCustomer from './components/ProtectedCustomer.js';
 import ProtectedManager from './components/ProtectedManager.js';
 
-//const jwtFromStorage = window.localStorage.getItem('appAuthData');
 
-// APP
+//const jwtFromStorage = window.localStorage.getItem('appAuthData');
 
 
 
@@ -30,9 +29,14 @@ class App extends React.Component {
     this.state = {
       items: [],
       cartItems: [],
-      setCartItems: []
-    }
+      setCartItems: [],
+      isUserLoggedIn: false,
+      setIsUserLoggedIn: false,
+      userJwt: null,
+      setUserJwt: null
 
+    }
+  
     console.log("Constructor");
   }
 
@@ -167,29 +171,60 @@ class App extends React.Component {
     }
   }
 
+  setUserJwt = (newJwt) => {
+    this.setState({userJwt: newJwt})
+  }
+
+  setIsUserLoggedIn = () => {
+    this.setState({isUserLoggedIn: true})
+  }
+
+  logOut = () => {
+    this.setState({userJwt: null})
+    this.setState({isUserLoggedIn: false})
+  }
+
   render() {
+
+
+    
+    let authRoutes = <>
+
+        <Route path="/login" element={ <Login login= { newJwt => {
+          this.setIsUserLoggedIn();
+          this.setUserJwt(newJwt);
+          console.log("This is new JWT: " + newJwt);
+        } }/> } />
+        <Route path="/signup" element={ <SignUp addNewCustomerAccount={ this.addNewCustomerAccount }/> } />
+
+    </>
+    if(this.state.isUserLoggedIn == true) {
+        authRoutes = <>
+        <Route path="/ProtectedManager" element={ <ProtectedManager /> } />
+        <Route path="/ProtectedCustomer" element={ <ProtectedCustomer /> } />
+        <Route path="/shoppingcart" element={ <ShoppingCart cartItems={ this.props.cartItems } onAdd={ this.onAdd } onRemove={ this.onRemove }/>} />
+        <Route path="*" element= { <ProtectedCustomer userLoggedIn={this.state.isUserLoggedIn}/> } />
+        <Route path="/" element= { <ProtectedCustomer userLoggedIn={this.state.isUserLoggedIn}/> } />
+        </>
+    }
 
     return (
       
       <BrowserRouter>
       <div className="App">
-        <Header/>
+        <Header logout={() => this.logOut()}/>
         <Routes>
-          <Route path="*" element= { <Home /> } />
-          <Route path="/" element={ <Home /> } />
-          <Route path="/login" element={ <Login /> } />
-          <Route path="/ProtectedCustomer" element={ <ProtectedCustomer /> } />
+          <Route path="*" element= { <Home userLoggedIn={this.state.isUserLoggedIn}/> } />
+          <Route path="/" element= { <Home userLoggedIn={this.state.isUserLoggedIn}/> } />
+         
+          { authRoutes }
           <Route path="/loginmanager" element={ <LoginManager />} />
-          <Route path="/ProtectedManager" element={ <ProtectedManager /> } />
-          <Route path="/signup" element={ <SignUp addNewCustomerAccount={ this.addNewCustomerAccount }/> } />
           <Route path="/managersignup" element={ <ManagerSignUp addNewManagerAccount={ this.addNewManagerAccount }/> } />
           <Route path="/addrestaurant" element={ <AddRestaurant addNewRestaurant={ this.addNewRestaurant }/> } />
           <Route path="/payment" element={ <Payment /> }/>
           <Route path="/menu/*" element={ <Menu manageMenu={ this.manageMenu }/> }/>
           <Route path="/order" element={ <Order/>} />
-          <Route path="/menuedit/*" element={ <MenuEdit cartItems={ this.props.cartItems } setCartItems={ this.props.setCartItems } onAdd={ this.onAdd } addNewProduct={ this.addNewProduct } removeProduct={ this.removeProduct }/> }/>
-          <Route path="/shoppingcart" element={ <ShoppingCart cartItems={ this.props.cartItems } onAdd={ this.onAdd } onRemove={ this.onRemove }/>} />
-          {/* <Route path="/showrestaurants" element={ <ShowRestaurants /> }/> */}
+          <Route path="/menuedit" element={ <MenuEdit cartItems={ this.props.cartItems } setCartItems={ this.props.setCartItems } onAdd={ this.onAdd } addNewProduct={ this.addNewProduct } /> }/>
         </Routes>
       </div>
       </BrowserRouter>

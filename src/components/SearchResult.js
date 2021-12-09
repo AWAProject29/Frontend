@@ -24,7 +24,7 @@ export default function SearchResult(props) {
       navigate(`/menu/${id}`, { replace: true });
 
   }, 300);
-}   
+}
 
   return (
       <div className = { styles.restaurant } key = {props.idrestaurant} onClick={() => chosenRestaurant(props.idrestaurant) }>
@@ -45,4 +45,3 @@ export default function SearchResult(props) {
     </div>
   )
 }
-

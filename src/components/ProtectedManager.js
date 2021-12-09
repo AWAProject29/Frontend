@@ -69,7 +69,7 @@ class ProtectedManager extends React.Component {
             </div>
             <div className={styles.pageContainer}>
                 <div className={styles.pageBanner}>
-                    <h1 className={styles.searchHeader}>Let us help you on your quest for food!</h1>
+                    <h1 className={styles.searchHeader}>Welcome Manager</h1>
                     <img className={styles.food} src={food} alt='' />
                 </div>
                 <div className={styles.searchContainer}>
