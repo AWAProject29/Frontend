@@ -152,7 +152,7 @@ class AddProduct extends React.Component {
                     {filteredProductsArray.length ?
                         filteredProductsArray.map(product => 
                         <div className={styles.product} key={product.productid}>
-                            <div className={styles.productImage}>
+                            <div className={styles.productImageContainer}>
                                 <img className={styles.productImage} src={product.productimage} alt="" />
                             </div>
                             <div className={styles.productName}>
