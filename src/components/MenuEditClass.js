@@ -140,19 +140,19 @@ class AddProduct extends React.Component {
                         </div>
                     </div>
                     <div className={styles.addImage}>
-                        <p>Add Product photo</p>
+                        <p>Add Product photo:</p>
                         <input type="file" className={styles.filetype} onChange={ this.onImageChange } id="group_image" />
                         <img className={styles.imageTarget} id="target" src={this.state.newProductImage} alt="" />
                     </div>
                     <div className={styles.buttonContainer}>
-                        <button id="addNewProductButton" onClick={this.addNewProduct} disabled={!this.state.newProductName | !this.state.newProductPrice | !this.state.newProductCategory | !this.state.newProductDescription}>Add Product</button>
+                        <button className={styles.addNewProduct}id="addNewProductButton" onClick={this.addNewProduct} disabled={!this.state.newProductName | !this.state.newProductPrice | !this.state.newProductCategory | !this.state.newProductDescription}>Add Product</button>
                     </div>
                 </div>
                 <div className={styles.productContainer}>
                     {filteredProductsArray.length ?
                         filteredProductsArray.map(product => 
                         <div className={styles.product} key={product.productid}>
-                            <div className={styles.productImage}>
+                            <div className={styles.productImageContainer}>
                                 <img className={styles.productImage} src={product.productimage} alt="" />
                             </div>
                             <div className={styles.productName}>
