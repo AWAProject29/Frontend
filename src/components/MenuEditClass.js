@@ -109,7 +109,7 @@ class AddProduct extends React.Component {
 
         const { products, errorMsg } = this.state
         const restaurantid = window.location.href.slice(-2)
-        console.log(products);
+        // console.log(products);
         const filteredProducts = () => {
             const productsArray = products.filter((product) => product.restaurantpageid.toString().toLowerCase().includes(restaurantid.toLowerCase()));
             return productsArray

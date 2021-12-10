@@ -23,8 +23,8 @@ class AddProduct extends React.Component {
           cartItems: [],
           product: "",
           rememberMe: false,
-
-          redirectAddress: ""
+          redirectAddress: "",
+          amountOfItem: 0
         }
       }
       
@@ -32,7 +32,7 @@ class AddProduct extends React.Component {
     componentDidMount() {
         axios.get(Constants.API_ADDRESS + '/product')
             .then(response => {
-                console.log(response);
+                // console.log(response);
                 this.setState({ products: response.data })
             })
             .catch(error => {
@@ -50,48 +50,45 @@ class AddProduct extends React.Component {
         this.setState({redirectAddress: menuEditAddress});
       }
 
-      onAdd = (product) => {
-        // const exist = this.state.cartItems.find((x) => x.id === product.id);
-        const exist = false;
-        console.log(this.state.cartItems);
-        console.log(exist);
-        console.log(product);
+      onAddItem = (addedItem) => {
+        this.setState(prev => ({cartItems: [...prev.cartItems, addedItem], addedItem: ''}))
 
-        if (exist) {
-          this.cartItems.setState(
-            this.state.cartItems.map((x) =>
-              x.id === product.id ? { ...this.state.cartItems, qty: product.qty + 1 } : x
-            )
-          );
-        } else {
-        //   this.cartItems.setState([...this.state.cartItems, { ...product, qty: 1 }]);this.state.cartItems
-        }
-      };
+        this.setState({amountOfItem: this.state.amountOfItem+1});
 
-      onSubmit = () => {
-        const { product, rememberMe } = this.state;
-        localStorage.setItem('rememberMe', rememberMe);
-        localStorage.setItem('product', rememberMe ? product : product.productname);
-        console.log('this is product' +product);
+        console.log("This is the value of the item: ");
+        console.log(this.state.amountOfItem);
       }
 
-      
+      onRemoveItem = (removedItem) => {
+        console.log(removedItem.productname + " " + removedItem.productprice)
 
-      // <SearchView
-      //           restaurants={ this.filteredItems() }
+        const itemsInCart = this.state.cartItems.filter(item => item.productid !== removedItem.productid);
+        this.setState({cartItems: itemsInCart});
 
-      //       />
-    
+        console.log('Item removed from shopping cart: ')
+        console.log(removedProductName + " " + removedProductPrice)
+    }
+
+
+      manageMenu = (id) => {
+        this.props.manageMenu(id);
+        const menuEditAddress = ("/menuedit/" + id);
+        this.setState({redirectAddress: menuEditAddress});
+      }
+
+      updatedPage = () => {
+        console.log(this.state.cartItems);
+      }
 
     render() {
 
-        const { products, errorMsg } = this.state
+        const { products, errorMsg, cartItems } = this.state
         const restaurantid = window.location.href.slice(-2)
         const filteredProducts = () => {
             const productsArray = products.filter((product) => product.restaurantpageid.toString().toLowerCase().includes(restaurantid.toLowerCase()));
             return productsArray
           }
-          console.log(products);
+          // console.log(products);
         const filteredProductsArray = filteredProducts();
 
         return (
@@ -111,8 +108,26 @@ class AddProduct extends React.Component {
                                 <p>{filteredproduct.productprice} €</p>
                             </div>
                             <div className={styles.productButtons}>
-                                <button id="addItem" onClick={/*this.onAdd(product),*/ this.onSubmit} > +</button>
-                                <button id=""> - </button>
+                                <button id="addToShoppingCart" key={filteredProductsArray.productid} onClick={() => this.onAddItem(filteredproduct) } > +</button>
+                                <button id="removeFromShoppingCart" key={filteredProductsArray.productid} onClick={() => this.onRemoveItem(filteredproduct) }> - </button>
+                            </div>
+                        </div>) :
+                        null}
+                    {errorMsg ? <div>{errorMsg}</div> : null}
+                </div>
+                <div className={styles.productContainer}>
+                    {cartItems.length ?
+                        cartItems.map(cartItem => 
+                        <div className={styles.product} key={cartItem.id}>
+                            <div className={styles.productImage}>
+                                <img className={styles.productImage} src={cartItem.productimage} alt="" />
+                            </div>
+                            <div className={styles.productName}>
+                                <h1 >{cartItem.productname}</h1>
+                                <h2>{cartItem.productdescription}</h2>
+                            </div>
+                            <div className={styles.productPrice}>
+                                <p>{cartItem.productprice} €</p>
                             </div>
                         </div>) :
                         null}
