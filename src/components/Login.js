@@ -3,10 +3,17 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import Constants from '../Constants.json'
+import { useHistory, useLocation } from "react-router-dom";
+
+import useGlobalCounter from './useGlobalCounter'
 
 export default function Login(props) {
 
     const navigate = useNavigate();
+    
+
+    const [state, setState] = useGlobalCounter()    
+
 
     const handleLoginSubmit = async (event) => {
 
@@ -28,7 +35,10 @@ export default function Login(props) {
             console.log(result.data.jwt);
             const receivedJWT = result.data.jwt;
 
+            
             props.login(receivedJWT)
+            // changeGlobalVariable();
+            setState(state + 1);
 
             setTimeout(() => {
 
@@ -62,7 +72,7 @@ export default function Login(props) {
                         </div>
                         
                     </form>
-                    
+                    {/* <Link to={{ pathname: "Header", state: { statusId }}}><button className = { styles.login }>Login</button></Link> */}
                 </div>
             </div>
         </div>

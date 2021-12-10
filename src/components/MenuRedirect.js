@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom'
 
 export default function MenuRedirect(props) {
 
+//Make button visible only if you're logged in as a manager
+const [visible, setVisible] = React.useState(false);
+
 const navigate = useNavigate();
 
 const chosenRestaurant = () => {

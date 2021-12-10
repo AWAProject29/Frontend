@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import Constants from '../Constants.json'
 
-export default function LoginManager() {
+export default function LoginManager(props) {
 
     const navigate = useNavigate();    
 
@@ -27,12 +27,14 @@ export default function LoginManager() {
             }) 
 
             console.log(result);
+            const receivedJWT = result.data.jwt;
+            props.login(receivedJWT)
 
             setTimeout(() => {
 
                 navigate("/ProtectedManager", { replace: true });
 
-            }, 1500);
+            }, 1000);
 
             } catch (error) {
 
