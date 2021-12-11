@@ -21,7 +21,7 @@ export default function Login(props) {
 
         try {
 
-            const result = await axios.post('https://hermes-project-group-29.herokuapp.com/loginForJWTcustomer', null, 
+            const result = await axios.post(Constants.API_ADDRESS + '/loginForJWTcustomer', null, 
             {
 
                 auth: {
