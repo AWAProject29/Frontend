@@ -263,7 +263,7 @@ class App extends React.Component {
       
       <BrowserRouter>
       <div className="App">
-        <Header logout={() => this.logOut()} isUserLoggedIn={this.state.statusNumber} />
+        <Header logout={() => this.logOut()} changeStatus={this.state.statusNumber} />
         <Routes>
           {/* <Route path="*" element= { <Home userLoggedIn={this.state.isUserLoggedIn}/> } /> */}
           <Route path="/" element= { <Home userLoggedIn={this.state.isUserLoggedIn}/> } />

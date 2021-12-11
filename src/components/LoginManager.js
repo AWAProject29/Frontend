@@ -14,7 +14,7 @@ export default function LoginManager(props) {
         try {
 
             const result = await axios.post(Constants.API_ADDRESS + '/loginForJWTmanager', null, 
-            { //make the route to be same that you have on server
+            { 
 
                 auth: {
 
