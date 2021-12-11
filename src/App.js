@@ -16,7 +16,7 @@ import MenuEdit from './components/MenuEditClass.js';
 import ShoppingCart from './components/ShoppingCart.js';
 import ProtectedCustomer from './components/ProtectedCustomer.js';
 import ProtectedManager from './components/ProtectedManager.js';
-
+import Constants from './Constants.json'
 
 class App extends React.Component {
   constructor(props)
@@ -47,7 +47,7 @@ class App extends React.Component {
 
   addNewCustomerAccount = (email, password, firstname, lastname, address) => {
     console.log("in addNewCustomerAccount function");
-    axios.post('http://localhost:3000/customer/addCustomer', 
+    axios.post(Constants.API_ADDRESS +'/customer/addCustomer', 
       {
         email,
         password,
@@ -68,7 +68,7 @@ class App extends React.Component {
 
   addNewManagerAccount = (email, password, firstname, lastname, managerauthentication) => {
     console.log("in addNewManagerAccount function");
-    axios.post('http://localhost:3000/manager/addManager', 
+    axios.post(Constants.API_ADDRESS + '/manager/addManager', 
       {
         email,
         password,
@@ -90,7 +90,7 @@ class App extends React.Component {
 
   addNewRestaurant = (restaurantname, address, restauranttype, pricelevel, operatinghours, restaurantimage, restaurantdescription) => {
     console.log("in addNewRestaurant function");
-    axios.post('http://localhost:3000/restaurant/addRestaurant', 
+    axios.post(Constants.API_ADDRESS + 'restaurant/addRestaurant', 
       {
         restaurantname,
         address,
@@ -114,7 +114,7 @@ class App extends React.Component {
   addNewProduct = (productname, productprice, productcategory, productdescription, productimage, restaurantpageid) => {
     console.log("in addNewProduct function");
     console.log("This is restaurantpageid in addNewProduct: " + restaurantpageid);
-    axios.post('http://localhost:3000/product/addProduct', 
+    axios.post(Constants.API_ADDRESS + '/product/addProduct', 
       {
         productname,
         productprice,
@@ -136,7 +136,7 @@ class App extends React.Component {
 
   removeProduct = (productId) => {
     console.log("in removeProduct function. productId is: " + productId);
-    axios.delete(`http://localhost:3000/product/removeProduct/${productId}`)
+    axios.delete(Constants.API_ADDRESS + `/product/removeProduct/${productId}`)
       .then(response => {
         console.log(JSON.stringify(response));
       })
