@@ -24,7 +24,13 @@ class AddProduct extends React.Component {
           product: "",
           rememberMe: false,
           redirectAddress: "",
-          amountOfItem: 0
+          amountOfItem: 0,
+
+          idShoppingCart: "1",
+          cartItemId: "",
+          cartItemName: "",
+          cartItemPrice: "",
+          cartItemAmount: 0
         }
       }
       
@@ -39,46 +45,94 @@ class AddProduct extends React.Component {
                 console.log(error);
                 this.setState({errorMsg: 'Error retrieving data'})
             })
-            const rememberMe = localStorage.getItem('rememberMe') === 'true';
-            const product = rememberMe ? localStorage.getItem('product') : '';
-            this.setState({ product, rememberMe });
+        
+        // axios.get(Constants.API_ADDRESS + '/shoppingcart')
+        //     .then(response => {
+        //       // console.log(response);
+        //       this.setState({ cartItems: response.data })
+        // })
+        // .catch(error => {
+        //     console.log(error);
+        //     this.setState({errorMsg: 'Error retrieving data'})
+        // })
     }
 
-      manageMenu = (id) => {
-        this.props.manageMenu(id);
-        const menuEditAddress = ("/menuedit/" + id);
-        this.setState({redirectAddress: menuEditAddress});
-      }
-
-      onAddItem = (addedItem) => {
-        this.setState(prev => ({cartItems: [...prev.cartItems, addedItem], addedItem: ''}))
-
-        this.setState({amountOfItem: this.state.amountOfItem+1});
-
-        console.log("This is the value of the item: ");
-        console.log(this.state.amountOfItem);
-      }
-
-      onRemoveItem = (removedItem) => {
-        console.log(removedItem.productname + " " + removedItem.productprice)
-
-        const itemsInCart = this.state.cartItems.filter(item => item.productid !== removedItem.productid);
-        this.setState({cartItems: itemsInCart});
-
-        console.log('Item removed from shopping cart: ')
-        console.log(removedProductName + " " + removedProductPrice)
+    manageMenu = (id) => {
+      this.props.manageMenu(id);
+      const menuEditAddress = ("/menuedit/" + id);
+      this.setState({redirectAddress: menuEditAddress});
     }
 
+    onAddItem = (addedItem) => {
+      this.setState(prev => ({cartItems: [...prev.cartItems, addedItem], addedItem: ''}))
 
-      manageMenu = (id) => {
-        this.props.manageMenu(id);
-        const menuEditAddress = ("/menuedit/" + id);
-        this.setState({redirectAddress: menuEditAddress});
-      }
+      this.setState({amountOfItem: this.state.amountOfItem+1});
 
-      updatedPage = () => {
-        console.log(this.state.cartItems);
-      }
+      console.log("This is the value of the item: ");
+      console.log(this.state.amountOfItem);
+
+      console.log(this.state.cartItems);
+    }
+
+    onRemoveItem = (removedItem) => {
+      const itemsInCart = this.state.cartItems.filter(item => item.productid !== removedItem.productid);
+      this.setState({cartItems: itemsInCart});
+
+      console.log('Item removed from shopping cart: ')
+      console.log(removedItem.productname + " " + removedItem.productprice)
+    }
+
+    onAddItemToCart = (addedItem) => {
+      const idshoppingcart = this.state.idShoppingCart;
+      const cartitemid = addedItem.productid;
+      const cartitemname = addedItem.productname;
+      const cartitemprice = addedItem.productprice;
+      const cartitemamount = this.state.amountOfItem+1;
+
+      this.setState({idShoppingCart: idshoppingcart})
+      this.setState({cartItemId: cartitemid})
+      this.setState({cartItemName: cartitemname})
+      this.setState({cartItemPrice: cartitemprice})
+      this.setState({cartItemAmount: cartitemamount})
+
+      console.log(this.state.idShoppingCart)
+      console.log(this.state.cartItemId)
+      console.log(this.state.cartItemName)
+      console.log(this.state.cartItemPrice)
+      console.log(this.state.cartItemAmount)
+
+      this.props.onAddItemToCart(this.state.idShoppingCart, this.state.cartItemId, this.state.cartItemName, this.state.cartItemPrice, this.state.cartItemAmount);
+      // window.location.reload();
+
+      console.log(this.state.cartItems);
+    }
+
+    onRemoveItemFromCart = (chosenItem) => {
+      const idshoppingcart = this.state.idShoppingCart;
+      const cartitemid = chosenItem.productid;
+      const cartitemname = chosenItem.productname;
+      const cartitemprice = chosenItem.productprice;
+      const cartitemamount = this.state.amountOfItem+1;
+
+      this.setState({idShoppingCart: idshoppingcart})
+      this.setState({cartItemId: cartitemid})
+      this.setState({cartItemName: cartitemname})
+      this.setState({cartItemPrice: cartitemprice})
+      this.setState({cartItemAmount: cartitemamount})
+
+      this.props.onRemoveItemFromCart(this.state.cartItemId, this.state.cartItemAmount);
+      // window.location.reload();
+    }
+
+    manageMenu = (id) => {
+      this.props.manageMenu(id);
+      const menuEditAddress = ("/menuedit/" + id);
+      this.setState({redirectAddress: menuEditAddress});
+    }
+
+    updatedPage = () => {
+      console.log(this.state.cartItems);
+    }
 
     render() {
 
@@ -108,8 +162,8 @@ class AddProduct extends React.Component {
                                 <p>{filteredproduct.productprice} €</p>
                             </div>
                             <div className={styles.productButtons}>
-                                <button id="addToShoppingCart" key={filteredProductsArray.productid} onClick={() => this.onAddItem(filteredproduct) } > +</button>
-                                <button id="removeFromShoppingCart" key={filteredProductsArray.productid} onClick={() => this.onRemoveItem(filteredproduct) }> - </button>
+                                <button id="addToShoppingCart" key={filteredProductsArray.productid} onClick={() => this.onAddItemToCart(filteredproduct) } > +</button>
+                                <button id="removeFromShoppingCart" key={filteredProductsArray.productid} onClick={() => this.onRemoveItemFromCart(filteredproduct) }> - </button>
                             </div>
                         </div>) :
                         null}
@@ -118,7 +172,7 @@ class AddProduct extends React.Component {
                 <div className={styles.productContainer}>
                     {cartItems.length ?
                         cartItems.map(cartItem => 
-                        <div className={styles.product} key={cartItem.id}>
+                        <div className={styles.product} key={cartItem.idcartitem}>
                             <div className={styles.productImage}>
                                 <img className={styles.productImage} src={cartItem.productimage} alt="" />
                             </div>

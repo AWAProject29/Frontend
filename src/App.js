@@ -141,6 +141,66 @@ class App extends React.Component {
     return redirectAddress;
   }
 
+  onAddItemToCart = (idshoppingcart, idcartitem, cartitemname, cartitemprice, cartitemamount) => {
+    console.log("in onAddItemToCart function");
+    console.log(idshoppingcart)
+    console.log(idcartitem)
+    console.log(cartitemname)
+    console.log(cartitemprice)
+    console.log(cartitemamount)
+
+    axios.post('http://localhost:3000/shoppingcart/addToCart', 
+      {
+        idshoppingcart,
+        idcartitem,
+        cartitemname,
+        cartitemprice,
+        cartitemamount
+      }
+    )
+      .then(response => {
+        this.setState({ items: response.data.items })
+        console.log(JSON.stringify(response));
+        console.log(JSON.stringify(response.data.errno));
+        if(JSON.stringify(response.data.errno) === '1062') {
+          console.log("Error number matched!");
+          axios.put('http://localhost:3000/shoppingcart/addAmount',
+            {
+              idcartitem,
+              cartitemamount
+            }
+          );
+          console.log(idcartitem);
+        } else {
+          console.log("Error number didn't match to duplicate");
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  onRemoveItemFromCart = (idcartitem, cartitemamount) => {
+    console.log("in onRemoveItemFromCart function");
+    console.log(idcartitem)
+    console.log(cartitemamount)
+
+    axios.put('http://localhost:3000/shoppingcart/removeFromCart', 
+      {
+        idcartitem,
+        cartitemamount
+      }
+    )
+      .then(response => {
+        this.setState({ items: response.data.items })
+        console.log(JSON.stringify(response));
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+
   onAdd = (product) => {
     const exist = this.props.cartItems.find((x) => x.id === product.id);
     if (exist) {
@@ -185,7 +245,7 @@ class App extends React.Component {
           <Route path="/managersignup" element={ <ManagerSignUp addNewManagerAccount={ this.addNewManagerAccount }/> } />
           <Route path="/addrestaurant" element={ <AddRestaurant addNewRestaurant={ this.addNewRestaurant }/> } />
           <Route path="/payment" element={ <Payment /> }/>
-          <Route path="/menu/*" element={ <Menu manageMenu={ this.manageMenu }/> }/>
+          <Route path="/menu/*" element={ <Menu manageMenu={ this.manageMenu } onAddItemToCart={ this.onAddItemToCart } onRemoveItemFromCart={ this.onRemoveItemFromCart }/> }/>
           <Route path="/order" element={ <Order/>} />
           <Route path="/menuedit/*" element={ <MenuEdit cartItems={ this.props.cartItems } setCartItems={ this.props.setCartItems } onAdd={ this.onAdd } addNewProduct={ this.addNewProduct } removeProduct={ this.removeProduct }/> }/>
           <Route path="/shoppingcart" element={ <ShoppingCart cartItems={ this.props.cartItems } onAdd={ this.onAdd } onRemove={ this.onRemove }/>} />

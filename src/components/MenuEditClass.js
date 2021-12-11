@@ -44,65 +44,62 @@ class AddProduct extends React.Component {
             this.setState({ product, rememberMe });
     }
     
-      addNewProduct = () => {
-        this.props.addNewProduct(this.state.newProductName, this.state.newProductPrice, this.state.newProductCategory, this.state.newProductDescription, this.state.newProductImage, this.state.restaurantPageId);
-        window.location.reload();
+    addNewProduct = () => {
+      this.props.addNewProduct(this.state.newProductName, this.state.newProductPrice, this.state.newProductCategory, this.state.newProductDescription, this.state.newProductImage, this.state.restaurantPageId);
+      window.location.reload();
     }
 
-      removeProduct = (id) => {
-        this.props.removeProduct(id);
-        window.location.reload();
-      }
+    removeProduct = (id) => {
+      this.props.removeProduct(id);
+      window.location.reload();
+    }
 
-      onImageChange = (event) => {
-        if (event.target.files && event.target.files[0]) {
-            let file = event.target.files[0];
-          let reader = new FileReader();
-          reader.onload = (e) => {
-            this.setState({newProductImage: e.target.result});
-            this.setState({fileName: file.name, fileContent: reader.result});
-            console.log(this.state.fileName);
-          };
-          reader.onerror = () => {
-              console.log("File Error", reader.error)
-          }
-          reader.readAsDataURL(file);
+    onImageChange = (event) => {
+      if (event.target.files && event.target.files[0]) {
+          let file = event.target.files[0];
+        let reader = new FileReader();
+        reader.onload = (e) => {
+          this.setState({newProductImage: e.target.result});
+          this.setState({fileName: file.name, fileContent: reader.result});
+          console.log(this.state.fileName);
+        };
+        reader.onerror = () => {
+            console.log("File Error", reader.error)
         }
+        reader.readAsDataURL(file);
       }
+    }
 
-      restaurantPageId = (id) => {
-        this.setState({restaurantPageId: id});
+    restaurantPageId = (id) => {
+      this.setState({restaurantPageId: id});
+    }
+
+    onAdd = (product) => {
+      // const exist = this.state.cartItems.find((x) => x.id === product.id);
+      const exist = false;
+      console.log("values between these");
+      console.log(this.state.cartItems);
+      console.log(exist);
+      console.log(product);
+      console.log("values between these");
+
+      if (exist) {
+        this.cartItems.setState(
+          this.state.cartItems.map((x) =>
+            x.id === product.id ? { ...this.state.cartItems, qty: product.qty + 1 } : x
+          )
+        );
+      } else {
+      //   this.cartItems.setState([...this.state.cartItems, { ...product, qty: 1 }]);this.state.cartItems
       }
+    };
 
-
-      onAdd = (product) => {
-        // const exist = this.state.cartItems.find((x) => x.id === product.id);
-        const exist = false;
-        console.log("values between these");
-        console.log(this.state.cartItems);
-        console.log(exist);
-        console.log(product);
-        console.log("values between these");
-
-        if (exist) {
-          this.cartItems.setState(
-            this.state.cartItems.map((x) =>
-              x.id === product.id ? { ...this.state.cartItems, qty: product.qty + 1 } : x
-            )
-          );
-        } else {
-        //   this.cartItems.setState([...this.state.cartItems, { ...product, qty: 1 }]);this.state.cartItems
-        }
-      };
-
-
-
-      onSubmit = () => {
-        const { product, rememberMe } = this.state;
-        localStorage.setItem('rememberMe', rememberMe);
-        localStorage.setItem('product', rememberMe ? product : product.productname);
-        console.log('this is product' + product);
-      }
+    onSubmit = () => {
+      const { product, rememberMe } = this.state;
+      localStorage.setItem('rememberMe', rememberMe);
+      localStorage.setItem('product', rememberMe ? product : product.productname);
+      console.log('this is product' + product);
+    }
     
 
     render() {
