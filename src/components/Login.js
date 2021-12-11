@@ -12,7 +12,7 @@ export default function Login(props) {
     const navigate = useNavigate();
     
 
-    const [state, setState] = useGlobalCounter()    
+    // const [state, setState] = useGlobalCounter()    
 
 
     const handleLoginSubmit = async (event) => {
@@ -38,7 +38,7 @@ export default function Login(props) {
             
             props.login(receivedJWT)
             // changeGlobalVariable();
-            setState(state + 1);
+            // setState(state + 1);
 
             setTimeout(() => {
 
