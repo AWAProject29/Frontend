@@ -8,7 +8,7 @@ import useGlobalCounter from './useGlobalCounter'
 
 export default function Header(props) {
 
-    const [isUserLoggedIn, setIsUserLoggedIn] = useState(2);
+    const [isUserLoggedIn, setIsUserLoggedIn] = useState(useGlobalCounter);
 
     
     function changeStatus(statusNumber) {
