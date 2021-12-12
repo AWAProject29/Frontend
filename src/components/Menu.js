@@ -78,8 +78,8 @@ class AddProduct extends React.Component {
       const itemsInCart = this.state.cartItems.filter(item => item.productid !== removedItem.productid);
       this.setState({cartItems: itemsInCart});
 
-      console.log('Item removed from shopping cart: ')
-      console.log(removedItem.productname + " " + removedItem.productprice)
+        console.log('Item removed from shopping cart: ')
+        console.log(removedItem.productname + " " + removedItem.productprice)
     }
 
     onAddItemToCart = (addedItem) => {
@@ -169,19 +169,20 @@ class AddProduct extends React.Component {
                         null}
                     {errorMsg ? <div>{errorMsg}</div> : null}
                 </div>
-                <div className={styles.productContainer}>
+                <div className={styles.cartContainer}>
                     {cartItems.length ?
                         cartItems.map(cartItem => 
-                        <div className={styles.product} key={cartItem.idcartitem}>
-                            <div className={styles.productImage}>
-                                <img className={styles.productImage} src={cartItem.productimage} alt="" />
+                        <div className={styles.cartItem} key={cartItem.id}>
+                            <div className={styles.itemName}>
+                                <p>{cartItem.productname}</p>
                             </div>
-                            <div className={styles.productName}>
-                                <h1 >{cartItem.productname}</h1>
-                                <h2>{cartItem.productdescription}</h2>
-                            </div>
-                            <div className={styles.productPrice}>
+                            <div className={styles.itemPrice}>
                                 <p>{cartItem.productprice} €</p>
+                            </div>
+                            <div className={styles.itemQuantity}>
+                                <button>+</button>
+                                <p>Num</p>
+                                <button>-</button>
                             </div>
                         </div>) :
                         null}
