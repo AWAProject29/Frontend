@@ -9,9 +9,9 @@ import fastcasual from './images/fastcasual.png';
 import casualdining from './images/casualdining.png';
 import finedining from './images/finedining.png';
 import axios from 'axios';
-import Constants from '../Constants.json'
+import Constants from '../Constants.json';
 import SearchView from './SearchView';
-
+import { Link } from 'react-router-dom';
 
 
 class ProtectedManager extends React.Component {
