@@ -11,7 +11,7 @@ import finedining from './images/finedining.png';
 import axios from 'axios';
 import Constants from '../Constants.json'
 import SearchView from './SearchView';
-import styles from '../components/modules/Login.module.css';
+import styles2 from '../components/modules/Login.module.css';
 
 
 class ProtectedManager extends React.Component {
@@ -67,7 +67,7 @@ class ProtectedManager extends React.Component {
             <div>
                 User login status: { this.state.userLoggedIn ? "Logged in as manager" : "Not logged in" }
             </div>
-            <div className = { styles.buttonContainer }>
+            <div className = { styles2.buttonContainer }>
                             <Link to="/addrestaurant"> <button>Add Restaurant</button> </Link>                     
                         </div>
             <div className={styles.pageContainer}>
