@@ -67,7 +67,7 @@ class ProtectedManager extends React.Component {
             <div>
                 User login status: { this.state.userLoggedIn ? "Logged in as manager" : "Not logged in" }
             </div>
-            <div>
+            <div className = { styles.buttonContainer }>
                 <Link to="/addrestaurant"> <button>Add Restaurant</button> </Link>                     
             </div>
             <div className={styles.pageContainer}>

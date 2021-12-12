@@ -139,3 +139,27 @@
 .price {
     font-weight: bold;
 }
+
+.buttonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 100px;
+    width: 300px;
+    text-align: center;
+}
+.buttonContainer button {
+    font-family: 'EightBitDragon';
+    font-size: 16px;
+    cursor: url('../images/quill.gif'), auto;
+    background-color: transparent;
+    border: none;
+    height: 80px;
+}
+.buttonContainer button:hover {
+    color: white;
+    text-shadow: 2px 2px black;
+    background-image: url('../images/stamp.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
