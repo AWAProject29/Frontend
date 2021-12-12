@@ -90,7 +90,7 @@ class App extends React.Component {
 
   addNewRestaurant = (restaurantname, address, restauranttype, pricelevel, operatinghours, restaurantimage, restaurantdescription) => {
     console.log("in addNewRestaurant function");
-    axios.post(Constants.API_ADDRESS + 'restaurant/addRestaurant', 
+    axios.post(Constants.API_ADDRESS + '/restaurant/addRestaurant', 
       {
         restaurantname,
         address,
