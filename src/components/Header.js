@@ -8,7 +8,7 @@ import useGlobalCounter from './useGlobalCounter'
 
 export default function Header(props) {
 
-    const [isUserLoggedIn, setIsUserLoggedIn] = useState(useGlobalCounter);
+    const [isUserLoggedIn, setIsUserLoggedIn] = useState(2);
 
     
     function changeStatus(statusNumber) {
@@ -44,7 +44,7 @@ export default function Header(props) {
             { frontPageRoute }
                 <div className = { styles.headerControls }>
                     
-                    <Link to="SignUp"><button className = { styles.login }>Sign Up</button></Link>
+                    
                     <Link to="login"><button className = { styles.login }>Login</button></Link>
                     <Link to="shoppingcart"> <img className = { styles.cart } src = { cart } alt = "cart" /> </Link>
                     <Link to="/"><button  className = { styles.login } onClick={ props.logout }>Logout</button></Link>

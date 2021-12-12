@@ -54,9 +54,9 @@ export default function LoginManager(props) {
                         <label>Email:</label>
                             <input type="text" name="email" placeholder="your@email.com" />
                         <label>Password:</label>
-                            <input type="text" name="password" />
+                            <input type="password" name="password" />
                         <label>managerauthentication:</label>
-                            <input type="text" name="managerauthentication" />
+                            <input type="password" name="managerauthentication" />
                         <div className = { styles.buttonContainer }>
                             <button className = { styles.signUpButton } type="submit" >Login</button>
                             <Link to ="/managersignup"><button>Sign up as Manager</button></Link>

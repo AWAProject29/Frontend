@@ -254,6 +254,7 @@ class App extends React.Component {
       managerAuthRoutes = <>
         
         <Route path="/ProtectedManager" element={ <ProtectedManager /> } />
+        <Route path="/addrestaurant" element={ <AddRestaurant addNewRestaurant={ this.addNewRestaurant }/> } />
         <Route path="/shoppingcart" element={ <ShoppingCart cartItems={ this.props.cartItems } onAdd={ this.onAdd } onRemove={ this.onRemove }/>} />
         <Route path="/menuedit/*" element={ <MenuEdit cartItems={ this.props.cartItems } setCartItems={ this.props.setCartItems } onAdd={ this.onAdd } addNewProduct={ this.addNewProduct } /> }/>
       </>
@@ -269,7 +270,6 @@ class App extends React.Component {
           <Route path="/" element= { <Home userLoggedIn={this.state.isUserLoggedIn}/> } />
           { authRoutes }
           { managerAuthRoutes }
-          <Route path="/addrestaurant" element={ <AddRestaurant addNewRestaurant={ this.addNewRestaurant }/> } />
           <Route path="/payment" element={ <Payment /> }/>
           <Route path="/menu/*" element={ <Menu manageMenu={ this.manageMenu }/> }/>
           <Route path="/order" element={ <Order/>} />
