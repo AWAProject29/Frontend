@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../components/modules/AddRestaurantClass.module.css';
+import { useNavigate } from 'react-router-dom'
 
 class AddRestaurant extends React.Component {
     
@@ -18,9 +19,15 @@ class AddRestaurant extends React.Component {
         }
       }
     
+      
       addNewRestaurant = () => {
         this.props.addNewRestaurant(this.state.newRestaurantName, this.state.newAddress, this.state.newRestaurantType, this.state.newPriceLevel, this.state.newOperatingHours, this.state.newRestaurantImage, this.state.newRestaurantDescription);
-        // console.log("WERE IN ADDRESTAURANTCLASS: " + this.state.newRestaurantImage)
+        const navigate = useNavigate();
+        setTimeout(() => {
+
+            navigate("/ProtectedManager", { replace: true });
+
+        }, 1000);
       }
     
       onImageChange = (event) => {
