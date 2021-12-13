@@ -220,7 +220,7 @@ class App extends React.Component {
           this.setUserJwt(newJwt);
           
         } }/> } />
-        <Route path="/signup" element={ <SignUp addNewCustomerAccount={ this.addNewCustomerAccount }/> } />
+        <Route path="/login/signup" element={ <SignUp addNewCustomerAccount={ this.addNewCustomerAccount }/> } />
 
     </>
 
