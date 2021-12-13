@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../components/modules/SignUp.module.css';
+import { Link } from 'react-router-dom'
 
 class ManagerSignUp extends React.Component {
     
@@ -40,7 +41,7 @@ class ManagerSignUp extends React.Component {
                         </form>
                     </div>
                     <div className = { styles.buttonContainer }>
-                        <button onClick={ this.addNewManagerAccount }>Create Manager Account</button>
+                        <Link to="/loginmanager" ><button onClick={ this.addNewManagerAccount }>Create Manager Account</button> </Link>
                     </div>
                 </div>
             </div>
