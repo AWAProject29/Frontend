@@ -68,7 +68,7 @@ export default function Login(props) {
                             <input type="password" name="password" />
                         <div className = { styles.buttonContainer }>
                             <button type="submit">Login</button>
-                            <Link to="SignUp"><button className = { styles.login }>Sign Up</button></Link>
+                            <Link to="/signup"><button className = { styles.login }>Sign Up</button></Link>
                             <Link to="/LoginManager"> <button>Login as Manager</button> </Link>                     
                         </div>
                         
