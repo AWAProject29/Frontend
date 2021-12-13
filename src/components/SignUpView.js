@@ -27,8 +27,6 @@ export default function SignUpView(props) {
                             <input type="text" id="email" placeholder="your@email.com" onChange={ (event) => addNewEmail(event.target.value) }/>
                             <label>Password:</label>
                             <input type="password" id="pwd" onChange={ (event) => addNewPassword(event.target.value) }/>
-                            <progress id="progress" value="0" max="100">70</progress>
-                            <span id="progresslabel"></span>
                             {/* <label>Repeat Password:</label>
                             <input type="password" id="password" onChange={ (event) => this.setState({ newGameName: event.target.value }) }/> */}
                             <label>First Name:</label>
