@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../components/modules/AddRestaurantClass.module.css';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class AddRestaurant extends React.Component {
     
@@ -22,12 +22,7 @@ class AddRestaurant extends React.Component {
       
       addNewRestaurant = () => {
         this.props.addNewRestaurant(this.state.newRestaurantName, this.state.newAddress, this.state.newRestaurantType, this.state.newPriceLevel, this.state.newOperatingHours, this.state.newRestaurantImage, this.state.newRestaurantDescription);
-        const navigate = useNavigate();
-        setTimeout(() => {
-
-            navigate("/ProtectedManager", { replace: true });
-
-        }, 1000);
+        
       }
     
       onImageChange = (event) => {
@@ -90,7 +85,7 @@ class AddRestaurant extends React.Component {
                         <img className = { styles.imageTarget } id="target" src={this.state.newRestaurantImage} alt=""/>
                     </div>
                     <div className = { styles.buttonContainer }>
-                        <button id="addNewRestaurantButton" onClick={ this.addNewRestaurant } disabled={!this.state.newRestaurantName | !this.state.newAddress | !this.state.newRestaurantType | !this.state.newOperatingHours | !this.state.newPriceLevel | !this.state.newRestaurantDescription}>Create Restaurant</button>
+                        <Link to="/ProtectedManager"><button id="addNewRestaurantButton" onClick={ this.addNewRestaurant } disabled={!this.state.newRestaurantName | !this.state.newAddress | !this.state.newRestaurantType | !this.state.newOperatingHours | !this.state.newPriceLevel | !this.state.newRestaurantDescription}>Create Restaurant</button></Link>
                     </div>
                 </div>
             </div>
