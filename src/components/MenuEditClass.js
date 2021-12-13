@@ -145,7 +145,7 @@ class AddProduct extends React.Component {
                         <img className={styles.imageTarget} id="target" src={this.state.newProductImage} alt="" />
                     </div>
                     <div className={styles.buttonContainer}>
-                        <button id="addNewProductButton" onClick={this.addNewProduct} disabled={!this.state.newProductName | !this.state.newProductPrice | !this.state.newProductCategory | !this.state.newProductDescription}>Add Product</button>
+                        <button className={styles.addNewProduct} id="addNewProductButton" onClick={this.addNewProduct} disabled={!this.state.newProductName | !this.state.newProductPrice | !this.state.newProductCategory | !this.state.newProductDescription}>Add Product</button>
                     </div>
                 </div>
                 <div className={styles.productContainer}>
