@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '../components/modules/AddRestaurantClass.module.css';
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 class AddRestaurant extends React.Component {
     
@@ -47,6 +47,7 @@ class AddRestaurant extends React.Component {
       }
 
     render() {
+        
         return (
             <div>
                 <div className = { styles.container }>
