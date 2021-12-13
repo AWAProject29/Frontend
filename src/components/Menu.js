@@ -45,16 +45,6 @@ class AddProduct extends React.Component {
                 console.log(error);
                 this.setState({errorMsg: 'Error retrieving data'})
             })
-        
-        // axios.get(Constants.API_ADDRESS + '/shoppingcart')
-        //     .then(response => {
-        //       // console.log(response);
-        //       this.setState({ cartItems: response.data })
-        // })
-        // .catch(error => {
-        //     console.log(error);
-        //     this.setState({errorMsg: 'Error retrieving data'})
-        // })
     }
 
     manageMenu = (id) => {
@@ -62,25 +52,6 @@ class AddProduct extends React.Component {
       const menuEditAddress = ("/menuedit/" + id);
       this.setState({redirectAddress: menuEditAddress});
     }
-
-    // onAddItem = (addedItem) => {
-    //   this.setState(prev => ({cartItems: [...prev.cartItems, addedItem], addedItem: ''}))
-
-    //   this.setState({amountOfItem: this.state.amountOfItem+1});
-
-    //   console.log("This is the value of the item: ");
-    //   console.log(this.state.amountOfItem);
-
-    //   console.log(this.state.cartItems);
-    // }
-
-    // onRemoveItem = (removedItem) => {
-    //   const itemsInCart = this.state.cartItems.filter(item => item.productid !== removedItem.productid);
-    //   this.setState({cartItems: itemsInCart});
-
-    //   console.log('Item removed from shopping cart: ')
-    //   console.log(removedItem.productname + " " + removedItem.productprice)
-    // }
 
     onAddItemToCart = (addedItem) => {
       const idshoppingcart = this.state.idShoppingCart;

@@ -193,6 +193,36 @@ class App extends React.Component {
       })
   }
 
+  addItemToOrder = (idcartitem) => {
+    axios.put('http://localhost:3000/shoppingcart/addItemToOrder',
+    {
+      idcartitem
+    }
+  )
+    .then(response => {
+      this.setState({ items: response.data.items })
+      console.log(JSON.stringify(response));
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+  removeItemFromOrder = (idcartitem) => {
+    axios.put('http://localhost:3000/shoppingcart/removeFromCart',
+    {
+      idcartitem
+    }
+  )
+    .then(response => {
+      this.setState({ items: response.data.items })
+      console.log(JSON.stringify(response));
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
+
   render() {
 
     return (
@@ -210,11 +240,9 @@ class App extends React.Component {
           <Route path="/signup" element={ <SignUp addNewCustomerAccount={ this.addNewCustomerAccount }/> } />
           <Route path="/managersignup" element={ <ManagerSignUp addNewManagerAccount={ this.addNewManagerAccount }/> } />
           <Route path="/addrestaurant" element={ <AddRestaurant addNewRestaurant={ this.addNewRestaurant }/> } />
-          <Route path="/payment" element={ <Payment /> }/>
           <Route path="/menu/*" element={ <Menu manageMenu={ this.manageMenu } onAddItemToCart={ this.onAddItemToCart } onRemoveItemFromCart={ this.onRemoveItemFromCart }/> }/>
-          <Route path="/order" element={ <Order/>} />
           <Route path="/menuedit/*" element={ <MenuEdit cartItems={ this.props.cartItems } setCartItems={ this.props.setCartItems } onAdd={ this.onAdd } addNewProduct={ this.addNewProduct } removeProduct={ this.removeProduct }/> }/>
-          <Route path="/shoppingcart" element={ <ShoppingCart getCartItems={ this.state.cartContent } onAdd={ this.onAdd } onRemove={ this.onRemove }/>} />
+          <Route path="/shoppingcart" element={ <ShoppingCart getCartItems={ this.state.cartContent } onAdd={ this.onAdd } onRemove={ this.onRemove } addItemToOrder={ this.addItemToOrder } removeItemFromOrder={ this.removeItemFromOrder }/>} />
           {/* <Route path="/showrestaurants" element={ <ShowRestaurants /> }/> */}
         </Routes>
       </div>
