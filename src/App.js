@@ -13,7 +13,7 @@ import Payment from './components/Payment.js';
 import Menu from './components/Menu.js';
 import Order from './components/Order.js';
 import MenuEdit from './components/MenuEditClass.js';
-import ShoppingCart from './components/ShoppingCart.js';
+import ShoppingCart from './components/ShoppingCartClass.js';
 import ProtectedCustomer from './components/ProtectedCustomer.js';
 import ProtectedManager from './components/ProtectedManager.js';
 
@@ -30,7 +30,8 @@ class App extends React.Component {
     this.state = {
       items: [],
       cartItems: [],
-      setCartItems: []
+      setCartItems: [],
+      cartContent: []
     }
 
     console.log("Constructor");
@@ -143,11 +144,6 @@ class App extends React.Component {
 
   onAddItemToCart = (idshoppingcart, idcartitem, cartitemname, cartitemprice, cartitemamount) => {
     console.log("in onAddItemToCart function");
-    console.log(idshoppingcart)
-    console.log(idcartitem)
-    console.log(cartitemname)
-    console.log(cartitemprice)
-    console.log(cartitemamount)
 
     axios.post('http://localhost:3000/shoppingcart/addToCart', 
       {
@@ -180,15 +176,12 @@ class App extends React.Component {
       })
   }
 
-  onRemoveItemFromCart = (idcartitem, cartitemamount) => {
+  onRemoveItemFromCart = (idcartitem) => {
     console.log("in onRemoveItemFromCart function");
-    console.log(idcartitem)
-    console.log(cartitemamount)
 
     axios.put('http://localhost:3000/shoppingcart/removeFromCart', 
       {
-        idcartitem,
-        cartitemamount
+        idcartitem
       }
     )
       .then(response => {
@@ -198,33 +191,6 @@ class App extends React.Component {
       .catch(err => {
         console.log(err);
       })
-  }
-
-
-  onAdd = (product) => {
-    const exist = this.props.cartItems.find((x) => x.id === product.id);
-    if (exist) {
-      this.props.setCartItems(
-        this.props.cartItems.map((x) =>
-          x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
-        )
-      );
-    } else {
-      this.props.setCartItems([...this.props.cartItems, { ...product, qty: 1 }]);
-    }
-  }
-
- onRemove = (product) => {
-    this.props.exist = this.props.cartItems.find((x) => x.id === product.id);
-    if (this.props.exist.qty === 1) {
-      this.props.setCartItems(this.props.cartItems.filter((x) => x.id !== product.id));
-    } else {
-      this.props.setCartItems(
-        this.props.cartItems.map((x) =>
-          x.id === product.id ? { ...this.props.exist, qty: this.props.exist.qty - 1 } : x
-        )
-      );
-    }
   }
 
   render() {
@@ -248,7 +214,7 @@ class App extends React.Component {
           <Route path="/menu/*" element={ <Menu manageMenu={ this.manageMenu } onAddItemToCart={ this.onAddItemToCart } onRemoveItemFromCart={ this.onRemoveItemFromCart }/> }/>
           <Route path="/order" element={ <Order/>} />
           <Route path="/menuedit/*" element={ <MenuEdit cartItems={ this.props.cartItems } setCartItems={ this.props.setCartItems } onAdd={ this.onAdd } addNewProduct={ this.addNewProduct } removeProduct={ this.removeProduct }/> }/>
-          <Route path="/shoppingcart" element={ <ShoppingCart cartItems={ this.props.cartItems } onAdd={ this.onAdd } onRemove={ this.onRemove }/>} />
+          <Route path="/shoppingcart" element={ <ShoppingCart getCartItems={ this.state.cartContent } onAdd={ this.onAdd } onRemove={ this.onRemove }/>} />
           {/* <Route path="/showrestaurants" element={ <ShowRestaurants /> }/> */}
         </Routes>
       </div>

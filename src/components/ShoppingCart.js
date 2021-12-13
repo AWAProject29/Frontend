@@ -2,22 +2,47 @@ import React from 'react'
 // import styles from './modules/ShoppingCart.module.css';
 import { Link } from 'react-router-dom'
 
+import axios from 'axios';
+import Constants from '../Constants.json';
+
 export default function ShoppingCart(props) {
 
-    const { cartItems = [], onAdd, onRemove } = props;
+  console.log("Shoppingcart: " + JSON.stringify(props))
+
+    const { cartItems = [], onAdd, onRemove, cartContent = [] } = props;
     const itemsPrice = 20 /*cartItems.reduce((a, c) => a + c.qty * c.productprice, 0);*/;
     const taxPrice = itemsPrice * 0.24;
     const deliveryPrice = itemsPrice > 30 ? 0 : 10;
     const totalPrice = itemsPrice + taxPrice + deliveryPrice;
 
+    console.log("THIS IS PROPS IN SHOPPINGCART: ")
+    console.log(props)
+
+
+    const getCartItems = () => {
+      axios.get('http://localhost:3000/shoppingcart'
+      )
+      .then(response => {
+        this.setState({ cartContent: response.data })
+        console.log(JSON.stringify(response));
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }
+
+      
+
     return ( 
 
       <div className="block col-1">
         <h2>Cart Items</h2>
+        <button onClick={() => getCartItems }> getCartItems </button>
+        {/* <button onClick={() => handleShoppingcart}> handleShoppingcart </button> */}
         <div>
         {console.log(cartItems.length)}
           {cartItems.length === 0 && <div>Cart is empty</div>}
-          {cartItems.map((item) => (
+          {/* {cartItems.map((item) => (
             <div key={item.id} className="row">
               <div className="col-2">{item.name}</div>
               <div className="col-2">
@@ -33,7 +58,7 @@ export default function ShoppingCart(props) {
                 {item.qty} x ${item.productprice.toFixed(2)}
               </div>
             </div>
-          ))}
+          ))} */}
   
           {cartItems.length !== 0 && (
             <>

@@ -26,7 +26,7 @@ class AddProduct extends React.Component {
           redirectAddress: "",
           amountOfItem: 0,
 
-          idShoppingCart: "1",
+          idShoppingCart: "1", // TUOMAS WORK THIS OUT PLEASE
           cartItemId: "",
           cartItemName: "",
           cartItemPrice: "",
@@ -63,24 +63,24 @@ class AddProduct extends React.Component {
       this.setState({redirectAddress: menuEditAddress});
     }
 
-    onAddItem = (addedItem) => {
-      this.setState(prev => ({cartItems: [...prev.cartItems, addedItem], addedItem: ''}))
+    // onAddItem = (addedItem) => {
+    //   this.setState(prev => ({cartItems: [...prev.cartItems, addedItem], addedItem: ''}))
 
-      this.setState({amountOfItem: this.state.amountOfItem+1});
+    //   this.setState({amountOfItem: this.state.amountOfItem+1});
 
-      console.log("This is the value of the item: ");
-      console.log(this.state.amountOfItem);
+    //   console.log("This is the value of the item: ");
+    //   console.log(this.state.amountOfItem);
 
-      console.log(this.state.cartItems);
-    }
+    //   console.log(this.state.cartItems);
+    // }
 
-    onRemoveItem = (removedItem) => {
-      const itemsInCart = this.state.cartItems.filter(item => item.productid !== removedItem.productid);
-      this.setState({cartItems: itemsInCart});
+    // onRemoveItem = (removedItem) => {
+    //   const itemsInCart = this.state.cartItems.filter(item => item.productid !== removedItem.productid);
+    //   this.setState({cartItems: itemsInCart});
 
-        console.log('Item removed from shopping cart: ')
-        console.log(removedItem.productname + " " + removedItem.productprice)
-    }
+    //   console.log('Item removed from shopping cart: ')
+    //   console.log(removedItem.productname + " " + removedItem.productprice)
+    // }
 
     onAddItemToCart = (addedItem) => {
       const idshoppingcart = this.state.idShoppingCart;
@@ -95,12 +95,6 @@ class AddProduct extends React.Component {
       this.setState({cartItemPrice: cartitemprice})
       this.setState({cartItemAmount: cartitemamount})
 
-      console.log(this.state.idShoppingCart)
-      console.log(this.state.cartItemId)
-      console.log(this.state.cartItemName)
-      console.log(this.state.cartItemPrice)
-      console.log(this.state.cartItemAmount)
-
       this.props.onAddItemToCart(this.state.idShoppingCart, this.state.cartItemId, this.state.cartItemName, this.state.cartItemPrice, this.state.cartItemAmount);
       // window.location.reload();
 
@@ -108,26 +102,10 @@ class AddProduct extends React.Component {
     }
 
     onRemoveItemFromCart = (chosenItem) => {
-      const idshoppingcart = this.state.idShoppingCart;
       const cartitemid = chosenItem.productid;
-      const cartitemname = chosenItem.productname;
-      const cartitemprice = chosenItem.productprice;
-      const cartitemamount = this.state.amountOfItem+1;
-
-      this.setState({idShoppingCart: idshoppingcart})
       this.setState({cartItemId: cartitemid})
-      this.setState({cartItemName: cartitemname})
-      this.setState({cartItemPrice: cartitemprice})
-      this.setState({cartItemAmount: cartitemamount})
-
-      this.props.onRemoveItemFromCart(this.state.cartItemId, this.state.cartItemAmount);
+      this.props.onRemoveItemFromCart(this.state.cartItemId);
       // window.location.reload();
-    }
-
-    manageMenu = (id) => {
-      this.props.manageMenu(id);
-      const menuEditAddress = ("/menuedit/" + id);
-      this.setState({redirectAddress: menuEditAddress});
     }
 
     updatedPage = () => {
@@ -169,20 +147,19 @@ class AddProduct extends React.Component {
                         null}
                     {errorMsg ? <div>{errorMsg}</div> : null}
                 </div>
-                <div className={styles.cartContainer}>
+                <div className={styles.productContainer}>
                     {cartItems.length ?
                         cartItems.map(cartItem => 
-                        <div className={styles.cartItem} key={cartItem.id}>
-                            <div className={styles.itemName}>
-                                <p>{cartItem.productname}</p>
+                        <div className={styles.product} key={cartItem.idcartitem}>
+                            <div className={styles.productImage}>
+                                <img className={styles.productImage} src={cartItem.productimage} alt="" />
                             </div>
-                            <div className={styles.itemPrice}>
+                            <div className={styles.productName}>
+                                <h1 >{cartItem.productname}</h1>
+                                <h2>{cartItem.productdescription}</h2>
+                            </div>
+                            <div className={styles.productPrice}>
                                 <p>{cartItem.productprice} €</p>
-                            </div>
-                            <div className={styles.itemQuantity}>
-                                <button>+</button>
-                                <p>Num</p>
-                                <button>-</button>
                             </div>
                         </div>) :
                         null}
