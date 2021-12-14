@@ -4,23 +4,10 @@ import logo from './images/logo.png';
 import cart from './images/chestclosed.png';
 import { Link } from 'react-router-dom'
 import { useState } from 'react';
-import useGlobalCounter from './useGlobalCounter'
+
 
 export default function Header(props) {
 
-    const [isUserLoggedIn, setIsUserLoggedIn] = useState(useGlobalCounter);
-
-    
-    function changeStatus(statusNumber) {
-        setIsUserLoggedIn(statusNumber);
-        
-        console.log("This is the header statusnumber: ");
-        console.log(statusNumber);
-        console.log(isUserLoggedIn);
-        
-    }
-    console.log("This is the global variable: ")
-    
 
     let frontPageRoute = <>
     
@@ -28,12 +15,10 @@ export default function Header(props) {
     </>
 
 
-
-    
-
-    if(isUserLoggedIn == 2) {
+    if(props.isUserLoggedIn == true) {
         frontPageRoute = <Link to="/ProtectedCustomer"><img className = { styles.headerLogo } src = { logo } alt = "logo" /></Link>
-    }  else if (isUserLoggedIn == 3) {
+    }
+    if (props.isManagerLoggedIn == true) {
         frontPageRoute = <Link to="/ProtectedManager"><img className = { styles.headerLogo } src = { logo } alt = "logo" /></Link>
     }
 

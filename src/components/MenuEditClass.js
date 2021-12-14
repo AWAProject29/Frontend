@@ -24,7 +24,9 @@ class AddProduct extends React.Component {
           cartItems: [],
           product: "",
           rememberMe: false,
-          restaurantPageId: ""
+          restaurantPageId: "",
+          managerStatus: props.isManagerLoggedIn
+          
         }
       }
     
@@ -42,16 +44,23 @@ class AddProduct extends React.Component {
             const rememberMe = localStorage.getItem('rememberMe') === 'true';
             const product = rememberMe ? localStorage.getItem('product') : '';
             this.setState({ product, rememberMe });
+            if(this.props.isManagerLoggedIn == true){
+              window.localStorage.setItem('ManagerStatus', true);
+            }
+            if(window.localStorage.getItem('ManagerStatus', true)){
+              this.setState({managerStatus: true})
+            }
+         
     }
     
       addNewProduct = () => {
         this.props.addNewProduct(this.state.newProductName, this.state.newProductPrice, this.state.newProductCategory, this.state.newProductDescription, this.state.newProductImage, this.state.restaurantPageId);
-        window.location.reload();
+        
     }
 
       removeProduct = (id) => {
         this.props.removeProduct(id);
-        window.location.reload();
+        
       }
 
       onImageChange = (event) => {

@@ -16,6 +16,7 @@ import MenuEdit from './components/MenuEditClass.js';
 import ShoppingCart from './components/ShoppingCart.js';
 import ProtectedCustomer from './components/ProtectedCustomer.js';
 import ProtectedManager from './components/ProtectedManager.js';
+import MenuRedirect from './components/MenuRedirect.js';
 import Constants from './Constants.json'
 
 class App extends React.Component {
@@ -36,13 +37,15 @@ class App extends React.Component {
       setUserJwt: null,
       managerJwt: null,
       setManagerJwt: null,
-      statusNumber: null
+      
 
 
     }
   
     console.log("Constructor");
   }
+
+  
 
 
   addNewCustomerAccount = (email, password, firstname, lastname, address) => {
@@ -149,31 +152,6 @@ class App extends React.Component {
     return redirectAddress;
   }
 
-  onAdd = (product) => {
-    const exist = this.props.cartItems.find((x) => x.id === product.id);
-    if (exist) {
-      this.props.setCartItems(
-        this.props.cartItems.map((x) =>
-          x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x
-        )
-      );
-    } else {
-      this.props.setCartItems([...this.props.cartItems, { ...product, qty: 1 }]);
-    }
-  }
-
- onRemove = (product) => {
-    this.props.exist = this.props.cartItems.find((x) => x.id === product.id);
-    if (this.props.exist.qty === 1) {
-      this.props.setCartItems(this.props.cartItems.filter((x) => x.id !== product.id));
-    } else {
-      this.props.setCartItems(
-        this.props.cartItems.map((x) =>
-          x.id === product.id ? { ...this.props.exist, qty: this.props.exist.qty - 1 } : x
-        )
-      );
-    }
-  }
 
   setStatusId = (statusId) => {
     this.setState({statusNumber: statusId});
@@ -203,6 +181,7 @@ class App extends React.Component {
     this.setState({userJwt: null})
     this.setState({isUserLoggedIn: false})
     this.setState({isManagerLoggedIn: false})
+    localStorage.setItem( 'ManagerStatus', false );
   }
 
   render() {
@@ -256,7 +235,7 @@ class App extends React.Component {
         <Route path="/ProtectedManager" element={ <ProtectedManager /> } />
         <Route path="/addrestaurant" element={ <AddRestaurant addNewRestaurant={ this.addNewRestaurant }/> } />
         <Route path="/shoppingcart" element={ <ShoppingCart cartItems={ this.props.cartItems } onAdd={ this.onAdd } onRemove={ this.onRemove }/>} />
-        <Route path="/menuedit/*" element={ <MenuEdit cartItems={ this.props.cartItems } setCartItems={ this.props.setCartItems } onAdd={ this.onAdd } addNewProduct={ this.addNewProduct } /> }/>
+        <Route path="/menuedit/*" element={ <MenuEdit cartItems={ this.props.cartItems } setCartItems={ this.props.setCartItems } onAdd={ this.onAdd } addNewProduct={ this.addNewProduct } removeProduct={ this.removeProduct } isManagerLoggedIn={this.state.isManagerLoggedIn}/> }/>
       </>
     }
 
@@ -264,7 +243,7 @@ class App extends React.Component {
       
       <BrowserRouter>
       <div className="App">
-        <Header logout={() => this.logOut()} changeStatus={this.state.statusNumber} />
+        <Header logout={() => this.logOut() } isUserLoggedIn={this.state.isUserLoggedIn} isManagerLoggedIn={this.state.isManagerLoggedIn} />
         <Routes>
           {/* <Route path="*" element= { <Home userLoggedIn={this.state.isUserLoggedIn}/> } /> */}
           <Route path="/" element= { <Home userLoggedIn={this.state.isUserLoggedIn}/> } />
@@ -272,7 +251,7 @@ class App extends React.Component {
           { managerAuthRoutes }
           <Route path="/signup" element={ <SignUp addNewCustomerAccount={ this.addNewCustomerAccount }/> } />
           <Route path="/payment" element={ <Payment /> }/>
-          <Route path="/menu/*" element={ <Menu manageMenu={ this.manageMenu }/> }/>
+          <Route path="/menu/*" element={ <Menu manageMenu={ this.manageMenu } isManagerLoggedIn={this.state.isManagerLoggedIn} />}/>
           <Route path="/order" element={ <Order/>} />
           
         </Routes>

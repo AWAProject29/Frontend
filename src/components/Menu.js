@@ -26,11 +26,12 @@ class AddProduct extends React.Component {
           redirectAddress: "",
           amountOfItem: 0,
 
-          idShoppingCart: "1", // TUOMAS WORK THIS OUT PLEASE
+          idShoppingCart: "1", 
           cartItemId: "",
           cartItemName: "",
           cartItemPrice: "",
-          cartItemAmount: 0
+          cartItemAmount: 0,
+          managerStatus: props.isManagerLoggedIn
         }
       }
       
@@ -47,6 +48,13 @@ class AddProduct extends React.Component {
 
             const restaurantid = window.location.href.slice(-2)
             this.manageMenu(restaurantid)
+            if(this.props.isManagerLoggedIn == true){
+              window.localStorage.setItem('ManagerStatus', true);
+            }
+            if(window.localStorage.getItem('ManagerStatus', true)){
+              this.setState({managerStatus: true});
+            }
+            
     }
 
     manageMenu = (id) => {
@@ -120,7 +128,7 @@ class AddProduct extends React.Component {
                     {errorMsg ? <div>{errorMsg}</div> : null}
                 </div>
                 <div className={styles.productButtons}>
-                    <MenuRedirect redirectAddress = { this.state.redirectAddress }/>
+                    <MenuRedirect redirectAddress = { this.state.redirectAddress } managerStatus = { this.state.managerStatus }/>
                 </div>
             </div> 
             

@@ -40,6 +40,7 @@ class ProtectedCustomer extends React.Component {
                     console.log(error);
                     this.setState({errorMsg: 'Error retrieving data'})
                 })
+            
         }
 
         onSearchFieldChange = (event) => {

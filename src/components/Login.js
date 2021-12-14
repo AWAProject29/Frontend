@@ -5,14 +5,14 @@ import axios from 'axios';
 import Constants from '../Constants.json'
 import { useHistory, useLocation } from "react-router-dom";
 
-import useGlobalCounter from './useGlobalCounter'
+
 
 export default function Login(props) {
 
     const navigate = useNavigate();
     
 
-    // const [state, setState] = useGlobalCounter()    
+    
 
 
     const handleLoginSubmit = async (event) => {
@@ -37,8 +37,8 @@ export default function Login(props) {
 
             
             props.login(receivedJWT)
-            // changeGlobalVariable();
-            // setState(state + 1);
+            
+            
 
             setTimeout(() => {
 

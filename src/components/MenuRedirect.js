@@ -20,7 +20,20 @@ const chosenRestaurant = () => {
   }, 10);
 }   
 
+    let buttonVisible = <>
+    <button onClick={ chosenRestaurant } hidden>Manage Menu</button>
+    </>
+
+    if (props.managerStatus == true){
+        
+       buttonVisible = <button onClick={ chosenRestaurant }>Manage Menu</button>
+       
+    } 
+    
+
     return (
-        <button onClick={ chosenRestaurant }>Manage Menu</button>
+        <div>
+         {buttonVisible}
+        </div>
     )
 }
