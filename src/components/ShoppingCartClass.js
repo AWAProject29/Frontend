@@ -14,7 +14,11 @@ class ShoppingCartClass extends React.Component {
         this.state = {
           cartContent: [],
           orderStatus: "",
-          seconds: 0
+          seconds: 0,
+          newAddress: "",
+          newCity: "",
+          newPostalCode: "",
+          newPayment: ""
         }
       }
 
@@ -43,10 +47,10 @@ class ShoppingCartClass extends React.Component {
         window.location.reload();
     }
 
-
     onChangeDeliveryStatus=()=>{
         this.f=setInterval(this.deliveryStatus,1000);
-      }
+    }
+
     deliveryStatus=()=>{
         this.setState({seconds:this.state.seconds+1});
         if(this.state.seconds < 5) {
@@ -66,13 +70,12 @@ class ShoppingCartClass extends React.Component {
             this.onResetDeliveryStatus();
         }
      }
+
      onResetDeliveryStatus=()=>{
          clearInterval(this.f);
          this.setState({seconds:0})
         //  this.setState({cartContent: []})
      }
-
-
 
     onStatusChange = () => {
         if(this.state.seconds < 20) {
@@ -87,6 +90,15 @@ class ShoppingCartClass extends React.Component {
         else {
             this.setState({orderStatus: "Your order has been delivered! Thank you for your order!"})
         }
+    }
+
+    // confirmOrder = () => {
+    //     this.props.confirmOrder(this.state.newAddress, this.state.newCity, this.state.newPostalCode, this.state.newVisa);
+    // }
+
+    setNewPayment = (event) => {
+        this.setState({newPayment:event}) 
+        console.log(event)
     }
 
     render() {
@@ -105,11 +117,11 @@ class ShoppingCartClass extends React.Component {
                 <div className={styles.leftSide}>
                     <div className={styles.customerInfo}>
                         <label>Delivery Address:</label>
-                        <input type="text" name="address" />
+                        <input type="text" name="address" onChange={ (event) => this.setState({ newAddress: event.target.value }) } value={this.state.newAddress} />
                         <label>City:</label>
-                        <input type="text" name="text" />
+                        <input type="text" name="text" onChange={ (event) => this.setState({ newCity: event.target.value }) } value={this.state.newCity}/>
                         <label>Postal Code:</label>
-                        <input type="text" name="number" />
+                        <input type="text" name="number" onChange={ (event) => this.setState({ newPostalCode: event.target.value }) } value={this.state.newPostalCode}/>
                         <label>Additional notes for delivery driver:</label>
                         <textarea className= { styles.addInfo } type="text" name="text" />
                     </div>
@@ -159,10 +171,10 @@ class ShoppingCartClass extends React.Component {
                     <div className={ styles.paymentContainer }>
                         <p>Choose payment method</p>
                         <div className={ styles.imageContainer }>
-                            <button className={styles.paymentOption}><img src={ visa } alt='' /></button>
-                            <button className={styles.paymentOption}><img src={ paypal } alt='' /></button>
+                            <button className={styles.paymentOption} onClick={ (event) => this.setNewPayment("visa") } value="visa"><img src={ visa } alt='' /></button>
+                            <button className={styles.paymentOption} onClick={ (event) => this.setNewPayment("paypal") } value="paypal"><img src={ paypal } alt='' /></button>
                         </div>
-                        <button id='btn' onClick={this.onChangeDeliveryStatus}>Confirm Order</button>
+                        <button id='btn' onClick={this.onChangeDeliveryStatus} disabled={!this.state.newAddress | !this.state.newCity | !this.state.newPostalCode | !this.state.newPayment}>Confirm Order</button>
                     </div>
                 </div>
                 <div className={ styles.rightSide }>
