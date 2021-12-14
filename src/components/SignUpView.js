@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import styles from './modules/SignUp.module.css'
+import PasswordStrengthMeter from './PasswordStrengthMeter';
 
 export default function SignUpView(props) {
 
@@ -10,6 +11,7 @@ export default function SignUpView(props) {
     const [newFirstName, addNewFirstName] = useState("");
     const [newLastName, addNewLastName] = useState("");
     const [newAddress, addNewAddress] = useState("");
+    const [newPasswordWithStrength, addNewPasswordWithStrength] = useState("");
   
     const navigate = useNavigate();
 
@@ -17,6 +19,8 @@ export default function SignUpView(props) {
       props.addNewCustomerAccount(newEmail, newPassword, newFirstName, newLastName, newAddress);
       navigate('/login', { replace: true });
     }
+
+    // const { password } = this.state;
 
     return (
         <div>
@@ -26,11 +30,10 @@ export default function SignUpView(props) {
                             <label>Email:</label>
                             <input type="text" id="email" placeholder="your@email.com" onChange={ (event) => addNewEmail(event.target.value) }/>
                             <label>Password:</label>
-                            <input type="password" id="pwd" onChange={ (event) => addNewPassword(event.target.value) }/>
-                            <progress id="progress" value="0" max="100">70</progress>
-                            <span id="progresslabel"></span>
-                            {/* <label>Repeat Password:</label>
-                            <input type="password" id="password" onChange={ (event) => this.setState({ newGameName: event.target.value }) }/> */}
+                                <div className="meter">
+                                    <input autoComplete="off" type="password" id="pwd" onChange={(event) => addNewPassword(event.target.value) } />
+                                    <PasswordStrengthMeter password={newPassword} />
+                                </div>
                             <label>First Name:</label>
                             <input type="text" id="name" onChange={ (event) => addNewFirstName(event.target.value) }/>
                             <label>Last Name:</label>

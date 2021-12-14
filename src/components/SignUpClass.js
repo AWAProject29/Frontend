@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './modules/SignUp.module.css';
 import { Link } from 'react-router-dom'
+import PasswordStrengthMeter from './PasswordStrengthMeter';
 
 class SignUp extends React.Component {
 
@@ -11,7 +12,8 @@ class SignUp extends React.Component {
           newPassword: "",
           newFirstName: "",
           newLastName: "",
-          newAddress: ""
+          newAddress: "",
+          password: '',
         }
       }
     
@@ -20,6 +22,9 @@ class SignUp extends React.Component {
       }
 
     render() {
+
+        const { password } = this.state;
+
         return (
             <div>
                 <div className = { styles.container }>
@@ -29,10 +34,12 @@ class SignUp extends React.Component {
                             <input type="text" id="email" placeholder="your@email.com" onChange={ (event) => this.setState({ newEmail: event.target.value }) } value={this.state.newEmail}/>
                             <label>Password:</label>
                             <input type="password" id="pwd" onChange={ (event) => this.setState({ newPassword: event.target.value }) } value={this.state.newPassword}/>
-                            <progress id="progress" value="0" max="100">70</progress>
-                            <span id="progresslabel"></span>
-                            {/* <label>Repeat Password:</label>
-                            <input type="password" id="password" onChange={ (event) => this.setState({ newGameName: event.target.value }) }/> */}
+                            <div>
+                                <div className="meter">
+                                <input autoComplete="off" type="password" onChange={e => this.setState({ password: e.target.value })} />
+                                <PasswordStrengthMeter password={this.state.newPassword} />
+                                </div>
+                            </div>
                             <label>First Name:</label>
                             <input type="text" id="name" onChange={ (event) => this.setState({ newFirstName: event.target.value }) } value={this.state.newFirstName}/>
                             <label>Last Name:</label>
