@@ -13,7 +13,7 @@ import Payment from './components/Payment.js';
 import Menu from './components/Menu.js';
 import Order from './components/Order.js';
 import MenuEdit from './components/MenuEditClass.js';
-import ShoppingCart from './components/ShoppingCart.js';
+import ShoppingCart from './components/ShoppingCartClass.js';
 import ProtectedCustomer from './components/ProtectedCustomer.js';
 import ProtectedManager from './components/ProtectedManager.js';
 import MenuRedirect from './components/MenuRedirect.js';
@@ -152,6 +152,99 @@ class App extends React.Component {
     return redirectAddress;
   }
 
+  onAddItemToCart = (idshoppingcart, idcartitem, cartitemname, cartitemprice, cartitemamount) => {
+    console.log("in onAddItemToCart function");
+
+    axios.post(Constants.API_ADDRESS + '/shoppingcart/addToCart', 
+      {
+        idshoppingcart,
+        idcartitem,
+        cartitemname,
+        cartitemprice,
+        cartitemamount
+      }
+    )
+      .then(response => {
+        this.setState({ items: response.data.items })
+        console.log(JSON.stringify(response));
+        console.log(JSON.stringify(response.data.errno));
+        if(JSON.stringify(response.data.errno) === '1062') {
+          console.log("Error number matched!");
+          axios.put(Constants.API_ADDRESS + '/shoppingcart/addAmount',
+            {
+              idcartitem
+            }
+          );
+          console.log(idcartitem);
+        } else {
+          console.log("Error number didn't match to duplicate");
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  onRemoveItemFromCart = (idcartitem) => {
+    console.log("in onRemoveItemFromCart function");
+
+    axios.put(Constants.API_ADDRESS + '/shoppingcart/removeFromCart', 
+      {
+        idcartitem
+      }
+    )
+      .then(response => {
+        this.setState({ items: response.data.items })
+        console.log(JSON.stringify(response));
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  addItemToOrder = (idcartitem) => {
+    axios.put(Constants.API_ADDRESS + '/shoppingcart/addAmount',
+    {
+      idcartitem
+    }
+  )
+    .then(response => {
+      this.setState({ items: response.data.items })
+      console.log(JSON.stringify(response));
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
+  removeItemFromOrder = (idcartitem) => {
+    axios.put(Constants.API_ADDRESS + '/shoppingcart/removeFromCart',
+    {
+      idcartitem
+    }
+  )
+    .then(response => {
+      this.setState({ items: response.data.items })
+      console.log(JSON.stringify(response));
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
+  clearCart = (teststring) => {
+    console.log("We're in cleaCart function in appjs")
+    console.log(teststring)
+    axios.put(Constants.API_ADDRESS + '/shoppingcart/clearCart')
+    .then(response => {
+      this.setState({ items: response.data.items })
+      console.log(JSON.stringify(response));
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
 
   setStatusId = (statusId) => {
     this.setState({statusNumber: statusId});
@@ -223,7 +316,7 @@ class App extends React.Component {
         authRoutes = <>
 
         <Route path="/ProtectedCustomer" element={ <ProtectedCustomer /> } />
-        <Route path="/shoppingcart" element={ <ShoppingCart cartItems={ this.props.cartItems } onAdd={ this.onAdd } onRemove={ this.onRemove }/>} />
+        <Route path="/shoppingcart" element={ <ShoppingCart getCartItems={ this.state.cartContent } onAdd={ this.onAdd } onRemove={ this.onRemove } addItemToOrder={ this.addItemToOrder } removeItemFromOrder={ this.removeItemFromOrder } clearCart={ this.clearCart }/>} />
     
         </>
     }
@@ -234,7 +327,7 @@ class App extends React.Component {
         
         <Route path="/ProtectedManager" element={ <ProtectedManager /> } />
         <Route path="/addrestaurant" element={ <AddRestaurant addNewRestaurant={ this.addNewRestaurant }/> } />
-        <Route path="/shoppingcart" element={ <ShoppingCart cartItems={ this.props.cartItems } onAdd={ this.onAdd } onRemove={ this.onRemove }/>} />
+        <Route path="/shoppingcart" element={ <ShoppingCart getCartItems={ this.state.cartContent } onAdd={ this.onAdd } onRemove={ this.onRemove } addItemToOrder={ this.addItemToOrder } removeItemFromOrder={ this.removeItemFromOrder } clearCart={ this.clearCart }/>} />
         <Route path="/menuedit/*" element={ <MenuEdit cartItems={ this.props.cartItems } setCartItems={ this.props.setCartItems } onAdd={ this.onAdd } addNewProduct={ this.addNewProduct } removeProduct={ this.removeProduct } isManagerLoggedIn={this.state.isManagerLoggedIn}/> }/>
       </>
     }
@@ -251,7 +344,7 @@ class App extends React.Component {
           { managerAuthRoutes }
           <Route path="/signup" element={ <SignUp addNewCustomerAccount={ this.addNewCustomerAccount }/> } />
           <Route path="/payment" element={ <Payment /> }/>
-          <Route path="/menu/*" element={ <Menu manageMenu={ this.manageMenu } isManagerLoggedIn={this.state.isManagerLoggedIn} />}/>
+          <Route path="/menu/*" element={ <Menu manageMenu={ this.manageMenu } onAddItemToCart={ this.onAddItemToCart } onRemoveItemFromCart={ this.onRemoveItemFromCart } isManagerLoggedIn={this.state.isManagerLoggedIn}/> }/>
           <Route path="/order" element={ <Order/>} />
           
         </Routes>

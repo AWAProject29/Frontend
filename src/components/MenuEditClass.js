@@ -44,7 +44,7 @@ class AddProduct extends React.Component {
             const rememberMe = localStorage.getItem('rememberMe') === 'true';
             const product = rememberMe ? localStorage.getItem('product') : '';
             this.setState({ product, rememberMe });
-            if(this.props.isManagerLoggedIn == true){
+            if(this.props.isManagerLoggedIn === true){
               window.localStorage.setItem('ManagerStatus', true);
             }
             if(window.localStorage.getItem('ManagerStatus', true)){

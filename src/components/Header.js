@@ -21,6 +21,9 @@ export default function Header(props) {
     if (props.isManagerLoggedIn == true) {
         frontPageRoute = <Link to="/ProtectedManager"><img className = { styles.headerLogo } src = { logo } alt = "logo" /></Link>
     }
+    // if (props.isManagerLoggedIn == true) {
+    //     frontPageRoute = <Link to="/ProtectedManager"><img className = { styles.headerLogo } src = { logo } alt = "logo" /></Link>
+    // }
 
     return (
         
