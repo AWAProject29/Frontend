@@ -1,0 +1,56 @@
+.header {
+    width: 100%;
+    position: sticky;
+    top: 0;
+}
+.headerContainer {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid #37b935;
+    background-color: #b5f7e1;
+}
+.headerControls {
+    width: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.headerLogo {
+    height: 70px;
+    /* cursor: url('../images/quill.gif'), auto; */
+    animation: quillAnimation 600ms infinite;
+}
+.login {
+    font-family: 'EightBitDragon';
+    font-size: 20px;
+    /* cursor: url('../images/quill.gif'), auto; */
+    border: none;
+    background: transparent;
+    animation: quillAnimation 600ms infinite;
+}
+.login:hover {
+    color: #f2c835;
+    text-decoration: underline;
+}
+.cart {
+    width: 36px;
+}
+.cart:hover {
+    content: url('../images/chestfull.png');
+    width: 36px;
+    /* cursor: url('../images/quill.gif'), auto; */
+    animation: quillAnimation 600ms infinite;
+}
+@keyframes quillAnimation {
+    0% { 
+        cursor: url('../images/quill.gif'), auto;
+    }
+    100% { 
+        cursor: url('../images/quill2.png'), auto; 
+    }
+  }
