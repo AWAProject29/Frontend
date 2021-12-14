@@ -162,8 +162,7 @@ class App extends React.Component {
           console.log("Error number matched!");
           axios.put('http://localhost:3000/shoppingcart/addAmount',
             {
-              idcartitem,
-              cartitemamount
+              idcartitem
             }
           );
           console.log(idcartitem);
@@ -194,7 +193,7 @@ class App extends React.Component {
   }
 
   addItemToOrder = (idcartitem) => {
-    axios.put('http://localhost:3000/shoppingcart/addItemToOrder',
+    axios.put('http://localhost:3000/shoppingcart/addAmount',
     {
       idcartitem
     }
@@ -207,7 +206,7 @@ class App extends React.Component {
       console.log(err);
     })
   }
-  
+
   removeItemFromOrder = (idcartitem) => {
     axios.put('http://localhost:3000/shoppingcart/removeFromCart',
     {

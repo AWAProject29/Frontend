@@ -62,29 +62,13 @@ class AddProduct extends React.Component {
       const cartitemprice = addedItem.productprice;
       const cartitemamount = this.state.amountOfItem+1;
 
-      console.log(cartitemid)
-      console.log(cartitemname)
-      console.log(cartitemprice)
+      this.props.onAddItemToCart(idshoppingcart, cartitemid, cartitemname, cartitemprice, cartitemamount);
 
-      this.setState({idShoppingCart: idshoppingcart})
-      this.setState({cartItemId: cartitemid})
-      this.setState({cartItemName: cartitemname})
-      this.setState({cartItemPrice: cartitemprice})
-      this.setState({cartItemAmount: cartitemamount})
-
-      console.log(this.state.cartItemId);
-      console.log(this.state.cartItemName);
-      console.log(this.state.cartItemPrice);
-
-      this.props.onAddItemToCart(this.state.idShoppingCart, this.state.cartItemId, this.state.cartItemName, this.state.cartItemPrice, this.state.cartItemAmount);
-
-      console.log(this.state.cartItems);
     }
 
     onRemoveItemFromCart = (chosenItem) => {
       const cartitemid = chosenItem.productid;
-      this.setState({cartItemId: cartitemid})
-      this.props.onRemoveItemFromCart(this.state.cartItemId);
+      this.props.onRemoveItemFromCart(cartitemid);
       // window.location.reload();
     }
 
