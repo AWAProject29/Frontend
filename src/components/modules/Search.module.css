@@ -139,3 +139,10 @@
 .price {
     font-weight: bold;
 }
+.addRestaurant {
+    font-family: 'EightBitDragon';
+    padding: 5px;
+}
+.addRestaurant:hover {
+    animation: quillAnimation 600ms infinite;
+}

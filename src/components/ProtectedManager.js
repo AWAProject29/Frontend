@@ -9,9 +9,9 @@ import fastcasual from './images/fastcasual.png';
 import casualdining from './images/casualdining.png';
 import finedining from './images/finedining.png';
 import axios from 'axios';
-import Constants from '../Constants.json'
+import Constants from '../Constants.json';
 import SearchView from './SearchView';
-
+import { Link } from 'react-router-dom';
 
 
 class ProtectedManager extends React.Component {
@@ -67,9 +67,12 @@ class ProtectedManager extends React.Component {
             <div>
                 User login status: { this.state.userLoggedIn ? "Logged in as manager" : "Not logged in" }
             </div>
+            <div className = { styles.buttonContainer }>
+                <Link to="/addrestaurant"><button className={styles.addRestaurant}>Add New Restaurant</button> </Link>                     
+            </div>
             <div className={styles.pageContainer}>
                 <div className={styles.pageBanner}>
-                    <h1 className={styles.searchHeader}>Let us help you on your quest for food!</h1>
+                    <h1 className={styles.searchHeader}>Welcome Manager!</h1>
                     <img className={styles.food} src={food} alt='' />
                 </div>
                 <div className={styles.searchContainer}>
