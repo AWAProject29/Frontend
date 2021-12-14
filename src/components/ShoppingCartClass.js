@@ -178,7 +178,6 @@ class ShoppingCartClass extends React.Component {
                     </div>
                 </div>
                 <div className={ styles.rightSide }>
-                
                     <div id="orderPrepared" className={ styles.orderStatus }>
                         <h1>{ this.state.orderStatus }</h1>
                     </div>
