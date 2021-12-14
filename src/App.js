@@ -16,7 +16,6 @@ import MenuEdit from './components/MenuEditClass.js';
 import ShoppingCart from './components/ShoppingCartClass.js';
 import ProtectedCustomer from './components/ProtectedCustomer.js';
 import ProtectedManager from './components/ProtectedManager.js';
-import MenuRedirect from './components/MenuRedirect.js';
 import Constants from './Constants.json'
 
 class App extends React.Component {
@@ -310,7 +309,7 @@ class App extends React.Component {
     </>
 
 
-    if(this.state.isUserLoggedIn == true) {
+    if(this.state.isUserLoggedIn === true) {
         
       
         authRoutes = <>
@@ -321,7 +320,7 @@ class App extends React.Component {
         </>
     }
 
-    if(this.state.isManagerLoggedIn == true) {
+    if(this.state.isManagerLoggedIn === true) {
       
       managerAuthRoutes = <>
         

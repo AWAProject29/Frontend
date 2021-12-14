@@ -3,7 +3,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import Constants from '../Constants.json'
-import { useHistory, useLocation } from "react-router-dom";
+
 
 
 
@@ -21,7 +21,7 @@ export default function Login(props) {
 
         try {
 
-            const result = await axios.post('https://hermes-project-group-29.herokuapp.com/loginForJWTcustomer', null, 
+            const result = await axios.post(Constants.API_ADDRESS + '/loginForJWTcustomer', null, 
             {
 
                 auth: {

@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import Constants from '../Constants.json';
-import MenuRedirect from './MenuRedirect';
 import styles from './modules/ShoppingCartClass.module.css';
 import visa from './images/visa.png';
 import paypal from './images/paypal.png';

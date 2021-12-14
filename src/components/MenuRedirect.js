@@ -24,7 +24,7 @@ const chosenRestaurant = () => {
     <button onClick={ chosenRestaurant } hidden>Manage Menu</button>
     </>
 
-    if (props.managerStatus == true){
+    if (props.managerStatus === true){
         
        buttonVisible = <button onClick={ chosenRestaurant }>Manage Menu</button>
        

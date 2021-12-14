@@ -3,7 +3,7 @@ import styles from './modules/Header.module.css';
 import logo from './images/logo.png';
 import cart from './images/chestclosed.png';
 import { Link } from 'react-router-dom'
-import { useState } from 'react';
+
 
 
 export default function Header(props) {
@@ -53,7 +53,7 @@ export default function Header(props) {
                     { loginButton }
                     { logOutButton }
                     { shoppingCart }     
-                               
+                    
                 </div>
             </div>
         </div>
