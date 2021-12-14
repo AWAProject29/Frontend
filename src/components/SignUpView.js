@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import styles from './modules/SignUp.module.css'
+import './modules/PasswordStrengthMeter.module.css'
 import PasswordStrengthMeter from './PasswordStrengthMeter';
 
 export default function SignUpView(props) {
@@ -30,7 +31,7 @@ export default function SignUpView(props) {
                             <label>Email:</label>
                             <input type="text" id="email" placeholder="your@email.com" onChange={ (event) => addNewEmail(event.target.value) }/>
                             <label>Password:</label>
-                                <div className="meter">
+                                <div className={styles.meter}>
                                     <input autoComplete="off" type="password" id="pwd" onChange={(event) => addNewPassword(event.target.value) } />
                                     <PasswordStrengthMeter password={newPassword} />
                                 </div>

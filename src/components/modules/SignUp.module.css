@@ -58,6 +58,10 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+.meter {
+    display: flex;
+    flex-direction: column;
+}
 button:disabled,
 button[disabled]{
     cursor: not-allowed;

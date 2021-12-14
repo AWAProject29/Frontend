@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../components/modules/PasswordStrengthMeter.module.css';
+import styles from './modules/PasswordStrengthMeter.module.css';
 import zxcvbn from 'zxcvbn';
 
 class PasswordStrengthMeter extends Component {
@@ -25,16 +25,14 @@ class PasswordStrengthMeter extends Component {
         const { password } = this.props;
         const testedResult = zxcvbn(password);
         return (
-          <div className="password-strength-meter">
+          <div className={styles.passwordstrengthmeter}>
               <progress
                 className={`password-strength-meter-progress strength-${this.createPasswordLabel(testedResult)}`}
                 value={testedResult.score}
                 max="4"
               />
             <br />
-            <label
-              className="password-strength-meter-label"
-            >
+            <label className="password-strength-meter-label">
               {password && (
                 <>
                   <strong>Password strength:</strong> {this.createPasswordLabel(testedResult)}
