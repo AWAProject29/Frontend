@@ -104,7 +104,8 @@ class App extends React.Component {
       })
   }
 
-  addNewProduct = (productname, productprice, productcategory, productdescription, productimage, restaurantpageid) => {
+  addNewProduct = (productname, productprice, productcategory, productdescription,
+     productimage, restaurantpageid) => {
     console.log("in addNewProduct function");
     console.log("This is restaurantpageid in addNewProduct: " + restaurantpageid);
     axios.post('http://localhost:3000/product/addProduct', 
@@ -222,6 +223,19 @@ class App extends React.Component {
     })
   }
 
+  clearCart = (teststring) => {
+    console.log("We're in cleaCart function in appjs")
+    console.log(teststring)
+    axios.put('http://localhost:3000/shoppingcart/clearCart')
+    .then(response => {
+      this.setState({ items: response.data.items })
+      console.log(JSON.stringify(response));
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
 
   render() {
 
@@ -242,7 +256,7 @@ class App extends React.Component {
           <Route path="/addrestaurant" element={ <AddRestaurant addNewRestaurant={ this.addNewRestaurant }/> } />
           <Route path="/menu/*" element={ <Menu manageMenu={ this.manageMenu } onAddItemToCart={ this.onAddItemToCart } onRemoveItemFromCart={ this.onRemoveItemFromCart }/> }/>
           <Route path="/menuedit/*" element={ <MenuEdit cartItems={ this.props.cartItems } setCartItems={ this.props.setCartItems } onAdd={ this.onAdd } addNewProduct={ this.addNewProduct } removeProduct={ this.removeProduct }/> }/>
-          <Route path="/shoppingcart" element={ <ShoppingCart getCartItems={ this.state.cartContent } onAdd={ this.onAdd } onRemove={ this.onRemove } addItemToOrder={ this.addItemToOrder } removeItemFromOrder={ this.removeItemFromOrder }/>} />
+          <Route path="/shoppingcart" element={ <ShoppingCart getCartItems={ this.state.cartContent } onAdd={ this.onAdd } onRemove={ this.onRemove } addItemToOrder={ this.addItemToOrder } removeItemFromOrder={ this.removeItemFromOrder } clearCart={ this.clearCart }/>} />
           {/* <Route path="/showrestaurants" element={ <ShowRestaurants /> }/> */}
         </Routes>
       </div>

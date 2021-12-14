@@ -72,25 +72,11 @@ class ShoppingCartClass extends React.Component {
      }
 
      onResetDeliveryStatus=()=>{
-         clearInterval(this.f);
-         this.setState({seconds:0})
-        //  this.setState({cartContent: []})
+        clearInterval(this.f);
+        this.setState({seconds:0})
+        this.props.clearCart();
+        window.location.reload();
      }
-
-    onStatusChange = () => {
-        if(this.state.seconds < 20) {
-            this.setState({orderStatus: "Your order has been received!"});
-        }
-        else if (this.state.seconds > 21) {
-            this.setState({orderStatus: "Your order is being prepared!"});
-        }
-        else if (this.state.seconds > 41) {
-            this.setState({orderStatus: "Your order is on it's way!"});
-        }
-        else {
-            this.setState({orderStatus: "Your order has been delivered! Thank you for your order!"})
-        }
-    }
 
     // confirmOrder = () => {
     //     this.props.confirmOrder(this.state.newAddress, this.state.newCity, this.state.newPostalCode, this.state.newVisa);
