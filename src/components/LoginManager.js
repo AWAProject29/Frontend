@@ -10,38 +10,27 @@ export default function LoginManager(props) {
 
     const handleLoginSubmit = async (event) => {
         event.preventDefault();
-
         try {
 
             const result = await axios.post(Constants.API_ADDRESS + '/loginForJWTmanager', null, 
             { 
-
                 auth: {
-
                     username: event.target.email.value,
                     password: event.target.password.value,
                     managerauthentication: event.target.managerauthentication
-
                 }
-
             }) 
 
-            console.log(result);
             const receivedJWT = result.data.jwt;
             props.login(receivedJWT)
 
             setTimeout(() => {
-
                 navigate("/ProtectedManager", { replace: true });
-
             }, 1000);
 
             } catch (error) {
-
                 console.log(error);
-
             }
-
     }
 
 

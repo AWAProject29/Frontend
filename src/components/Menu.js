@@ -5,8 +5,7 @@ import Constants from '../Constants.json';
 import MenuRedirect from './MenuRedirect';
 
 class AddProduct extends React.Component {
-    
-
+  
     constructor(props) {
         super(props);
         this.state = {
@@ -25,7 +24,6 @@ class AddProduct extends React.Component {
           rememberMe: false,
           redirectAddress: "",
           amountOfItem: 0,
-
           idShoppingCart: "1", 
           cartItemId: "",
           cartItemName: "",
@@ -38,23 +36,14 @@ class AddProduct extends React.Component {
     componentDidMount() {
         axios.get(Constants.API_ADDRESS + '/product')
             .then(response => {
-                // console.log(response);
                 this.setState({ products: response.data })
             })
             .catch(error => {
                 console.log(error);
                 this.setState({errorMsg: 'Error retrieving data'})
             })
-
             const restaurantid = window.location.href.slice(-2)
-            this.manageMenu(restaurantid)
-            // if(this.props.isManagerLoggedIn === true){
-            //   window.localStorage.setItem('ManagerStatus', true);
-            // }
-            // if(window.localStorage.getItem('ManagerStatus', true)){
-            //   this.setState({managerStatus: true});
-            // }
-            
+            this.manageMenu(restaurantid)       
     }
 
     manageMenu = (id) => {
@@ -69,9 +58,7 @@ class AddProduct extends React.Component {
       const cartitemname = addedItem.productname;
       const cartitemprice = addedItem.productprice;
       const cartitemamount = this.state.amountOfItem+1;
-
       this.props.onAddItemToCart(idshoppingcart, cartitemid, cartitemname, cartitemprice, cartitemamount);
-
     }
 
     onRemoveItemFromCart = (chosenItem) => {
@@ -85,15 +72,13 @@ class AddProduct extends React.Component {
     }
 
     render() {
-
-        const { products, errorMsg, cartItems} = this.state
+        const { products, errorMsg } = this.state
         const restaurantid = window.location.href.slice(-2)
         const filteredProducts = () => {
             const productsArray = products.filter((product) => product.restaurantpageid.toString().toLowerCase().includes(restaurantid.toLowerCase()));
             return productsArray
-          }
+        }
         const filteredProductsArray = filteredProducts();
-
         return (
           <div onLoad={() => this.manageMenu(restaurantid) }>
               <div className={styles.productContainer}>
@@ -118,30 +103,10 @@ class AddProduct extends React.Component {
                       null}
                   {errorMsg ? <div>{errorMsg}</div> : null}
               </div>
-              <div className={styles.productContainer}>
-                  {cartItems.length ?
-                      cartItems.map(cartItem => 
-                      <div className={styles.product} key={cartItem.idcartitem}>
-                          <div className={styles.productImage}>
-                              <img className={styles.productImage} src={cartItem.productimage} alt="" />
-                          </div>
-                          <div className={styles.productName}>
-                              <h1 >{cartItem.productname}</h1>
-                              <h2>{cartItem.productdescription}</h2>
-                          </div>
-                          <div className={styles.productPrice}>
-                              <p>{cartItem.productprice} €</p>
-                          </div>
-                      </div>) :
-                      null}
-                  {errorMsg ? <div>{errorMsg}</div> : null}
-              </div>
               <div className={styles.productButtons}>
-              <MenuRedirect redirectAddress = { this.state.redirectAddress } managerStatus = { this.state.managerStatus }/>
+                <MenuRedirect redirectAddress = { this.state.redirectAddress } managerStatus = { this.state.managerStatus }/>
               </div>
           </div> 
-          
-      
       )
     }
 }

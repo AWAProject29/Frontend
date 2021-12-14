@@ -9,9 +9,7 @@ import LoginManager from './components/LoginManager';
 import Home from './components/Home.js';
 import ManagerSignUp from './components/ManagerSignUpClass';
 import AddRestaurant from './components/AddRestaurantClass.js';
-import Payment from './components/Payment.js';
 import Menu from './components/Menu.js';
-import Order from './components/Order.js';
 import MenuEdit from './components/MenuEditClass.js';
 import ShoppingCart from './components/ShoppingCartClass.js';
 import ProtectedCustomer from './components/ProtectedCustomer.js';
@@ -28,27 +26,21 @@ class App extends React.Component {
       setCartItems: [],
       isUserLoggedIn: false,
       setIsUserLoggedIn: false,
-      
       isManagerLoggedIn: false,
       setIsManagerLoggedIn: false,
-
       userJwt: null,
       setUserJwt: null,
       managerJwt: null,
       setManagerJwt: null,
-      
-
-
+      selectedOption: null,    
     }
-  
-    console.log("Constructor");
   }
 
   
-
+ 
+  
 
   addNewCustomerAccount = (email, password, firstname, lastname, address) => {
-    console.log("in addNewCustomerAccount function");
     axios.post(Constants.API_ADDRESS +'/customer/addCustomer', 
       {
         email,
@@ -69,7 +61,6 @@ class App extends React.Component {
   }
 
   addNewManagerAccount = (email, password, firstname, lastname, managerauthentication) => {
-    console.log("in addNewManagerAccount function");
     axios.post(Constants.API_ADDRESS + '/manager/addManager', 
       {
         email,
@@ -91,7 +82,6 @@ class App extends React.Component {
   }
 
   addNewRestaurant = (restaurantname, address, restauranttype, pricelevel, operatinghours, restaurantimage, restaurantdescription) => {
-    console.log("in addNewRestaurant function");
     axios.post(Constants.API_ADDRESS + '/restaurant/addRestaurant', 
       {
         restaurantname,
@@ -114,8 +104,6 @@ class App extends React.Component {
   }
 
   addNewProduct = (productname, productprice, productcategory, productdescription, productimage, restaurantpageid) => {
-    console.log("in addNewProduct function");
-    console.log("This is restaurantpageid in addNewProduct: " + restaurantpageid);
     axios.post(Constants.API_ADDRESS + '/product/addProduct', 
       {
         productname,
@@ -137,7 +125,6 @@ class App extends React.Component {
   }
 
   removeProduct = (productId) => {
-    console.log("in removeProduct function. productId is: " + productId);
     axios.delete(Constants.API_ADDRESS + `/product/removeProduct/${productId}`)
       .then(response => {
         console.log(JSON.stringify(response));
@@ -152,8 +139,6 @@ class App extends React.Component {
   }
 
   onAddItemToCart = (idshoppingcart, idcartitem, cartitemname, cartitemprice, cartitemamount) => {
-    console.log("in onAddItemToCart function");
-
     axios.post(Constants.API_ADDRESS + '/shoppingcart/addToCart', 
       {
         idshoppingcart,
@@ -185,8 +170,6 @@ class App extends React.Component {
   }
 
   onRemoveItemFromCart = (idcartitem) => {
-    console.log("in onRemoveItemFromCart function");
-
     axios.put(Constants.API_ADDRESS + '/shoppingcart/removeFromCart', 
       {
         idcartitem
@@ -244,13 +227,13 @@ class App extends React.Component {
     })
   }
 
-
   setStatusId = (statusId) => {
     this.setState({statusNumber: statusId});
   }
 
   setUserJwt = (newJwt) => {
     this.setState({userJwt: newJwt})
+    
   }
 
   setIsUserLoggedIn = () => {
@@ -273,79 +256,53 @@ class App extends React.Component {
     this.setState({userJwt: null})
     this.setState({isUserLoggedIn: false})
     this.setState({isManagerLoggedIn: false})
-    localStorage.setItem( 'ManagerStatus', false );
   }
 
   render() {
-
-
-    
     let authRoutes = <>
-
-        <Route path="/login" element={ <Login statusId={statusId => { 
-          this.setStatusId(statusId);
-          console.log("This is the app.js statusnumber: ")
-          console.log(this.state.statusNumber);
-        }} login={ newJwt => {
+        <Route path="/login" element={ <Login statusId={statusId => { this.setStatusId(statusId);}} login={ newJwt => {
           this.setIsUserLoggedIn();
-          this.setUserJwt(newJwt);
-          
+          this.setUserJwt(newJwt);    
         } }/> } />
-       
-
     </>
 
     let managerAuthRoutes = <>
-
         <Route path="/loginmanager" element={ <LoginManager login= { managerJwt => {
-          // this.setUserLoggedOut();
           this.setIsManagerLoggedIn();
           this.setManagerJwt(managerJwt);
-          this.setUserJwt(managerJwt);
-      
+          this.setUserJwt(managerJwt);  
         }}/>} />
-        
         <Route path="/managersignup" element={ <ManagerSignUp addNewManagerAccount={ this.addNewManagerAccount }/> } />
     </>
 
 
-    if(this.state.isUserLoggedIn === true) {
-        
-      
+    if(this.state.isUserLoggedIn === true) { 
         authRoutes = <>
-
         <Route path="/ProtectedCustomer" element={ <ProtectedCustomer /> } />
-        <Route path="/shoppingcart" element={ <ShoppingCart getCartItems={ this.state.cartContent } onAdd={ this.onAdd } onRemove={ this.onRemove } addItemToOrder={ this.addItemToOrder } removeItemFromOrder={ this.removeItemFromOrder } clearCart={ this.clearCart }/>} />
-    
+        <Route path="/shoppingcart" element={ <ShoppingCart addItemToOrder={ this.addItemToOrder } removeItemFromOrder={ this.removeItemFromOrder } clearCart={ this.clearCart }/>} />
+
         </>
     }
 
     if(this.state.isManagerLoggedIn === true) {
-      
       managerAuthRoutes = <>
-        
         <Route path="/ProtectedManager" element={ <ProtectedManager /> } />
         <Route path="/addrestaurant" element={ <AddRestaurant addNewRestaurant={ this.addNewRestaurant }/> } />
-        <Route path="/shoppingcart" element={ <ShoppingCart getCartItems={ this.state.cartContent } onAdd={ this.onAdd } onRemove={ this.onRemove } addItemToOrder={ this.addItemToOrder } removeItemFromOrder={ this.removeItemFromOrder } clearCart={ this.clearCart }/>} />
-        <Route path="/menuedit/*" element={ <MenuEdit cartItems={ this.props.cartItems } setCartItems={ this.props.setCartItems } onAdd={ this.onAdd } addNewProduct={ this.addNewProduct } removeProduct={ this.removeProduct } isManagerLoggedIn={this.state.isManagerLoggedIn}/> }/>
+        <Route path="/shoppingcart" element={ <ShoppingCart addItemToOrder={ this.addItemToOrder } removeItemFromOrder={ this.removeItemFromOrder } clearCart={ this.clearCart }/>} />
+        <Route path="/menuedit/*" element={ <MenuEdit cartItems={ this.props.cartItems } setCartItems={ this.props.setCartItems } addNewProduct={ this.addNewProduct } removeProduct={ this.removeProduct } isManagerLoggedIn={this.state.isManagerLoggedIn}/> }/>
       </>
     }
 
-    return (
-      
+    return (   
       <BrowserRouter>
       <div className="App">
         <Header logout={() => this.logOut() } isUserLoggedIn={this.state.isUserLoggedIn} isManagerLoggedIn={this.state.isManagerLoggedIn} />
         <Routes>
-          {/* <Route path="*" element= { <Home userLoggedIn={this.state.isUserLoggedIn}/> } /> */}
-          <Route path="/" element= { <Home userLoggedIn={this.state.isUserLoggedIn}/> } />
           { authRoutes }
           { managerAuthRoutes }
+          <Route path="/" element= { <Home userLoggedIn={this.state.isUserLoggedIn}/> } />
           <Route path="/signup" element={ <SignUp addNewCustomerAccount={ this.addNewCustomerAccount }/> } />
-          <Route path="/payment" element={ <Payment /> }/>
           <Route path="/menu/*" element={ <Menu manageMenu={ this.manageMenu } onAddItemToCart={ this.onAddItemToCart } onRemoveItemFromCart={ this.onRemoveItemFromCart } isManagerLoggedIn={this.state.isManagerLoggedIn}/> }/>
-          <Route path="/order" element={ <Order/>} />
-          
         </Routes>
       </div>
       </BrowserRouter>

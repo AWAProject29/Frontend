@@ -18,11 +18,9 @@ class AddRestaurant extends React.Component {
           fileContent: ""
         }
       }
-    
-      
+   
       addNewRestaurant = () => {
         this.props.addNewRestaurant(this.state.newRestaurantName, this.state.newAddress, this.state.newRestaurantType, this.state.newPriceLevel, this.state.newOperatingHours, this.state.newRestaurantImage, this.state.newRestaurantDescription);
-        
       }
     
       onImageChange = (event) => {
@@ -42,7 +40,6 @@ class AddRestaurant extends React.Component {
       }
 
     render() {
-        
         return (
             <div>
                 <div className = { styles.container }>
@@ -89,7 +86,6 @@ class AddRestaurant extends React.Component {
                     </div>
                 </div>
             </div>
-        
         )
     }
 }

@@ -2,8 +2,6 @@ import React from 'react';
 import SearchResult from './SearchResult';
 
 export default function SearchView(props) {
-  console.log("Searchview" + JSON.stringify(props))
-
   return (
     <div>
       <div>

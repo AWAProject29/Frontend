@@ -6,8 +6,6 @@ import visa from './images/visa.png';
 import paypal from './images/paypal.png';
 
 class ShoppingCartClass extends React.Component {
-
-
     constructor(props) {
         super(props);
         this.state = {
@@ -19,21 +17,17 @@ class ShoppingCartClass extends React.Component {
           newPostalCode: "",
           newPayment: ""
         }
-      }
-
+    }
 
     componentDidMount() {
         axios.get(Constants.API_ADDRESS + '/shoppingcart')
             .then(response => {
-                // console.log(response);
-                this.setState({ cartContent: response.data })
-                console.log(response.data);
+                this.setState({ cartContent: response.data })   
             })
             .catch(error => {
                 console.log(error);
                 this.setState({errorMsg: 'Error retrieving data'})
             })
-            console.log(this.state.cartContent)
     }
 
     addItemToOrder = (chosenItem) => {
@@ -74,12 +68,8 @@ class ShoppingCartClass extends React.Component {
         clearInterval(this.f);
         this.setState({seconds:0})
         this.props.clearCart();
-        window.location.reload();
+        // window.location.reload();
      }
-
-    // confirmOrder = () => {
-    //     this.props.confirmOrder(this.state.newAddress, this.state.newCity, this.state.newPostalCode, this.state.newVisa);
-    // }
 
     setNewPayment = (event) => {
         this.setState({newPayment:event}) 
@@ -87,12 +77,9 @@ class ShoppingCartClass extends React.Component {
     }
 
     render() {
-
         const { cartContent } = this.state
-
         const subCost = parseFloat((cartContent.reduce((subPrice, cartContent) =>
         subPrice + ((cartContent.cartitemprice)*(cartContent.cartitemamount)), 0)).toFixed(2))
-
         const vatCost = (0.24 * subCost).toFixed(2)
         const deliveryCost = parseFloat((subCost*0.1).toFixed(2))
         const totalCost = (subCost + deliveryCost).toFixed(2)
@@ -163,7 +150,6 @@ class ShoppingCartClass extends React.Component {
                     </div>
                 </div>
                 <div className={ styles.rightSide }>
-                
                     <div id="orderPrepared" className={ styles.orderStatus }>
                         <h1>{ this.state.orderStatus }</h1>
                     </div>

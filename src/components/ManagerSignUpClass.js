@@ -13,11 +13,10 @@ class ManagerSignUp extends React.Component {
           newLastName: "",
           newManagerAuthentication: ""
         }
-      }
+    }
       
       addNewManagerAccount = () => {
-        this.props.addNewManagerAccount(this.state.newEmail, this.state.newPassword, this.state.newFirstName, this.state.newLastName, this.state.newManagerAuthentication);
-       
+        this.props.addNewManagerAccount(this.state.newEmail, this.state.newPassword, this.state.newFirstName, this.state.newLastName, this.state.newManagerAuthentication); 
       }
 
     render() {
@@ -30,8 +29,6 @@ class ManagerSignUp extends React.Component {
                             <input type="text" id="email" placeholder="your@email.com" onChange={ (event) => this.setState({ newEmail: event.target.value }) }/>
                             <label>Password:</label>
                             <input type="password" id="password" onChange={ (event) => this.setState({ newPassword: event.target.value }) }/>
-                            {/*<label> Repeat Password:</label>
-                            <input type="password" id="password" onChange={ (event) => this.setState({ newGameName: event.target.value }) }/>*/} 
                             <label>First Name:</label>
                             <input type="text" id="name" onChange={ (event) => this.setState({ newFirstName: event.target.value }) }/>
                             <label>Last Name:</label>
@@ -45,9 +42,7 @@ class ManagerSignUp extends React.Component {
                     </div>
                 </div>
             </div>
-        
         )
     }
 }
-
 export default ManagerSignUp;

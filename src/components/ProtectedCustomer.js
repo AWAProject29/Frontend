@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './modules/Search.module.css';
-// import { restaurants }  from './data/restaurant.js';
 import food from './images/food.gif';
 import taco from './images/taco.png';
 import pizza from './images/pizza.png';
@@ -12,12 +11,9 @@ import axios from 'axios';
 import Constants from '../Constants.json'
 import SearchView from './SearchView';
 
-
-
 class ProtectedCustomer extends React.Component {
     constructor(props) {
-        super(props)
-              
+        super(props)       
         this.state = {
           restaurants: [],
           restaurantSearchString: "",
@@ -40,15 +36,11 @@ class ProtectedCustomer extends React.Component {
                     console.log(error);
                     this.setState({errorMsg: 'Error retrieving data'})
                 })
-            
         }
 
         onSearchFieldChange = (event) => {
-
-            console.log('Keyboard event');
-            console.log(event.target.value);
             this.setState({ restaurantSearchString: event.target.value });
-          }
+        }
 
         filteredItems = () => {
             if(this.state.chosenRestaurantType !== "") {
@@ -58,8 +50,7 @@ class ProtectedCustomer extends React.Component {
             const itemsArray = this.state.restaurants.filter((restaurant) => restaurant.restaurantname.toLowerCase().includes(this.state.restaurantSearchString.toLowerCase()));
             return itemsArray
             }
-          }
-
+        }
 
         render() {
         return (
@@ -83,17 +74,11 @@ class ProtectedCustomer extends React.Component {
                     <button className={styles.categories} onClick={ () => this.setState({ chosenRestaurantType: "casual dining" })}><img src={casualdining} alt='' />Casual Dining</button>
                     <button className={styles.categories} onClick={ () => this.setState({ chosenRestaurantType: "fine dining" })}><img src={finedining} alt='' />Fine Dining</button>
                 </div>
-                <SearchView
-                    restaurants={ this.filteredItems() }
-
-                />
-
+                <SearchView restaurants={ this.filteredItems() } />
             </div>
-             {/* <SearchBar items={ this.state.restaurants.filter((item) => item.restaurantname.toLowerCase().includes(this.state.findString.toLowerCase())) }/> */}
             </>
         );
     }
-
 }
 
 export default ProtectedCustomer;

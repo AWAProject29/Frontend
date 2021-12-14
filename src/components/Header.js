@@ -4,10 +4,7 @@ import logo from './images/logo.png';
 import cart from './images/chestclosed.png';
 import { Link } from 'react-router-dom'
 
-
-
 export default function Header(props) {
-
 
     let frontPageRoute = <>
         <Link to="/"><img className = { styles.headerLogo } src = { logo } alt = "logo" /></Link>
@@ -37,23 +34,18 @@ export default function Header(props) {
     if (props.isManagerLoggedIn || props.isUserLoggedIn === true) {
         logOutButton = <Link to="/"><button  className = { styles.login } onClick={ props.logout }>Logout</button></Link>
     }
-  
     if (props.isManagerLoggedIn || props.isUserLoggedIn === true) {
         shoppingCart = <Link to="/shoppingcart"> <img className = { styles.cart } src = { cart } alt = "cart" /> </Link>
     }
 
-
     return (
-        
         <div className = { styles.header }>
             <div className = { styles.headerContainer }>
             { frontPageRoute }
-                <div className = { styles.headerControls }>
-                      
+                <div className = { styles.headerControls }>    
                     { loginButton }
                     { logOutButton }
-                    { shoppingCart }     
-                    
+                    { shoppingCart }        
                 </div>
             </div>
         </div>

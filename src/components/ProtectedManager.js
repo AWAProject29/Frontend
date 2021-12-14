@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './modules/Search.module.css';
-// import { restaurants }  from './data/restaurant.js';
 import food from './images/food.gif';
 import taco from './images/taco.png';
 import pizza from './images/pizza.png';
@@ -13,11 +12,9 @@ import Constants from '../Constants.json';
 import SearchView from './SearchView';
 import { Link } from 'react-router-dom';
 
-
 class ProtectedManager extends React.Component {
     constructor(props) {
-        super(props)
-              
+        super(props)       
         this.state = {
           restaurants: [],
           restaurantSearchString: "",
@@ -43,9 +40,6 @@ class ProtectedManager extends React.Component {
         }
 
         onSearchFieldChange = (event) => {
-
-            console.log('Keyboard event');
-            console.log(event.target.value);
             this.setState({ restaurantSearchString: event.target.value });
           }
 
@@ -59,9 +53,7 @@ class ProtectedManager extends React.Component {
             }
           }
 
-
-        render() {
-        // const { restaurants, errorMsg } = this.state
+        render() {    
         return (
             <>
             <div>
@@ -86,17 +78,11 @@ class ProtectedManager extends React.Component {
                     <button className={styles.categories} onClick={ () => this.setState({ chosenRestaurantType: "casual dining" })}><img src={casualdining} alt='' />Casual Dining</button>
                     <button className={styles.categories} onClick={ () => this.setState({ chosenRestaurantType: "fine dining" })}><img src={finedining} alt='' />Fine Dining</button>
                 </div>
-                <SearchView
-                    restaurants={ this.filteredItems() }
-
-                />
-
-            </div>
-             {/* <SearchBar items={ this.state.restaurants.filter((item) => item.restaurantname.toLowerCase().includes(this.state.findString.toLowerCase())) }/> */}
+                <SearchView restaurants={ this.filteredItems() }/>
+            </div>          
             </>
         );
     }
-
 }
 
 export default ProtectedManager;
