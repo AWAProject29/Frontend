@@ -207,6 +207,7 @@ class App extends React.Component {
       console.log(err);
     })
   }
+  
   removeItemFromOrder = (idcartitem) => {
     axios.put('http://localhost:3000/shoppingcart/removeFromCart',
     {

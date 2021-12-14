@@ -7,15 +7,17 @@ import visa from './images/visa.png';
 import paypal from './images/paypal.png';
 
 class ShoppingCartClass extends React.Component {
-    
+
 
     constructor(props) {
         super(props);
         this.state = {
-          cartContent: []
+          cartContent: [],
+          orderStatus: "",
+          seconds: 0
         }
       }
-      
+
 
     componentDidMount() {
         axios.get(Constants.API_ADDRESS + '/shoppingcart')
@@ -31,31 +33,72 @@ class ShoppingCartClass extends React.Component {
             console.log(this.state.cartContent)
     }
 
-      addItemToOrder = (chosenItem) => {
-          this.props.addItemToOrder(chosenItem);
-          window.location.reload();
-      }
-
-      removeItemFromOrder = (chosenItem) => {
-          this.props.removeItemFromOrder(chosenItem);
-          window.location.reload();
-      }
-
-    /*
-    OrderStatus = function (){
-        document.getElementById("orderPrepared").style.visibility="visible"
+    addItemToOrder = (chosenItem) => {
+        this.props.addItemToOrder(chosenItem);
+        window.location.reload();
     }
-    */
+
+    removeItemFromOrder = (chosenItem) => {
+        this.props.removeItemFromOrder(chosenItem);
+        window.location.reload();
+    }
+
+
+    onChangeDeliveryStatus=()=>{
+        this.f=setInterval(this.deliveryStatus,1000);
+      }
+    deliveryStatus=()=>{
+        this.setState({seconds:this.state.seconds+1});
+        if(this.state.seconds < 5) {
+            this.setState({orderStatus: "Your order has been received!"});
+        }
+        else if (this.state.seconds >= 5 && this.state.seconds <= 10) {
+            this.setState({orderStatus: "Your order is being prepared!"});
+        }
+        else if (this.state.seconds > 10 && this.state.seconds <= 15) {
+            this.setState({orderStatus: "Your order is on it's way!"});
+        }
+        else if (this.state.seconds > 15 && this.state.seconds <= 20) {
+            this.setState({orderStatus: "Your order has been delivered! Thank you for your order!"});
+        }
+        else {
+            this.setState({orderStatus: ""});
+            this.onResetDeliveryStatus();
+        }
+     }
+     onResetDeliveryStatus=()=>{
+         clearInterval(this.f);
+         this.setState({seconds:0})
+        //  this.setState({cartContent: []})
+     }
+
+
+
+    onStatusChange = () => {
+        if(this.state.seconds < 20) {
+            this.setState({orderStatus: "Your order has been received!"});
+        }
+        else if (this.state.seconds > 21) {
+            this.setState({orderStatus: "Your order is being prepared!"});
+        }
+        else if (this.state.seconds > 41) {
+            this.setState({orderStatus: "Your order is on it's way!"});
+        }
+        else {
+            this.setState({orderStatus: "Your order has been delivered! Thank you for your order!"})
+        }
+    }
+
     render() {
 
         const { cartContent } = this.state
-        const subCost = cartContent.reduce((subPrice, cartContent) => subPrice + cartContent.cartitemprice, 0)
-        const vatCost = (0.24 * subCost).toFixed(2) 
-        const deliveryCost = parseFloat((Math.random() * (15 - 1 )).toFixed(2))
-        const totalCost = subCost + deliveryCost
-        console.log(typeof(deliveryCost))
-        console.log(typeof(subCost))
-        
+
+        const subCost = parseFloat((cartContent.reduce((subPrice, cartContent) =>
+        subPrice + ((cartContent.cartitemprice)*(cartContent.cartitemamount)), 0)).toFixed(2))
+
+        const vatCost = (0.24 * subCost).toFixed(2)
+        const deliveryCost = parseFloat((subCost*0.1).toFixed(2))
+        const totalCost = (subCost + deliveryCost).toFixed(2)
 
         return (
             <div className={ styles.siteBackground }>
@@ -119,13 +162,13 @@ class ShoppingCartClass extends React.Component {
                             <button className={styles.paymentOption}><img src={ visa } alt='' /></button>
                             <button className={styles.paymentOption}><img src={ paypal } alt='' /></button>
                         </div>
-                        <button>Confirm Order</button>
+                        <button id='btn' onClick={this.onChangeDeliveryStatus}>Confirm Order</button>
                     </div>
                 </div>
                 <div className={ styles.rightSide }>
+                
                     <div id="orderPrepared" className={ styles.orderStatus }>
-                        <h1>Your order is being prepared!</h1>
-                        <img className={ styles.image } src={ visa } alt='' />
+                        <h1>{ this.state.orderStatus }</h1>
                     </div>
                 </div>
             </div>

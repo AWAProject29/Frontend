@@ -45,6 +45,8 @@ class AddProduct extends React.Component {
                 console.log(error);
                 this.setState({errorMsg: 'Error retrieving data'})
             })
+            const restaurantid = window.location.href.slice(-2)
+            this.manageMenu(restaurantid)
     }
 
     manageMenu = (id) => {
@@ -60,14 +62,21 @@ class AddProduct extends React.Component {
       const cartitemprice = addedItem.productprice;
       const cartitemamount = this.state.amountOfItem+1;
 
+      console.log(cartitemid)
+      console.log(cartitemname)
+      console.log(cartitemprice)
+
       this.setState({idShoppingCart: idshoppingcart})
       this.setState({cartItemId: cartitemid})
       this.setState({cartItemName: cartitemname})
       this.setState({cartItemPrice: cartitemprice})
       this.setState({cartItemAmount: cartitemamount})
 
+      console.log(this.state.cartItemId);
+      console.log(this.state.cartItemName);
+      console.log(this.state.cartItemPrice);
+
       this.props.onAddItemToCart(this.state.idShoppingCart, this.state.cartItemId, this.state.cartItemName, this.state.cartItemPrice, this.state.cartItemAmount);
-      // window.location.reload();
 
       console.log(this.state.cartItems);
     }
