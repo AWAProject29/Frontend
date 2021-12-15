@@ -20,7 +20,7 @@ class ShoppingCartClass extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(Constants.API_ADDRESS + '/shoppingcart')
+        axios.get({withCredentials: true }, Constants.API_ADDRESS + '/shoppingcart')
             .then(response => {
                 this.setState({ cartContent: response.data })   
             })

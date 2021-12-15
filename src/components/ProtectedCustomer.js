@@ -27,7 +27,7 @@ class ProtectedCustomer extends React.Component {
         }
 
         componentDidMount() {
-            axios.get(Constants.API_ADDRESS + '/restaurant')
+            axios.get({withCredentials: true }, Constants.API_ADDRESS + '/restaurant')
                 .then(response => {
                     console.log(response);
                     this.setState({ restaurants: response.data })

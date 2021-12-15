@@ -21,7 +21,7 @@ export default function Login(props) {
 
         try {
 
-            const result = await axios.post(Constants.API_ADDRESS + '/loginForJWTcustomer', null, 
+            const result = await axios.post({withCredentials: true }, Constants.API_ADDRESS + '/loginForJWTcustomer', null, 
             {
                 auth: {
                     username: event.target.email.value,

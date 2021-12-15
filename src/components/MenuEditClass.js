@@ -27,7 +27,7 @@ class AddProduct extends React.Component {
       }
     
     componentDidMount() {
-        axios.get(Constants.API_ADDRESS + '/product')
+        axios.get({withCredentials: true }, Constants.API_ADDRESS + '/product')
             .then(response => {
                 this.setState({ products: response.data });
             })
