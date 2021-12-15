@@ -12,7 +12,7 @@ export default function LoginManager(props) {
         event.preventDefault();
         try {
 
-            const result = await axios.post({withCredentials: true }, Constants.API_ADDRESS + '/loginForJWTmanager', null, 
+            const result = await axios.post(Constants.API_ADDRESS + '/loginForJWTmanager', null, 
             { 
                 auth: {
                     username: event.target.email.value,

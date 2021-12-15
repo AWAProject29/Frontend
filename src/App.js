@@ -41,7 +41,7 @@ class App extends React.Component {
   
 
   addNewCustomerAccount = (email, password, firstname, lastname, address) => {
-    axios.post({withCredentials: true }, Constants.API_ADDRESS +'/customer/addCustomer', 
+    axios.post(Constants.API_ADDRESS +'/customer/addCustomer', 
       {
         email,
         password,
@@ -61,7 +61,7 @@ class App extends React.Component {
   }
 
   addNewManagerAccount = (email, password, firstname, lastname, managerauthentication) => {
-    axios.post({withCredentials: true }, Constants.API_ADDRESS + '/manager/addManager', 
+    axios.post(Constants.API_ADDRESS + '/manager/addManager', 
       {
         email,
         password,
@@ -82,7 +82,7 @@ class App extends React.Component {
   }
 
   addNewRestaurant = (restaurantname, address, restauranttype, pricelevel, operatinghours, restaurantimage, restaurantdescription) => {
-    axios.post({withCredentials: true }, Constants.API_ADDRESS + '/restaurant/addRestaurant', 
+    axios.post(Constants.API_ADDRESS + '/restaurant/addRestaurant', 
       {
         restaurantname,
         address,
@@ -104,7 +104,7 @@ class App extends React.Component {
   }
 
   addNewProduct = (productname, productprice, productcategory, productdescription, productimage, restaurantpageid) => {
-    axios.post({withCredentials: true }, Constants.API_ADDRESS + '/product/addProduct', 
+    axios.post(Constants.API_ADDRESS + '/product/addProduct', 
       {
         productname,
         productprice,
@@ -125,7 +125,7 @@ class App extends React.Component {
   }
 
   removeProduct = (productId) => {
-    axios.delete({withCredentials: true }, Constants.API_ADDRESS + `/product/removeProduct/${productId}`)
+    axios.delete(Constants.API_ADDRESS + `/product/removeProduct/${productId}`)
       .then(response => {
         console.log(JSON.stringify(response));
       })
@@ -139,7 +139,7 @@ class App extends React.Component {
   }
 
   onAddItemToCart = (idshoppingcart, idcartitem, cartitemname, cartitemprice, cartitemamount) => {
-    axios.post({withCredentials: true }, Constants.API_ADDRESS + '/shoppingcart/addToCart', 
+    axios.post(Constants.API_ADDRESS + '/shoppingcart/addToCart', 
       {
         idshoppingcart,
         idcartitem,
@@ -170,7 +170,7 @@ class App extends React.Component {
   }
 
   onRemoveItemFromCart = (idcartitem) => {
-    axios.put({withCredentials: true }, Constants.API_ADDRESS + '/shoppingcart/removeFromCart', 
+    axios.put(Constants.API_ADDRESS + '/shoppingcart/removeFromCart', 
       {
         idcartitem
       }
@@ -185,7 +185,7 @@ class App extends React.Component {
   }
 
   addItemToOrder = (idcartitem) => {
-    axios.put({withCredentials: true }, Constants.API_ADDRESS + '/shoppingcart/addAmount',
+    axios.put(Constants.API_ADDRESS + '/shoppingcart/addAmount',
     {
       idcartitem
     }
@@ -200,7 +200,7 @@ class App extends React.Component {
   }
 
   removeItemFromOrder = (idcartitem) => {
-    axios.put({withCredentials: true }, Constants.API_ADDRESS + '/shoppingcart/removeFromCart',
+    axios.put(Constants.API_ADDRESS + '/shoppingcart/removeFromCart',
     {
       idcartitem
     }
@@ -217,7 +217,7 @@ class App extends React.Component {
   clearCart = (teststring) => {
     console.log("We're in cleaCart function in appjs")
     console.log(teststring)
-    axios.put({withCredentials: true }, Constants.API_ADDRESS + '/shoppingcart/clearCart')
+    axios.put(Constants.API_ADDRESS + '/shoppingcart/clearCart')
     .then(response => {
       this.setState({ items: response.data.items })
       console.log(JSON.stringify(response));

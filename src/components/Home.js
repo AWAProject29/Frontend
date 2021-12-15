@@ -23,7 +23,7 @@ class Home extends React.Component {
     }
 
         componentDidMount() {
-            axios.get({withCredentials: true }, Constants.API_ADDRESS + '/restaurant')
+            axios.get(Constants.API_ADDRESS + '/restaurant')
                 .then(response => {
                     this.setState({ restaurants: response.data })
                 })
